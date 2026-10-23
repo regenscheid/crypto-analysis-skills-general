@@ -6,6 +6,13 @@ license: Apache-2.0
 
 # Derive a cost where none was published
 
+Use [the environment guide](../investigate/reference/environment.md) to read
+related instructions through a native loader, files, or supplied text. Tool names
+and Python record-keeping examples below apply only when those capabilities are
+available. Without them, analyze the inspected evidence and keep a text record;
+label missing source retrieval, computation, or independent checks explicitly.
+
+
 This is the workbench's miss handler: what happens when it does not already
 know something. One hop, bounded by construction —
 
@@ -31,15 +38,13 @@ produce a cost, because nothing turned that derivation into
 The gap was not knowledge; it was the step between a derivation and a
 parameterised call.
 
-## Plan first, if this is multi-stage
+## Plan when the task needs it
 
-A full reduction hunt is a pipeline, and that is exactly the shape `generate_plan` is for:
-parallel directions become `delegations` in a phase, and the human approves the
-approach once instead of discovering it at the end.
-
-Skip planning for a single lookup or bounded estimator call. Follow
-`investigate`'s **Plan without stalling** rule and its platform adapter rather
-than duplicating host-specific plan mechanics.
+For multi-stage work, use the current host's plan interface or a short written
+plan and begin the authorized analysis. A bounded check may need no formal plan.
+Independent work can run sequentially; delegation is optional and subject to the
+host's capabilities and permissions. Follow
+[the environment guide](../investigate/reference/environment.md).
 
 ## 1. Search what is already known — including the dead ends
 
@@ -188,8 +193,7 @@ add_gap(question="…", looked_in=["ePrint", "NIST", "firecrawl", "web"],
 A negative finding must be as cheap to record as a positive one. If it is not,
 it does not get recorded, and the next session repeats your search.
 
-Then close the loop on the plan — `update_step_status` with the outcome in
-`notes`. A cost derived but not independently checked is a result awaiting
+Then update the available plan or written record with the outcome. A cost derived but not independently checked is a result awaiting
 verification, not an established one; say which it is.
 
 ## What this deliberately does not do
@@ -202,40 +206,16 @@ verification, not an established one; say which it is.
   reduction and instantiating it are different steps with different evidence
   requirements.
 
-## Publish as you go
+## Deliver the evidence
 
-You are the one doing the research, so you are the one who surfaces it. The
-connectors keep state current on disk; they cannot call `save_artifacts` and it
-would be wrong if they could. **Publishing is part of the work, not bookkeeping
-after it.**
+Return the cost table, parameter mapping, assumptions, and relevant scripts or
+outputs with the answer. When writable storage is available, retain exact files
+or host document IDs and confirm they were saved. A filename does not establish
+version identity; use hashes or confirmed host versions when available. Without
+storage, include a text handoff. A script that was only written must be labeled
+unexecuted, and a planned independent check must remain unresolved.
 
-Follow the current host artifact interface and
-`investigate/reference/claude-science.md` for version identity. Do not infer
-versioning from a repeated filename or impose a publish-after-every-write rule
-on the host. Workspace knowledge and persistence are managed by the harness.
-
-Publish when it changes, not once:
-
-- **the plan** — it is live and needs no publishing; keep it current with
-  `update_step_status` at the start and end of every step. That replaces what
-  used to be a publish cycle here, and cannot drift the way a rendered file did.
-- **anything you generate that a person would want to look at** — a cost table
-  across parameter sets, a figure, a scheme's extracted structure, the mapping
-  from a paper's symbols onto estimator arguments.
-
-Measured on 2026-08-02: the ledger's state file ran **20 hours ahead** of its
-rendered view, because publishing was left to memory. A day of real work — a
-claim parked, revived, and given new paper evidence — existed only in a file
-nobody looks at. Work the human cannot see has not been delivered.
-
-**A tool-carrying specialist publishes its own work; you publish the synthesis.**
-Measured, after the question was left open once and then answered:
-`CRYPTO_VERIFIER` wrote four artifacts from three frames of its own — figures and
-CSVs from its verification runs. So do not re-publish what it already published.
-
-`REVIEWER` is the opposite case and it is what misled an earlier version of this
-note: it has produced zero artifacts, because it has no execution at all. Absence
-of artifacts from an agent with no tools says nothing about agents with tools.
-
-What stays yours: the synthesis. A specialist publishes its evidence; the answer
-that cites it, and the ledger state that records it, are the delegator's.
+Update a multi-stage plan when its premises change. If work was delegated,
+retain the worker's original evidence and provide your own synthesis. Saving
+research files is separate from external publication, which requires the user's
+authorization.

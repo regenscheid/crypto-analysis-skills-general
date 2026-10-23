@@ -3,7 +3,7 @@
 
 The JSONL files are authoritative. Notebook files are derived from logged
 ``outcome.notebook_append`` text and can be rebuilt after an interrupted write.
-No Claude Science private API is needed: the root agent passes one absolute
+No private host API is needed: the root agent passes one absolute
 project directory and the host's session identifier to every delegate.
 """
 

@@ -6,7 +6,7 @@ passed. It does not measure mathematical progress, correctness, novelty, coverag
 or whether cited evidence supports a conclusion. `research_progress` is always
 `not_assessed`; compare actual mathematical outputs in a separate review.
 
-`check_cscience_probe.py` checks exact body-content adherence. A correct marker
+`check_skill_probe.py` checks exact body-content adherence. A correct marker
 does not by itself prove that a host invoked a skill.
 
 Both tools accept `--trace` as the following **offline normalized JSON**, prepared
@@ -22,7 +22,7 @@ a prompt, an available tool definition, or a failed call.
   "events": [
     {
       "kind": "skill_load",
-      "skill_id": "cscience-skill-probe",
+      "skill_id": "skill-load-probe",
       "status": "succeeded",
       "call_id": "original-call-id",
       "body_sha256": "REPLACE_WITH_64_LOWERCASE_HEX_DIGITS_FROM_THE_RETURNED_BODY"
@@ -40,13 +40,12 @@ supplied; failed calls cannot count as successful loads.
 ## Project/session research-board metrics
 
 `python tools/trace_evidence.py --board-metrics normalized.json` reports one
-Claude Science root session in one project. `board_metrics(path)` returns the
+recorded session in one project. `board_metrics(path)` returns the
 same JSON object for Python callers. This is an **offline normalized event
-contract**, not a Claude Science API and not proof that the original capture is
+contract**, not a host API and not proof that the original capture is
 authentic. Preserve the original trace, host-call tapes, and board ledgers.
 
-The top-level `project_id` and `session_id` are the project's ID and the root
-frame ID from `host.artifacts()["provenance"]`. `project_dir` is the absolute
+The top-level `project_id` and `session_id` are the project's ID and the session identifier actually recorded by the host or supplied by the researcher. `project_dir` is the absolute
 `<CRYPTO_FILES>/projects/<project_id>` path. `capture_complete` has four
 boolean channels: `board_reads`, `board_appends`, `delegations`, and
 `delegation_returns`. Mark a channel `true` only after covering the entire
@@ -157,94 +156,35 @@ established, set `capture_source: "unknown"`; use `"manual"` only when the
 trace explicitly shows a manual outcome. An unknown outcome origin makes the
 negative return-to-append metric unverified.
 
-For CScience captures, `host_call_log` in `~/.cscience/operon-cli.db` records
-`method`, `args_json`, `data_inline`, and `data_ref`, linked to an
-`execution_log` cell by `execution_log_id`. Large responses live in the
-project's `host_call_tapes` under its artifact store. Normalize each spawned
-child from a `delegate` call's arguments and returned `frame_id`. Set
-`expects_board_outcome` from the actual `output_schema` in the delegation
-request; it is `true` only for the standard board fragment (`delegation_id`,
-`idea_id`, `state`, `findings`, `dismissals`, `lemma_proposals`,
-`notebook_append`, and `child_idea_ids` when `state="split"`). Use the root
-assigned, per-child `delegation_id` from the request and returned structured
-output. Preserve `host_call_log.id` separately as `host_call_id` when useful;
-it can be shared by several children in one batched call. A normalized
-`delegation_id` must equal `structured_output.delegation_id` and the persisted
-outcome payload and provenance IDs. The persisted `child_frame_id` must equal
-the returned child frame ID. The root's delegated `idea_id` must agree with the
-returned and persisted outcome's `idea_id` when the trace binds a child to an
-idea. Valid outcomes require all board fields; a dismissal requires nonempty
-`attempted` text, and a split outcome requires distinct `child_idea_ids`.
-Normalize a **terminal** `delegation_return` from a blocking `delegate` result
-or later `collect` result. `delegate(wait=False)` running descriptors are not
-terminal returns. `collect` results have the same `frame_id` and may include
-`structured_output`, `deviations`, and artifact IDs. Carry the actual
-`context_summary` field, including `null` when omitted. Set `idea_id` and
-`board_read_call_id` on a delegation only when the trace explicitly binds that
-child to the idea and preceding read; otherwise the idea classification is
-unverified. Do not extract either from free-form praise or a final report.
+Normalize delegation events only from observed requests and returns. Assign a
+unique per-worker `delegation_id`, retain the host's worker ID as `child_frame_id`,
+and record the actual task context in `context_summary`. Correlate returned and
+persisted payloads by those IDs. Running descriptors are not terminal returns.
+Do not invent capture completeness, a child ID, a board read, or a persisted
+outcome from prose mentions. A host without worker traces cannot substantiate
+these metrics; sequential work need not produce delegation events at all.
 
-The report counts idea dispatches by distinct `(board_read_call_id, idea_id)`
-pairs. Snapshot `requeue_idea_ids` takes precedence over ordinary carried open
-ideas; a new idea requires a persisted `idea` event between the read and
-delegation. `soft_dismissals_requeued` counts distinct
-`(event_id, dismissal_index)` pairs
-for ideas actually requeued. `rederivations_of_existing_lemmas` counts derived
-lemma proposals whose `restates` IDs match promoted lemma IDs in the preceding
-snapshot. This is a trace-observable restatement, not an independent judgment
-of mathematical equivalence. A delegation satisfies the board-path check only
-when `context_summary` contains the absolute `<project_dir>/board` path or a
-descendant path. A return is counted as appended only when the persisted
-`outcome` has the same delegation ID, child frame ID, and **exact structured
-output payload**, and its append follows the terminal return in trace order.
-A modified payload appears among unappended returns and in
-`modified_return_child_frame_ids`. A completed child expected to return the
-board fragment but missing those structured fields also counts as unappended;
-`unsatisfied_board_return_child_frame_ids` identifies it separately.
+## Cross-environment trials
 
-Useful manual evaluation questions for ordinary mathematical work:
+Use `portability-cases.json` for instruction access, absent browsing, absent
+execution, partial catalogs, storage, and sequential research. Supply each prompt
+and its resource constraints, withholding the review criteria from the model.
+Record the actual model, host version, capabilities, resources supplied, and
+output. Review whether the result used available evidence accurately and made
+useful progress. These cases are manual acceptance criteria, not completed tests
+of every assistant or evidence of scientific correctness.
 
-- Did the response produce a definition, inference, lemma, counterexample, or
-  useful partial result beyond the supplied material?
-- Are open premises visible in every dependent conclusion?
-- Did a repeated known-result check address a concrete uncertainty?
-- Does the evidence distinguish a finite fact from an empirical observation?
-- Can the reviewer identify the remaining mathematical obligation from the output?
+The skill probe checks body-content adherence regardless of whether the body
+was obtained natively, through a file read, or in supplied text. Record that
+access route separately. For native-load claims, retain the host's actual load
+event; a pasted marker or an assistant's statement cannot establish one. If
+native tracing is unavailable, leave loading unassessed. Do not fabricate a
+normalized trace to make the checker pass.
 
-Use supplied context for continuation evaluations. These trace metrics measure
-record handling, not whether the research claims are correct or novel.
-
-## HAWK board validation protocol
-
-For the proposed HAWK τ-cocycle rediscovery trial, freeze and hash a corpus
-containing only pre-July-2026 versions of the HAWK specification, GP25, Duc23,
-BN24, and NIST IR 8610, plus the exact reference implementation used to
-generate a fresh HAWK-256 challenge. Keep the challenge's secret material and
-all later attack disclosures outside both agent sessions. Disable live web and
-literature retrieval for the trial; verify the available corpus and skill list
-inside each fresh session before work starts. A frozen corpus alone cannot rule
-out knowledge already present in the selected model, so record its identity and
-training cutoff where available.
-
-Run matched, isolated CScience sessions with the same model, prompt, frozen
-inputs, compute profile, network access, and operational resource cap. The
-skills arm uses the revised crypto skills; the comparison arm has an explicit
-empty skill list while retaining the same host adapter and compute access.
-Do not remove skills from a live shared installation to create the comparison.
-Keep any new HAWK attack-catalog record out of both arms. Verify required
-Sage/lattice dependencies and hidden-challenge generation before either arm;
-do not infer readiness from a provider manifest alone.
-
-The research board's scientific stopping rule remains idea state: continue
-until no open ideas remain or the user stops. An external wall-clock/model-call
-cap may end an experimental run for operational reasons; report that as a
-censored run with its remaining open ideas, not as a solved or obstructed
-campaign. Save source hashes, model and tool settings, original host traces,
-board ledgers, normalized events, and the metrics above. Verify any returned
-equivalent signing key against the hidden challenge outside the agent. Compare
-the actual mathematics as well as the trace metrics. Consider a maintainer
-authored fork hook only for a specific drift seen in these traces. This
-protocol is not itself a completed validation run.
+The routing scorer remains an offline **format smoke check** for complete-catalog
+trials. It expects prescribed sections and names; it is not an acceptance gate
+for a legitimate partial-catalog or text-only session. It cannot measure whether
+a missing method was correctly treated or whether an argument is sound.
 
 ## Mathematical development and contribution cases
 
@@ -259,7 +199,7 @@ the review criteria separate until assessment. Inspect the actual reasoning,
 source use, and output. Compare the same prompt and supplied context before and
 after the skill change; record the model configuration and available resources.
 Do not count a case as passed because expected words appeared. These cases have
-not been run through Claude Science merely by being checked into the repository.
+not been exercised in a live assistant merely by being checked into the repository.
 
 
 ## Comparison protocol

@@ -1,382 +1,168 @@
-# crypto-analysis-skills
+# crypto-analysis-skills-general
 
-Composable Agent Skills for rigorous cryptanalysis and cryptographic formal
-methods. The repository is designed for Claude Science first and keeps the
-portable `SKILL.md` core suitable for other Agent Skills hosts.
+Portable instructions for rigorous cryptanalysis and cryptographic formal methods,
+for web chats, desktop assistants, and coding agents. Use them through a native
+Agent Skills loader, as files read by an agent, or as selected text supplied in a
+conversation. A particular model, tool API, MCP server, filesystem, or execution
+environment is never a prerequisite to reading and using the methods.
 
-The complete catalog is meant to be installed. Skill names and descriptions
-participate in routing; full skill bodies and bundled references load on demand.
-Use a dedicated cryptography profile or organization so unrelated science tasks
-do not have to route across this catalog.
+This is a general-purpose derivative of
+[crypto-analysis-skills](https://github.com/regenscheid/crypto-analysis-skills).
+It preserves the original Git history and the 162 canonical skill names. It is
+maintained separately; the original repository remains available upstream.
+
+## Start here
+
+For a chat with no repository access, paste [START_HERE.md](START_HERE.md) and
+supply the relevant skill files, target specification, and evidence. For an
+agent that can read this checkout, use:
+
+> Read START_HERE.md and skills/investigate/SKILL.md. Use the relevant methods in
+> this repository to analyze [target and question]. Determine which files and
+> tools you can actually access. Continue with the available evidence and mark
+> any missing sources, execution, or checks explicitly.
+
+Choose a small set of skills for the assignment. Installing the entire catalog
+is optional. Start with `investigate` for a broad investigation, `analyze-paper`
+for a paper audit, `verify-claim` for one claim, or
+`mathematical-research-development` for a stated mathematical question.
+`investigate` can select symmetric, public-key, and formal-method workflows when
+their files are available; it also works with a partial catalog. A missing skill
+is reported as unavailable, never as loaded or as a completed check.
+
+## Use in different environments
+
+### Web and desktop conversations
+
+There are two routes:
+
+- **Native skills, when supported:** upload the selected skill folders using
+  your product's skill interface. `tools/package_skills.py` produces a separate
+  ZIP for each skill, each with one top-level skill folder. Enable or load only
+  what is relevant. A native loader may expose only the uploaded skill, without
+  access to sibling skills.
+- **Ordinary chat:** attach or paste the selected Markdown instructions and
+  references. The generated `context.md` packet includes those resources with
+  their original paths. Ask the assistant to use them explicitly. Attaching a
+  ZIP is useful only if the current session can unpack and read it; a repository
+  URL or attachment alone does not establish that any file was read.
+
+For ChatGPT, use whichever skill, file, or project interface is present in your
+account. The text route works without assuming a native skill installer. Desktop
+apps can have different capabilities from coding sessions on the same machine.
+See the [OpenAI skill documentation](https://learn.chatgpt.com/docs/build-skills)
+and [Anthropic skill documentation](https://support.claude.com/en/articles/12512180-use-skills-in-claude)
+for current native support. Product interfaces and account availability can change.
+
+### Coding agents
+
+An agent with file access can read the checkout directly without installing
+anything. For native discovery, copy selected **whole skill directories**, with
+references and scripts, to the skill location supported by your agent:
+
+| Host | Project location | Personal location |
+|---|---|---|
+| Codex | `.agents/skills/<name>/` | `~/.agents/skills/<name>/` |
+| Anthropic coding agent | `.claude/skills/<name>/` | `~/.claude/skills/<name>/` |
+
+Confirm the locations against the
+[OpenAI documentation](https://learn.chatgpt.com/docs/build-skills) or
+[Anthropic coding documentation](https://code.claude.com/docs/en/skills) for the
+installed version. Other hosts may use other paths. Resolve relative resources
+from the loaded skill's location, not an assumed working directory. Avoid
+installing another copy if the same canonical skill is already present.
+
+### Make upload and text bundles
+
+Packaging needs Python 3.10+ and only its standard library:
+
+```sh
+python3 tools/package_skills.py --profile starter --output dist/starter
+python3 tools/package_skills.py --profile symmetric --output dist/symmetric
+python3 tools/package_skills.py --skill verify-claim --output dist/one-claim
+```
+
+Each output directory contains `skills/<name>.zip`, `context.md`, and a manifest
+with skill IDs and file hashes. Profiles are selections, not transitive dependency
+installers: cross-skill references remain optional and are labeled when absent.
+The starter selection contains the main workflows and domain entry points;
+`public-key`, `formal`, and `all` are also available. Large selections can exceed
+an assistant's context window. Use individual skills for focused questions.
+Generated bundles are ignored by Git. Packaging does not install skills, execute
+their scripts, or configure any connector.
 
 ## What is included
 
-The current installation contains 162 skills:
+The catalog contains 11 core workflows, 29 symmetric cryptanalysis skills,
+59 public-key cryptanalysis skills, and 63 formal-method skills. Names shared
+between imported packs retain `symmetric-` or `public-key-` prefixes. The generated
+[skill registry](config/skill-registry.json) lists every canonical ID and domain.
 
-- 11 core skills for investigation, scheme and paper analysis,
-  attack validation, mathematical development, costing, review, knowledge helpers,
-  and Magma;
-- 29 symmetric-cryptanalysis skills;
-- 59 public-key cryptanalysis skills;
-- 63 formal-method and theorem-prover skills.
+The methods preserve target and attacker models, source provenance, concrete
+cost accounting, bounded negative results, and distinctions among proofs,
+exact checks, empirical observations, and unresolved claims. Formalization is
+optional; prose or an unreplayed proof file is never machine-checked evidence.
 
-Six workflow names appeared in both cryptanalysis packs. They remain separate
-and are installed with `symmetric-` or `public-key-` prefixes so every skill has
-a globally unique callable name.
+## Capability-based behavior
 
-The formal-method pack is installed with the rest of the catalog but is routed
-through `formal-methods-router`. Ordinary cryptanalysis does not have to invoke
-a prover merely because the skills are available.
-
-## Current scope
-
-Claude Science imports the skills, accesses MCP servers, and manages plans and
-project artifacts. `workbench-knowledge` adds a project-specific research
-record in local files: shared settled knowledge and per-session append-only
-idea ledgers. It does not replace the host's plans, checkpoints, or artifact
-versions, and requires no fork-only feature. Physical security is outside the
-current research scope. Catalog updates are deliberate maintainer edits;
-investigations do not automatically submit or publish records.
-
-`mathematical-research-development` supports ordinary mathematical questions and
-useful conditional or partial results. Its development reference addresses
-alternative representations, carrying a proof beyond an outline, and reasons to
-repeat an established check. Shared evidence guidance distinguishes proofs, finite
-verification, empirical observations, and unresolved questions.
-
-Contribution guidance separates routine applications and new evaluations from
-substantive extensions and potentially new methods. Applying a known result to
-another parameter set can matter without supplying a novel mechanism. See
-`tests/mathematical-research-cases.json` for manual behavior-evaluation cases.
-
-## Control plane
-
-`investigate` is the default entry skill for substantive cryptographic work. It:
-
-1. selects `ASSESS`, `DISCOVER`, `VALIDATE`, or `FORMALIZE` mode;
-2. loads the symmetric, public-key, or formal-method orchestrator;
-3. selects applicable technique skills explicitly;
-4. records source grounding and a skill trace, with family coverage when a
-   scheme assessment is part of the assignment;
-5. executes the investigation rather than stopping after planning or literature
-   review;
-6. applies mode-specific completion gates before concluding.
-
-Infer modes from the requested work; keywords alone do not select `DISCOVER`.
-DISCOVER distinguishes a requested research proposal from development of a
-selected mathematical question. There is no fixed five/two agenda limit or
-requirement for a cheap falsifier before mathematical work. Meaningful conditional
-results and supporting lemmas count as progress; complete scheme coverage is a
-separate assessment responsibility.
-
-`verify-claim` checks whether an assigned paper claim is correct. Source
-interpretation and use of a published ingredient do not automatically invoke a
-paper audit. Statistical evidence guidance is directly available for ordinary
-research without formalization. The catalog supplies four editorial reading
-guides through its existing read tools; source-inspection limits remain explicit.
-
-The main control skills are intentionally short. Detailed domain checklists,
-platform behavior, schemas, and references remain on demand.
-
-## Repository layout
-
-Only `skills/` is an Agent Skills runtime surface. Claude Science does not read
-the repository's configuration, reports, tests, or maintenance tools when it
-selects a skill.
-
-| Path | Role | Install into Claude Science? | Editing policy |
-|---|---|---:|---|
-| `skills/` | The 162 runtime Agent Skills and their bundled resources | Yes | Edit core skills deliberately; refresh imported skills from their source packs |
-| `config/` | Committed machine-readable manifests and cross-repository contracts | No | Generate with repository tools; do not hand-edit |
-| `reports/` | Committed, regenerated inspection output | No | Generate with `audit_skills.py`; do not treat as authoritative source |
-| `tests/` | Runtime probes and routing acceptance cases | Only install the probe temporarily when testing | Edit when adding a failure case or changing an output contract |
-| `tools/` | Developer utilities for import, validation, and response scoring | No | Maintain as ordinary repository code |
-| `.agents/` | Ignored local staging for source packs and catalog references | No | Replace locally when new source material arrives |
-
-The flat `skills/` layout is the compatibility boundary. Logical grouping lives
-in the domain orchestrators and `config/skill-registry.json`, while the runtime
-continues to see ordinary sibling skill directories.
-
-## Claude Science and CScience
-
-Install every directory under `skills/` into the skill location used by the
-intended Claude Science organization or cryptography profile. A global personal
-installation commonly uses `~/.cscience/skills/`; organization-scoped installs
-may live under that organization's `~/.cscience/orgs/.../skills/` directory.
-
-Do not install `.agents/`. It is a local, ignored staging area for source packs,
-not part of the runtime distribution.
-
-The reference deployment uses this remote research MCP connector:
-
-```text
-https://research-mcp-api.npages.org/mcp
-```
-
-`skills/investigate/reference/tools.md` maps research capabilities to that
-connector's current tool names and to portable alternatives. The runtime should
-use equivalent available MCP, native, or approved local tools rather than assume
-one provider. When every route is unavailable, skills record and surface the
-blocked capability instead of silently dropping the grounding requirement.
-
-### Verify GPT skill loading
-
-CScience routes non-Anthropic models through a compatibility layer, so ordinary
-tool-call success does not establish that Agent Skills work. Before a long run:
-
-1. temporarily install `tests/cscience-skill-probe/` as a skill;
-2. run both skill-load prompts in `tests/cscience-skill-probe-cases.json` with the exact
-   model alias and effort setting intended for the investigation;
-3. save the raw response and, when possible, the runtime skill-call trace;
-4. check the response with:
-
-```bash
-python3 tools/check_cscience_probe.py response.json --trace trace.txt
-```
-
-This distinguishes discovery failure, body-loading failure, and instruction
-adherence failure. Separately confirm that CScience's effort-model and
-background-model mappings include the selected GPT aliases.
-
-After the probe passes, run a case from `tests/routing-cases.json` and score the
-captured investigation response:
-
-```bash
-python3 tools/score_routing_response.py find-fn-dsa-issues response.md --trace trace.txt
-```
-
-The trace option is important: a polished report that merely mentions a skill
-does not prove the runtime loaded it.
-
-## Optional local backends
-
-| Skill | Optional backend | Without it |
+| Available capability | How to work | Without it |
 |---|---|---|
-| `analyze-scheme` | SageMath and `cryptographic_estimators` | Mark the relevant cost row `NOT CHECKED` and identify the missing model |
-| `magma` | A Claude Science SSH compute provider | Skip Magma-specific computation; other skills remain available |
-| theorem-prover skills | The named prover and pinned dependencies | Produce a formalization plan or blocked obligation, never a claimed proof |
+| Skill loader or readable files | Read selected bodies and relevant resources | Use supplied text; identify missing procedures |
+| Browsing or research connectors | Open primary sources and record exact locators | Use inspected supplied material; flag current/prior-art gaps |
+| Code execution | Check tools and versions in the actual execution context | Give derivations or runnable code explicitly labeled unexecuted |
+| SageMath, estimators, solvers, or provers | Use only when installed and suitable | Mark the relevant cost or proof obligation `NOT CHECKED` or `BLOCKED` |
+| Licensed Magma | Use a configured local or remote installation | Choose a suitable available alternative or leave the computation blocked |
+| Writable persistent files | Optionally use `workbench-knowledge` (Python/POSIX helpers) | Return a research handoff in the conversation; make no persistence claim |
+| Authorized independent workers | Optionally split work and review fixed returns | Work sequentially; describe a self-check accurately |
 
-`workbench-knowledge` uses `CRYPTO_FILES` (default
-`~/crypto-workbench-files`) as a storage parent and places each project
-under `projects/<project-id>/`. The root agent resolves the project ID
-once and passes the absolute directory to delegates.
+Read [the environment guide](skills/investigate/reference/environment.md) for
+resource loading, fallbacks, and resumption. No connector endpoint, remote host,
+operating system, project ID, artifact API, approval UI, or subagent profile is
+preconfigured by this repository. The external attack catalog is optional;
+primary sources and supplied artifacts can be used directly.
 
-## Maintainer manifests, reports, and tools
+The dedicated runtime adapter, internal planning and artifact calls, model alias
+mapping checks, and deployment-specific compute wrappers from the upstream
+application have been removed. The research board remains an optional Python
+helper, with a text handoff when durable storage is unavailable. Long research
+loops respect the user's scope and the current session's limits.
 
-These files support reproducible maintenance and attack-catalog consistency.
-They are not prompts, and their contents do not consume model context.
+## Maintainer layout and validation
 
-### `config/imported-skills.json`
+| Path | Purpose |
+|---|---|
+| `skills/` | Runtime instructions, references, assets, and optional helpers |
+| `config/imported-skills.json` | Original source provenance and installed content hashes for 151 imported skills |
+| `config/skill-registry.json` | Generated canonical skill IDs for external consumers |
+| `reports/skill-inventory.json` | Generated inventory, links, descriptions, and portability audit |
+| `tests/` | Host-neutral load probe, manual behavior cases, and Python regressions |
+| `tools/` | Audit, packaging, import, and offline evaluation utilities |
+| `.skill-packs/` | Optional ignored source-pack staging; not an installable runtime |
 
-This is the provenance and integrity manifest for the 151 skills imported from
-the symmetric, public-key, and formal-method packs. Each record contains:
+Run from the repository root:
 
-- source domain and original name;
-- installed canonical name;
-- source tree hash;
-- installed tree hash after collision renaming and cross-reference rewriting.
-
-`tools/import_skill_packs.py --check` reads this manifest and hashes the current
-installed trees. A mismatch means an imported skill changed after the recorded
-import. That may be an accidental edit or an intentional refactor requiring an
-explicitly reviewed manifest update.
-
-This manifest is internal to this repository. The attack catalog should not use
-it: source filenames and import hashes are packaging details, not public skill
-identifiers.
-
-Do not hand-edit it. Regenerate it while importing a new pack version, or record
-reviewed local changes explicitly with:
-
-```bash
-python3 tools/import_skill_packs.py --accept-installed-changes
-```
-
-Review the skill diff before running that command. It preserves the original
-source hash and changes only the installed hash, making the local divergence
-visible without pretending it came from the staged pack.
-
-### `config/skill-registry.json`
-
-This is the public identity contract for all installed skills, including the ten
-core skills. It is generated directly from the installed `SKILL.md` files and
-contains only:
-
-- the canonical `skill_id`, exactly equal to the frontmatter `name`;
-- the broad domain: `core`, `symmetric`, `public-key`, or `formal`.
-
-The registry is the file that external consumers should use. In particular, the
-attack catalog should validate every attack's `skill_ids` against a pinned copy
-of this registry.
-
-Regenerate it with `tools/audit_skills.py` whenever a skill is added, removed, or
-renamed. A body or reference edit that leaves the skill name unchanged does not
-alter the catalog contract, although running the audit remains appropriate.
-
-Do not add aliases or catalog attack records to this file. Skill IDs are intended
-to be stable; a rename is a coordinated migration across both repositories.
-
-### `reports/skill-inventory.json`
-
-This is a deterministic review artifact generated from the current `skills/`
-tree. It records:
-
-- skill count and counts by domain;
-- every name and description;
-- description word counts and body line counts;
-- missing relative links;
-- structural warnings and errors.
-
-Use its version-control diff to notice unexpected description changes, prompt
-growth, missing resources, or domain movement. It is useful for maintainers and
-reviewers but is not authoritative: `SKILL.md` remains the source of truth and
-`config/skill-registry.json` remains the external identifier contract.
-
-Do not hand-edit this report. Regenerate it before reviewing or committing skill
-changes. If the project later chooses not to commit generated reports, the same
-tool can produce it as disposable build output without changing runtime behavior.
-
-### `tools/`
-
-| Tool | Reads | Writes or checks | Use it when |
-|---|---|---|---|
-| `import_skill_packs.py` | Extracted packs under `.agents/`, or installed skills when checking | Copies self-contained skills into `skills/`; writes, verifies, or explicitly refreshes installed hashes in `config/imported-skills.json` | Performing a fresh import, verifying imported trees, or recording a reviewed local divergence |
-| `audit_skills.py` | `skills/`, routing cases, the Claude Science adapter contract, and the import manifest | Writes `config/skill-registry.json` and `reports/skill-inventory.json`; checks names, descriptions, links, collisions, routing identifiers, and required adapter API/behavior text | After any skill change and before committing |
-| `check_cscience_probe.py` | A captured CScience response and optional runtime trace | Exact-response check plus optional normalized load-event evidence; see `tests/evaluation-contract.md` | Testing a particular model alias and effort configuration |
-| `score_routing_response.py` | A routing case, captured investigation response, and optional trace | Report-format smoke check plus optional normalized load-event evidence; scientific progress is not assessed | Comparing Claude/GPT behavior or reproducing a routing regression |
-
-Python `__pycache__/` directories are disposable interpreter caches and are
-ignored by version control.
-
-### `tests/`
-
-`tests/cscience-skill-probe/` is a deliberately tiny diagnostic Agent Skill. Its
-body contains a marker not present in its description. A correct response is
-evidence of body-content adherence. It does not prove how the body was obtained;
-recorded successful load events are a separate check. Plain-text skill mentions
-are never load-event evidence. See `tests/evaluation-contract.md`.
-
-`tests/cscience-skill-probe-cases.json` contains the implicit and explicit
-skill-load prompts plus three separate project-board behavior probes: verbatim
-capture, soft-dismissal requeueing, and inventor closed-lane exclusions. The
-load-probe checker applies only to the first two prompts; board behavior
-requires the recorded host calls and persisted board events.
-`tests/routing-cases.json` contains representative cryptanalysis prompts
-and their expected modes and skill traces. Add a case whenever a real failure is
-found so future refactors have an evidence-based regression target.
-
-`tests/claude-science-adapter-contract.json` protects the exact Claude Science
-API calls and measured runtime rules documented by `investigate`. The audit fails
-if a future shortening removes required plan, child-gate, delegation, artifact,
-or lineage instructions, or restores a disproven parent-only rule. Its 0.1.53
-artifact/delegation additions come from the pinned runtime and captured host
-calls; historical plan and elicitation behavior is still labeled 0.1.27.
-
-## Standard validation
-
-Run the deterministic checks from the repository root:
-
-```bash
+```sh
 python3 tools/import_skill_packs.py --check
 python3 tools/audit_skills.py
+python3 -m unittest discover -s tests -v
 python3 skills/workbench-knowledge/scripts/knowledge.py --selftest
 python3 skills/workbench-knowledge/scripts/board.py --selftest
 ```
 
-The first command verifies that the imported trees still match their recorded
-hashes. The second validates all installed skills and regenerates the registry
-and inventory. The last two check append preservation, concurrent ID
-uniqueness, board reduction, and the independent-check gate. All should
-succeed before a release.
+These check packaging and repository invariants; they do not establish model
+behavior or scientific correctness. Use [portability cases](tests/portability-cases.json)
+and [the evaluation contract](tests/evaluation-contract.md) for manual host trials.
+No live trials across every product are implied by these checks.
 
-To reproduce an import from a fresh local `.agents` staging area, run
-`python3 tools/import_skill_packs.py`. The importer refuses to overwrite an
-existing skill so a source-pack refresh cannot silently destroy local changes.
-Perform refreshes in an empty temporary destination or dedicated branch, inspect
-the diff, and then accept the intended changes into `skills/` and the manifest.
+After deliberately editing an imported skill, review its diff, run
+`python3 tools/import_skill_packs.py --accept-installed-changes`, then rerun both
+validators. This preserves the source hash and records local divergence. The
+importer can also reconstruct staged packs from `.skill-packs/`; refreshing into
+an empty destination avoids overwriting reviewed changes. Regenerate the registry
+and inventory with `audit_skills.py` whenever skills change.
 
-## Common maintenance workflows
-
-| Change | Required action | Attack-catalog action |
-|---|---|---|
-| Edit a core skill body or reference | Run `audit_skills.py`; review the inventory diff | None if `name` is unchanged |
-| Deliberately edit an imported skill | Review why it diverges; run `import_skill_packs.py --accept-installed-changes`; run both validators; review the manifest diff | None if `name` is unchanged |
-| Refresh an imported pack | Stage under `.agents/`; import into an empty destination; review collisions and content diffs; update installed trees and manifest; run both validators | Sync the registry only if canonical names changed |
-| Add a skill | Add its directory and valid `SKILL.md`; run `audit_skills.py` | Sync the registry before referencing the new ID |
-| Rename or remove a skill | Update folder, frontmatter, internal references, routing cases, and registry | Migrate every affected `skill_ids` entry in the same coordinated change |
-| Add or edit an attack | No skill-repository change | Validate its `skill_ids` against the pinned registry |
-| Diagnose GPT/CScience behavior | Run the probe, then a routing case; retain raw response and trace | None |
-
-## Attack catalog boundary
-
-The cryptographic attack catalog is not installed as Agent Skills and is not
-copied into this repository. It supplies changing reference material through
-the configured read-only MCP
-server. See `skills/investigate/reference/catalog-use.md` for source, scope,
-provenance, and skill-link interpretation.
-
-The runtime canonical identifier is the exact `name` in a skill's
-`SKILL.md` frontmatter. New catalog references should use that exact runtime name.
-Existing catalog records use domain-qualified `skill_refs`; most resolve to an unprefixed runtime
-name, while shared workflows require the domain prefix in their runtime name.
-Resolve those through the catalog's explicit compatibility mapping and preserve originals;
-do not treat historical storage syntax as an unknown runtime skill.
-
-`config/skill-registry.json` is the validation boundary. Adding or changing an
-attack does not change the registry. Adding or renaming a skill regenerates the
-registry, after which catalog validation can reject unknown identifiers. There
-is no runtime alias layer.
-
-### Catalog-side use
-
-For new editorial subject links, use exact canonical IDs while preserving the
-seed's historical records and references. The catalog's curation supplement uses:
-
-```json
-{
-  "attack_id": "ATT-PKE-2011-DOOM",
-  "skill_id": "multi-user-multi-target-and-batch-analysis",
-  "role": "subject_reference",
-  "reason": "The existing record concerns multiple instances."
-}
-```
-
-Derive reverse listings from seed references plus the editorial supplement. Do
-not maintain a duplicate complete crosswalk. Subject relevance is not a required
-skill invocation or a new claim about an attack.
-
-Because the skills and attack catalog live in separate repositories, the catalog
-should vendor or otherwise pin a released `skill-registry.json` together with
-the source repository commit or tag. Catalog validation should fail for unknown,
-duplicate, or unresolved IDs. Explicitly mapped historical namespace forms
-remain compatible and should report their canonical runtime ID. Skills without
-linked examples and records without mapped skills can be reported as coverage
-gaps; neither needs to fail validation.
-
-The catalog can grow continuously against the same pinned registry. A registry
-sync is required only when the set of canonical skill IDs changes. The MCP should
-report the registry revision against which its catalog was validated so clients
-can diagnose drift.
-
-## Portability
-
-Cryptanalytic procedure stays in portable `SKILL.md` files. Claude
-Science-specific planning, delegation, artifact, and compatibility behavior
-lives in `skills/investigate/reference/claude-science.md` and related references.
-Research needs are expressed as capabilities; connector names are reference
-bindings rather than requirements.
-
-Open Science Desktop integration is a future adapter layer. It should reuse the
-portable skills and supply host-specific discovery, traces, tools, and artifact
-handling without forking the cryptanalytic method. This integration does not
-modify the Open Science repository.
-
-## Evidence rules
-
-- Never infer security from a search miss, timeout, or bounded experiment.
-- Never report a cost without its model, units, assumptions, and success rate.
-- Keep primitive, construction, parameter, implementation, and deployment
-  findings separate.
-- Preserve negative and conflicting evidence.
-- Call a result a break only when its actual model, scope, preconditions, costs,
-  and independent check support that word.
+The attack catalog lives separately. Pin this fork's registry and commit when
+validating external skill references; catalog subject links neither load a skill
+nor prove an attack's applicability. Runtime IDs remain stable in this fork.
+Retain upstream provenance and existing per-skill license metadata when reusing
+or modifying imported material.

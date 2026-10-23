@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill Load Probe"
+  short_description: "Check instruction access and adherence"
+  default_prompt: "Use $skill-load-probe and return its exact probe record."

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "expected": {
+    "probe": "skill-load-probe",
+    "body_marker": "SKILL-BODY-9D3C2A71",
+    "instructions_loaded": true,
+    "next": "inspect the available instruction access evidence"
+  },
+  "prompts": [
+    {
+      "id": "implicit",
+      "prompt": "Run the skill-load probe and return its exact record."
+    },
+    {
+      "id": "explicit",
+      "prompt": "Read the skill-load-probe instructions through the available loader, files, or supplied text, and return its exact record."
+    }
+  ]
+}

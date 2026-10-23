@@ -5,6 +5,13 @@ description: Map the complete attack surface of a cryptographic scheme by fixing
 
 # Analyze a cryptographic scheme
 
+Use [the environment guide](../investigate/reference/environment.md) to read
+related instructions through a native loader, files, or supplied text. Tool names
+and Python record-keeping examples below apply only when those capabilities are
+available. Without them, analyze the inspected evidence and keep a text record;
+label missing source retrieval, computation, or independent checks explicitly.
+
+
 Produce an attack-surface map, not an unqualified verdict. Use `investigate` as
 the outer workflow when the task also includes discovery, validation, or formal
 proof.

@@ -6,6 +6,13 @@ license: Apache-2.0
 
 # Does the paper prove what it claims?
 
+Use [the environment guide](../investigate/reference/environment.md) to read
+related instructions through a native loader, files, or supplied text. Tool names
+and Python record-keeping examples below apply only when those capabilities are
+available. Without them, analyze the inspected evidence and keep a text record;
+label missing source retrieval, computation, or independent checks explicitly.
+
+
 Two statements about the same paper, both honest, that a review has to keep apart:
 
 > **What the abstract says.** "We give an attack on X."
@@ -31,15 +38,13 @@ establishes an attribution, not its mathematical correctness.
   reduction is a *route to a number*; here it is an *argument to be audited*.
 - **`analyze-scheme`** — the object is a scheme and its parameters, not a document.
 
-## Plan first, if this is multi-stage
+## Plan when the task needs it
 
-A full paper audit is a pipeline, and that is exactly the shape `generate_plan` is for:
-parallel directions become `delegations` in a phase, and the human approves the
-approach once instead of discovering it at the end.
-
-Skip planning for a single theorem checked against a single notion. Follow
-`investigate`'s **Plan without stalling** rule and, in Claude Science, its
-`reference/claude-science.md` adapter rather than duplicating host mechanics.
+For multi-stage work, use the current host's plan interface or a short written
+plan and begin the authorized analysis. A bounded check may need no formal plan.
+Independent work can run sequentially; delegation is optional and subject to the
+host's capabilities and permissions. Follow
+[the environment guide](../investigate/reference/environment.md).
 
 ## Step 0 — Read what is already known
 

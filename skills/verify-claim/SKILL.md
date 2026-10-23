@@ -6,6 +6,13 @@ license: Apache-2.0
 
 # Check one paper claim
 
+Use [the environment guide](../investigate/reference/environment.md) to read
+related instructions through a native loader, files, or supplied text. Tool names
+and Python record-keeping examples below apply only when those capabilities are
+available. Without them, analyze the inspected evidence and keep a text record;
+label missing source retrieval, computation, or independent checks explicitly.
+
+
 When asked to check whether a specified claim is correct, start with
 `MODE: VALIDATE`. If a larger investigation assigns this bounded check, preserve
 its declared mode and identify the verification subtask. Do not infer a paper
@@ -46,17 +53,13 @@ verification still calls for fresh work on the assigned claim.
 - **`mathematical-research-development`** — develop a stated mathematical question
   using published ingredients; invoking this skill does not require this verifier.
 
-## Plan first, if this is multi-stage
+## Plan when the task needs it
 
-Settling one claim usually is not, and **most of the time no plan is needed here**
-— that is the point of the skill being bounded to one. Reach for `generate_plan`
-only when a batch arrives from `analyze-paper` and the claims can be settled in
-parallel: they become `delegations` in a phase, and the human approves the
-approach once instead of discovering it at the end.
-
-A single number reproduced from one command should not get a formal plan. Follow
-`investigate`'s **Plan without stalling** rule and its platform adapter rather
-than duplicating host-specific plan mechanics.
+For multi-stage work, use the current host's plan interface or a short written
+plan and begin the authorized analysis. A bounded check may need no formal plan.
+Independent work can run sequentially; delegation is optional and subject to the
+host's capabilities and permissions. Follow
+[the environment guide](../investigate/reference/environment.md).
 
 ## Step 1 — Restate the claim precisely enough to be settled
 

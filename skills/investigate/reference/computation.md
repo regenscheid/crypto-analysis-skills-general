@@ -83,8 +83,10 @@ construction, or unapproved host execution. Supply scripts and data through the
 platform's supported staging mechanism, request any required access through its
 normal approval flow, and apply bounded runtimes and resource limits.
 
-Rely on the host for sandboxing, credential storage, environment management, job
-control, and execution manifests.
+Use the host's supported sandboxing, credential storage, environment management,
+and job control. Retain an execution manifest yourself when none is supplied.
+If execution is absent, return a derivation or clearly labeled unexecuted code
+with the computational obligation still open.
 
 ## Make every material run reproducible
 

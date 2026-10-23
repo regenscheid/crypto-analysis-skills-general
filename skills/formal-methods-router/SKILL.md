@@ -14,6 +14,13 @@ metadata:
 
 # Formal Methods Router
 
+Use [the environment guide](../investigate/reference/environment.md) for the
+current session's instruction access, tools, and storage. Select only available
+backends; when a checker cannot run, return a plan or unreplayed source with the
+proof obligation still open. Native skill routing is optional: read available
+files or supplied text and identify missing specialist procedures.
+
+
 ## Purpose
 
 Chooses whether formalization is worthwhile and, when it is, routes the task to an appropriate proof, certificate, implementation, protocol, or witness workflow without imposing formal methods on ordinary cryptanalysis.

@@ -6,6 +6,13 @@ license: Apache-2.0
 
 # Crypto review
 
+Use [the environment guide](../investigate/reference/environment.md) to read
+related instructions through a native loader, files, or supplied text. Tool names
+and Python record-keeping examples below apply only when those capabilities are
+available. Without them, analyze the inspected evidence and keep a text record;
+label missing source retrieval, computation, or independent checks explicitly.
+
+
 Cryptographic claims fail in ways that generic review does not catch, because
 the *form* of a security statement carries most of its meaning. A well-formed
 sentence can be confidently wrong in a way that misleads anyone who acts on it,
@@ -17,18 +24,12 @@ against a real corpus.
 
 ## Know which of these you can actually do
 
-This skill is used by two different agents with different reach.
-
-- **REVIEWER** (the automatic transcript reviewer) has **no connectors and no
-  execution** — `python`, `bash` and `r` are excluded from it. Everything below
-  under *statement form* applies; the corpus and execution sections do not.
-  Where a citation cannot be checked, say it is **unverified** rather than
-  treating it as recall.
-- **A crypto specialist** is a full conversation profile: it keeps the python
-  kernel and can be given the `eprint` and `nist` connectors. All of this
-  applies to it. It can also be **delegated to as a background subagent** —
-  `host.delegate(task, profile="CRYPTO_VERIFIER", wait=False)` — so a
-  verification that needs computing does not have to block the main thread.
+Assess the reviewer's actual access. With only the supplied analysis, check
+statement form, reasoning, assumptions, and internal consistency. With source
+retrieval, inspect exact citations. With suitable execution, reproduce material
+calculations. Role names do not establish any of these capabilities. Use an
+independent worker only when available and authorized; otherwise label the review
+as a self-check rather than independent verification.
 
 Never claim to have checked something you had no tool to check. That failure is
 worse than the one this skill exists to catch, because it is a fabricated
@@ -36,7 +37,7 @@ verification rather than a fabricated fact.
 
 ## Check citations against the corpus, not against memory
 
-*(Specialist only — REVIEWER has no connectors.)*
+Use the source routes actually available; supplied text may be the only route.
 
 Use compatible prior inspection with identifiable provenance when the statement,
 revision, and scope match. Reopen the affected source for a changed dependency,
@@ -45,10 +46,9 @@ Follow [paper use and verification](../investigate/reference/paper-use-and-verif
 When fresh retrieval is needed, use available source connectors; a cited paper
 is a checkable attribution:
 
-```
-e-print-mcp_search_eprint(query)      e-print-mcp_get_eprint(paper_id)  # 26,419 papers, 1996-present
-nist-mcp_search_csrc(query)        nist-mcp_csrc_fulltext(ref)    # 924 publications, full text
-```
+Find preprints, standards, exact document revisions, and official comments using
+available connectors, web tools, or supplied documents. No particular corpus or
+connector size is assumed.
 
 - **Does the reference resolve?** Inspect the returned record. A failed lookup
   leaves the reference unresolved through that route; it does not establish
@@ -170,7 +170,7 @@ still invalid. Five steps that look like reasoning and are not:
 - **"A distinguisher is a break."** → name the property violated and show a
   consequence for a claimed game before using break vocabulary.
 
-They are listed inline because **REVIEWER may have no way to open a file**, and
+They are listed inline because **the current reviewer may have no way to open a file**, and
 these are the rows it most needs. `reference/invalid-inferences.md` carries the
 full treatment, why the first one recurs here specifically, and the three rows
 deliberately left out as outside this workbench's scope.

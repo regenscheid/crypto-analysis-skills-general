@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check a captured CScience skill-probe response and optional call trace."""
+"""Check a captured skill-probe response and optional call trace."""
 
 from __future__ import annotations
 
@@ -25,7 +25,7 @@ def main() -> int:
     parser.add_argument(
         "--cases",
         type=Path,
-        default=REPOSITORY_ROOT / "tests" / "cscience-skill-probe-cases.json",
+        default=REPOSITORY_ROOT / "tests" / "skill-load-probe-cases.json",
     )
     args = parser.parse_args()
 
@@ -43,8 +43,8 @@ def main() -> int:
     if args.trace:
         try:
             loaded = successful_skill_loads(args.trace)
-            if "cscience-skill-probe" not in loaded:
-                failures.append("load evidence: no successful cscience-skill-probe event")
+            if "skill-load-probe" not in loaded:
+                failures.append("load evidence: no successful skill-load-probe event")
         except ValueError as exc:
             failures.append(f"load evidence: {exc}")
 

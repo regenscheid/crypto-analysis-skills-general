@@ -1,5 +1,10 @@
 # Attack families: multivariate and code-based
 
+Historical environment observations and timings below describe earlier runs.
+They do not establish software availability, current versions, or measured
+behavior in this session. Confirm the actual runtime before using its outputs.
+
+
 UOV, MQ, MinRank, Permuted Kernel, and Linear Equivalence. Load this checklist
 for the multivariate/code-family coverage phase of `analyze-scheme`. It is a
 companion to `lattice.md`; the same rule applies:
@@ -210,8 +215,7 @@ Without it:
 
 ## Verification status
 
-Measured on this machine, `cryptographic_estimators` 2.1.1 under the Claude
-Science `sage` env: the five UOV families across four NIST parameter sets; MQ
+Measured on this machine, `cryptographic_estimators` 2.1.1 in the original recorded `sage` env: the five UOV families across four NIST parameter sets; MQ
 family applicability at q=2 and q=256; MQ family costs at n=m=44 and at n=112,
 m=44; the `Lokshtanov` crash; the `Hashimoto` underdetermined-only behaviour.
 

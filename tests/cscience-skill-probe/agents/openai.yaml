@@ -1,4 +1,0 @@
-interface:
-  display_name: "CScience Skill Probe"
-  short_description: "Verify skill discovery, loading, and adherence"
-  default_prompt: "Use $cscience-skill-probe to run the CScience skill-loading diagnostic and return its exact probe record."

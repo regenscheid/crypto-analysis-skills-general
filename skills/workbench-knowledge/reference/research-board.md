@@ -1,6 +1,7 @@
 # Project research board
 
-Use this procedure for sustained DISCOVER work that develops and revisits
+Use this optional procedure when Python and persistent writable files are
+available for sustained DISCOVER work that develops and revisits
 cryptanalytic ideas. A single proposal or bounded mathematical question does
 not require a board loop. The board is a research record, not a plan, job
 queue, or replacement for host artifacts.
@@ -20,7 +21,9 @@ expose one, generate an opaque ID once per root session and record it in that
 session's first artifact. The root agent resolves both IDs, ensures the shared
 directory is writable, and passes the absolute project directory, session
 ID, and relevant notebook paths to delegates in their task and
-`context_summary`. A child must not invent another project directory.
+a supported context field. Confirm shared access before passing paths. A child
+must not invent another project directory. Without workers, perform phases
+sequentially; without persistent Python storage, return an equivalent text record.
 
 ```python
 from board import (project_dir_for_id, board_snapshot, board_append,
@@ -115,10 +118,9 @@ arrays empty when there is no item. Record a notebook fragment as the exact
 For each delegated frame, include `idea_id`, a unique delegation ID, the
 absolute project directory, the relevant notebook path and prior critique
 references, the frozen target, and the expected return fields in the task.
-Put a concise version in
-`context_summary`; the child does not inherit the root's conversation.
-In Claude Science, use the standard `output_schema` in
-[the runtime adapter](../../investigate/reference/claude-science.md#7-delegate-plan-tracks).
+Put a concise version in the supported context field; do not assume the child
+inherits the conversation. Use structured output when supported, or request the
+same fields as JSON text. Do not invent a host schema API.
 The child returns `delegation_id`, `idea_id`, `state`, `findings[]`, `dismissals[]`,
 `lemma_proposals[]`, and `notebook_append`, plus child idea IDs when split.
 The root appends the returned `structured_output` as one `outcome`
@@ -194,7 +196,8 @@ At the start of every pass:
    assign terminal idea states, promote checked lemmas, and save the critique.
    Append a `critique` event linking that artifact to every reviewed idea,
    even when its state remains open.
-6. Repeat until no open ideas remain or the user stops. Preserve the board
+6. Continue within the requested scope and current session limits, or until the
+   user stops. Return the next unresolved ideas in the handoff. Preserve the board
    when stopping; a session ending does not itself resolve an idea.
 
 One or two open-brief inventor frames may join a pass. Give them confirmed

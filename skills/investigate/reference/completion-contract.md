@@ -4,12 +4,14 @@ Use this contract to prevent premature or invisible completion.
 
 ## Skill trace
 
-Record only skills whose bodies were loaded and whose procedures materially
-affected the work.
+Record only instructions whose bodies were actually inspected and whose
+procedures materially affected the work. Distinguish native loading, file reads,
+and supplied text. Record missing specialist material separately; a name mention
+is not an instruction read.
 
-| Order | Skill | Why selected | Product or decision |
-|---:|---|---|---|
-| 1 | `investigate` | End-to-end cryptographic investigation | Mode and routing |
+| Order | Skill/method | Access route | Why selected | Product or decision |
+|---:|---|---|---|---|
+| 1 | `investigate` | native, file, or supplied text | Cryptographic investigation | Mode and method selection |
 
 Do not list a skill merely because it was installed or mentioned by another
 skill. If the runtime exposes skill-call identifiers or transcripts, retain them

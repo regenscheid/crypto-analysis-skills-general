@@ -11,6 +11,12 @@ metadata:
 
 # Public-Key Cryptanalysis Orchestrator
 
+Use [the environment guide](../investigate/reference/environment.md) to select
+available instructions and tools. Native skill invocation, a complete catalog,
+independent workers, and persistent files are optional. Read supplied text or
+files when no loader exists; identify missing procedures and unchecked scope.
+
+
 ## Use this skill when
 
 Start or resume a cryptanalysis project involving a public-key primitive or protocol. Run this before family-specific analysis so the claim, artifact, interfaces, and evidence standards are fixed.
@@ -31,7 +37,8 @@ Before adopting delegated cryptanalytic work, the main agent applies
 [orchestrator review](../investigate/reference/delegated-cryptanalysis-review.md)
 to omissions, premature stopping, connections across findings, and overlooked
 significance. This applies to all delegated cryptanalysis, not only proof work.
-Use the dedicated reviewer for correctness checks; its approval does not establish
+Use an available authorized independent reviewer for correctness checks, or
+label a sequential self-check accurately. A favorable review does not establish
 that the research went far enough or that important implications were recognized.
 
 ## Operating procedure

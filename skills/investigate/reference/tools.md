@@ -1,44 +1,30 @@
 # Research retrieval by capability
 
-> Part of `investigate`. Work from the capability needed, not a provider or tool
-> name. Literal tool names elsewhere in this catalog are examples from the
-> reference **crypto-research-mcp** deployment; translate them to equivalent
-> connected MCP, native, or approved local tools when necessary.
+> Part of `investigate`. Use the capability needed, not a provider or tool
+> name. No MCP connector is required or preconfigured.
 
 ## Discover the available route
 
-Before the first retrieval phase:
+Inspect the tools available in the current session. Prefer a specialized source
+or repository tool when it provides exact text and provenance. Otherwise search
+the web and open the source through an available document or fetch tool. A local
+HTTP client is another option only when execution and network access exist.
+Without retrieval, use inspected supplied material and flag the unavailable
+coverage; model recall does not replace a primary source read.
 
-1. Inspect the tools and MCP connectors available in the current host.
-2. Prefer a specialized literature, standards, citation, or repository tool
-   when it provides provenance and structured results.
-3. Otherwise use a general web-search tool, then a web-fetch tool or an
-   available local client for the exact source.
-4. If no route supplies the required capability, record it as `BLOCKED` in the
-   source-grounding record and tell the user which evidence remains unavailable.
+| Need | Possible route |
+|---|---|
+| Cryptographic preprints | ePrint source pages, literature connector, or domain-constrained search |
+| Normative specifications and status | Official standards pages, revision histories, and PDFs |
+| Broader scholarly literature | DOI/publisher pages, scholarly search, citation tools |
+| Related or citing work | Bibliographies, citation graphs, and follow-up searches |
+| Non-paper sources | Official comments, forums, workshop pages, and issue trackers |
+| Implementations and PoCs | Repository search and exact revision inspection |
+| Paper or page body | Native reader, fetched HTML, PDF tools, or supplied document |
 
-If the reference deployment's `portal_list_servers` exists, use it to refresh
-the live connector inventory when a tool name stops resolving. On other hosts,
-use their connector or tool-discovery surface. Do not guess renamed tools.
-
-## Reference capability map
-
-| Capability | Reference deployment | Acceptable equivalent |
-|---|---|---|
-| search cryptographic preprints | `e-print-mcp_search_eprint` | literature-search MCP or domain-constrained web search |
-| read preprint metadata | `e-print-mcp_get_eprint` | bibliographic or DOI/ePrint metadata tool |
-| read a paper body | `e-print-mcp_eprint_fulltext` | paper-reader MCP, HTML full text, or fetched PDF extraction |
-| obtain a paper PDF | `e-print-mcp_eprint_file` | source PDF URL plus a host PDF reader or local PDF tools |
-| inspect recent preprints | `e-print-mcp_recent_eprint` | date-filtered literature search |
-| search standards and round reports | `nist-mcp_search_csrc` | official-site search or standards MCP |
-| read normative text | `nist-mcp_csrc_fulltext` | official HTML/PDF plus document reader |
-| check a standard's currency | `nist-mcp_csrc_currency` | official revision/status page |
-| search broader scholarly literature | `firecrawl-mcp_firecrawl_research_search_papers` | scholarly-search MCP or web search |
-| find citing or related papers | `firecrawl-mcp_firecrawl_research_related_papers` | citation-graph or related-work tool |
-| read a paper outside the corpus | `firecrawl-mcp_firecrawl_research_read_paper` | fetched HTML/PDF plus document reader |
-| search non-paper sources | `firecrawl-mcp_firecrawl_search` | general web search |
-| fetch a specific page | `web-fetch-mcp_web_fetch`, `firecrawl-mcp_firecrawl_scrape` | native/MCP web fetch or approved local HTTP client |
-| find implementations and PoCs | `firecrawl-mcp_firecrawl_research_search_github` | repository search or general web search |
+Literal tool names in older domain examples illustrate these capabilities.
+Translate them to exposed interfaces; never assume a name denotes an available
+API. Refresh the host's inventory once if a configured name no longer resolves.
 
 **An abstract is not a paper.** Search results identify candidates; they rarely
 establish exact preconditions, models, constants, or scope. Open the body and

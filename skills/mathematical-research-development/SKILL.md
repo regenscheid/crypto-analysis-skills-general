@@ -5,6 +5,13 @@ description: Develop an explicitly stated mathematical question into definitions
 
 # Develop a mathematical argument
 
+Use [the environment guide](../investigate/reference/environment.md) to read
+related instructions through a native loader, files, or supplied text. Tool names
+and Python record-keeping examples below apply only when those capabilities are
+available. Without them, analyze the inspected evidence and keep a text record;
+label missing source retrieval, computation, or independent checks explicitly.
+
+
 Take one stated mathematical question. Work on its unresolved reasoning and
 return the mathematics produced, including useful partial results. For open-ended
 or extended derivation work, read [development guidance](references/development.md)
@@ -67,7 +74,8 @@ proof assistant is one assurance option, not a requirement for doing mathematics
 If work was delegated, the main agent applies
 [orchestrator review](../investigate/reference/delegated-cryptanalysis-review.md)
 to its depth, omissions, connections, and significance before synthesis. Use
-the dedicated reviewer for correctness; a checked argument can still leave
+an available authorized reviewer for correctness, or label a sequential self-check
+accurately; a checked argument can still leave
 important parts of the requested mathematical development undone.
 
 ## Assess what was contributed

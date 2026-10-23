@@ -5,6 +5,13 @@ description: Develop mathematical cryptanalysis questions, research proposals, a
 
 # Develop mathematical cryptanalysis
 
+Use [the environment guide](../investigate/reference/environment.md) to read
+related instructions through a native loader, files, or supplied text. Tool names
+and Python record-keeping examples below apply only when those capabilities are
+available. Without them, analyze the inspected evidence and keep a text record;
+label missing source retrieval, computation, or independent checks explicitly.
+
+
 Start with `MODE: DISCOVER` and identify the requested product: a research
 proposal, development of a selected mathematical question, or a scoped assessment
 supported by that mathematics. Read
@@ -83,14 +90,17 @@ when its first implementation costs more than it saves.
 
 ## Continue a discovery investigation across sessions
 
-For sustained discovery with delegated idea development, use the
-[project research board](../workbench-knowledge/reference/research-board.md).
+When supported persistent Python storage is available and sustained discovery
+needs it, optionally use the [project research board](../workbench-knowledge/reference/research-board.md).
 Resolve one unique project directory beneath `CRYPTO_FILES`, read the shared
 `knowledge.md`, `gaps.md`, and `lessons.md`, and reduce all per-session
-ledgers before ideating. Claude Science sessions can see project artifacts,
-but delegated frames have separate filesystem working directories; pass the
-absolute shared project directory and notebook paths in every frame's task
-and `context_summary`. Do not infer them from a child's working directory.
+ledgers before ideating. If workers are available and authorized, confirm their
+file access before handing off absolute paths; otherwise send the relevant
+content. Without storage, keep open ideas, evidence, and critiques in a text
+handoff. Develop and review ideas sequentially when delegation is unavailable.
+
+When using the optional board, apply the following loop. For a text record,
+keep the same research distinctions without requiring board calls or artifacts.
 
 Triage comes before ideation. For each open idea, read its earlier notebook
 and critique artifacts. Requeue soft dismissals and exclude only
@@ -101,8 +111,9 @@ focused frame per open idea; append every structured return unchanged with
 identifies restated lemmas, promotes independently checked results, and
 writes a `critique-<pass>.md` artifact. Append a `critique` board event that
 links it to all reviewed ideas, including those still open. Repeat until the
-open queue is empty or the user stops. There is no fixed number of ideas or
-effort budget.
+requested scope is met, the current session limit is reached, or the user stops.
+Return unresolved ideas with their next steps; open research need not finish in
+one conversation.
 
 When independent frames disagree about a promising idea or one dismisses it
 while another finds a path forward, preserve both returns. Give the precise
@@ -110,8 +121,9 @@ contested claim and evidence to a focused reconciliation frame before the
 critic accepts a closure. Do not turn disagreement into a majority vote or a
 single blended summary.
 
-Use one or two [open-brief inventor](../investigate/reference/open-brief-inventor.md)
-frames per pass when the current lenses are exhausted. Give them confirmed
+When authorized workers or a sequential change of perspective would help, use
+[open-brief inventor](../investigate/reference/open-brief-inventor.md)
+phases when the current lenses are exhausted. Give them confirmed
 lemmas, published SOTA rows, and closed lanes as exclusions; do not make
 every narrow subagent reread the entire board. The target stays fixed:
 “most-studied target” is not an obstruction, and retargeting requires user

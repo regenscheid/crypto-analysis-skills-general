@@ -33,8 +33,8 @@ POSIX sets the file offset to end-of-file atomically with an O_APPEND write, so
 appends from separate processes cannot interleave or clobber. This module only
 ever appends, in one `write()` call, and refuses to rewrite these files.
 
-The workbench runs delegated subagents that inherit the same host grant, so
-concurrent writers are the normal case, not a corner case.
+Cooperating sessions may share a writable local directory. This helper requires
+POSIX fcntl locking; it makes no promise about a remote host document store.
 """
 
 from __future__ import annotations

@@ -1,8 +1,10 @@
 # Use the changing catalog as reference material
 
-Skills supply methods and evidence standards. The configured catalog MCP server
-supplies changing examples and source metadata. Discover the read tools actually
-available; do not assume that a planned tool or resource URI is implemented.
+Skills supply methods and evidence standards. An optional configured catalog
+can supply changing examples and source metadata. No catalog connection is
+required: use primary literature, supplied records, and inspected sources
+directly when it is absent, identifying any coverage limits. Discover the read
+tools actually available; do not assume a planned tool or resource URI exists.
 
 For explanatory case comparisons, use [catalog reading](catalog-reading.md).
 Reading guides returned by the server are editorial teaching material with an
@@ -40,7 +42,7 @@ Catalog membership and record dates do not establish scientific priority; use
 
 Investigations use read-only catalog operations. Deliberate maintainer edits to
 the repository are a separate process; these skills do not submit observations,
-proposals, or discoveries to the catalog. The host owns resumption; the
-project-specific research record is maintained by `workbench-knowledge`.
+proposals, or discoveries to the catalog. Use accessible project records or an in-chat handoff for resumption;
+`workbench-knowledge` is an optional persistent-file implementation.
 Physical-security investigations are outside this effort's scope;
 historical catalog records can remain available without expanding that scope.

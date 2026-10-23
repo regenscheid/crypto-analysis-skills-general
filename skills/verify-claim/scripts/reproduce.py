@@ -43,7 +43,7 @@ import sys
 # prevent. Same for "F_{q^r}" style subscripts.
 CLAIM = re.compile(r"(?<![_{])2\^(-?\d+(?:\.\d+)?)")
 FENCE = re.compile(r"```(?:bash|sh|console)?\n(.*?)```", re.S)
-# Shell variable assignment, e.g. S=~/.claude-science/.../sage
+# Shell variable assignment, e.g. S=/path/to/sage
 ASSIGN = re.compile(r"^\s*([A-Za-z_][A-Za-z0-9_]*)=(\S+)\s*$")
 SELF_INVOCATION = re.compile(r"(?:^|[\s/])reproduce\.py(?:\s|$)")
 

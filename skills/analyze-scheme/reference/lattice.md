@@ -1,5 +1,10 @@
 # Attack families: lattice (LWE, NTRU, SIS)
 
+Historical environment observations and timings below describe earlier runs.
+They do not establish software availability, current versions, or measured
+behavior in this session. Confirm the actual runtime before using its outputs.
+
+
 Load this checklist for the lattice-family coverage phase of `analyze-scheme`.
 
 ## The rule this file exists to enforce
@@ -266,7 +271,7 @@ not apples-to-apples with the rest.
 ## Verification status
 
 Every number in this file was produced on this machine with
-`lattice-estimator` @ `3e48ef42` under the Claude Science `sage` env
+`lattice-estimator` @ `3e48ef42` in the original recorded SageMath environment
 (SageMath 10.7), not recalled. The β values 406/624/874 and the ADPS16 row
 reproduce the ML-KEM submission's published core-SVP figures.
 

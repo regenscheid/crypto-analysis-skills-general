@@ -20,7 +20,7 @@ from pathlib import Path
 
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_STAGING_ROOT = REPOSITORY_ROOT / ".agents"
+DEFAULT_STAGING_ROOT = REPOSITORY_ROOT / ".skill-packs"
 DEFAULT_SKILLS_ROOT = REPOSITORY_ROOT / "skills"
 DEFAULT_MANIFEST = REPOSITORY_ROOT / "config" / "imported-skills.json"
 

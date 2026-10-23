@@ -1,5 +1,9 @@
 # Orchestrator research judgment after delegation
 
+Apply this reference when independent workers are available and authorized.
+Without them, use the same synthesis questions across sequential work and label
+self-checks accurately. The optional board requires persistent Python storage.
+
 Delegation supplies research inputs; it does not outsource the main agent's
 research judgment. The main agent must assess what delegated cryptanalysis
 missed, stopped short of, or undervalued. This applies across research proposals,

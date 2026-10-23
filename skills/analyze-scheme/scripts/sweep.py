@@ -8,37 +8,22 @@ cost is astronomical at binomial noise, Lokshtanov raises a math domain error
 over large fields. A sweep that lets any of those abort loses the finding, and a
 sweep that swallows them silently loses it too. Both are reported here.
 
-Run under the Claude Science sage env:
+Run with an available SageMath executable and compatible estimator packages:
 
-    ~/.claude-science/conda/envs/sage/bin/sage --python sweep.py lwe ML-KEM-512
-    ~/.claude-science/conda/envs/sage/bin/sage --python sweep.py lwe n=512 q=3329 eta=3
-    ~/.claude-science/conda/envs/sage/bin/sage --python sweep.py uov n=112 m=44 q=256
-    ~/.claude-science/conda/envs/sage/bin/sage --python sweep.py mq  n=112 m=44 q=256
-    ~/.claude-science/conda/envs/sage/bin/sage --python sweep.py subfield n=254 m=57 q=2 r=7
+    sage --python sweep.py lwe ML-KEM-512
+    sage --python sweep.py lwe n=512 q=3329 eta=3
+    sage --python sweep.py uov n=112 m=44 q=256
+    sage --python sweep.py mq  n=112 m=44 q=256
+    sage --python sweep.py subfield n=254 m=57 q=2 r=7
 
 `lwe` additionally reports the cost-model spread, because a single number is not
 a reportable answer -- see ../reference/lattice.md.
 """
-import sys, math, time, os
+import sys, math, time
 
-# Sage writes to DOT_SAGE at import, and inside the app's bash the default
-# ~/.sage makes `os.makedirs(..., exist_ok=True)` raise FileExistsError -- which
-# it only does when the path exists and is NOT a directory. From a terminal this
-# never happens, so the traceback (sage/misc/misc.py:71) reads like a broken Sage
-# install and the wrong thing gets investigated. Measured 2026-08-04, FN-DSA run.
-#
-# Set here rather than left to the caller: this must happen BEFORE anything pulls
-# in sage.all, and a script that only works when invoked exactly one documented
-# way is a script that fails the first time someone invokes it differently.
-#
-# NOT setdefault: `sage --python` runs sage-env first, which sets DOT_SAGE to
-# ~/.sage before Python starts (sage-env:330, `if [ "$DOT_SAGE" = "" ]`), so a
-# setdefault here is always a no-op. It has to override -- but only the
-# launcher's default, so an explicit choice by the caller still wins.
-_LAUNCHER_DEFAULT = os.path.expanduser("~/.sage").rstrip("/")
-if os.environ.get("DOT_SAGE", "").rstrip("/") in ("", _LAUNCHER_DEFAULT):
-    os.environ["DOT_SAGE"] = os.path.expanduser(
-        "~/claude-science-crypto-files/.sage_home")
+# Respect the caller's Sage configuration. In a sandbox, the caller can set
+# DOT_SAGE to an explicit writable directory before invoking SageMath. Do not
+# override a user-supplied path or assume an application-specific home.
 
 # Named sets, so the common case needs no parameter typing and no transcription
 # error. Sources: FIPS 203 (ML-KEM), NIST UOV submission.

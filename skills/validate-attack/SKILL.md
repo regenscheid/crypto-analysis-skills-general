@@ -6,6 +6,13 @@ license: Apache-2.0
 
 # Is this attack real?
 
+Use [the environment guide](../investigate/reference/environment.md) to read
+related instructions through a native loader, files, or supplied text. Tool names
+and Python record-keeping examples below apply only when those capabilities are
+available. Without them, analyze the inspected evidence and keep a text record;
+label missing source retrieval, computation, or independent checks explicitly.
+
+
 When invoked directly by “verify,” “check whether,” or equivalent language,
 start the answer with `MODE: VALIDATE`. When a DISCOVER investigation hands over
 a frozen candidate, preserve `MODE: DISCOVER` and label this work as its bounded
@@ -37,15 +44,13 @@ degree 3 is how a plausible wrong answer gets published.
 - **`analyze-paper`** — the object is a document and its theorems.
 - **`verify-claim`** — the object is one stated claim, of any kind.
 
-## Plan first, if this is multi-stage
+## Plan when the task needs it
 
-An implementation route is a pipeline, and that is exactly the shape `generate_plan` is for:
-parallel directions become `delegations` in a phase, and the human approves the
-approach once instead of discovering it at the end.
-
-Skip planning when analysis will settle the question in one pass. Follow
-`investigate`'s **Plan without stalling** rule and its platform adapter rather
-than duplicating host-specific plan mechanics.
+For multi-stage work, use the current host's plan interface or a short written
+plan and begin the authorized analysis. A bounded check may need no formal plan.
+Independent work can run sequentially; delegation is optional and subject to the
+host's capabilities and permissions. Follow
+[the environment guide](../investigate/reference/environment.md).
 
 ## Step 0 — Read what is already known
 

@@ -1,21 +1,24 @@
 ---
 name: investigate
-description: Conduct rigorous end-to-end cryptographic security investigations and visibly route them through the relevant cryptanalysis or formal-method skills. Use whenever asked to analyze a scheme or paper, find issues or weaknesses, search for attacks, reproduce or validate a result, audit a security claim or proof, compare parameters, or resume cryptographic research. Infer the requested task from its intent; individual words such as “new” do not by themselves select a mode.
+description: Conduct cryptographic security investigations using relevant cryptanalysis and formal-method procedures available as native skills, files, or supplied text. Use whenever asked to analyze a scheme or paper, find issues or weaknesses, search for attacks, reproduce or validate a result, audit a security claim or proof, compare parameters, or resume cryptographic research. Infer the requested task from its intent; individual words such as “new” do not by themselves select a mode.
 ---
 
 # Investigate cryptographic security
 
-Act as the control plane. Select and load the relevant specialist skills, keep a
-coverage record, execute the work, and show which skills actually contributed.
+Select relevant methods, read the available specialist instructions, keep a
+coverage record, execute the work, and show which instructions actually contributed.
+First apply [the environment guide](reference/environment.md): use a native
+loader, file access, or supplied text. Missing skills, tools, and storage are
+scoped limits; they do not require inventing host APIs or stopping unrelated work.
 Do not merely recommend skills or stop after writing a plan.
 
 ## Scope and mathematical work
 
-The host owns plans, artifacts, persistence, and resumption. Use
-`workbench-knowledge` for the project-specific durable research record and,
-for sustained DISCOVER work, its session-ledger board. It is not a competing
-checkpoint or job system. Physical-security investigations are outside this
-effort's scope.
+Use available project context and a short written or native plan when helpful.
+With Python and durable writable storage, optionally use `workbench-knowledge`
+and its research board. Otherwise retain the research record in the conversation
+and return a handoff for the user to keep. Do not assume automatic persistence.
+Physical-security investigations are outside this effort's scope.
 
 For an explicitly stated mathematical question, use
 `mathematical-research-development` to produce definitions, lemmas, derivations,
@@ -47,9 +50,10 @@ When adopting delegated cryptanalytic work, apply
 [orchestrator research judgment](reference/delegated-cryptanalysis-review.md):
 look for material omissions, premature stopping, connections across findings,
 and overlooked significance. This applies across research proposals, assessments,
-source work, modeling, computations, and proofs. Use the dedicated reviewer for
-correctness; the main agent must supply its own judgment about whether the
-investigation went far enough and what its findings mean.
+source work, modeling, computations, and proofs. Use an independent reviewer
+when available and authorized; otherwise perform a sequential check and label
+its limits. Supply your own judgment about whether the investigation went far
+enough and what its findings mean.
 
 ## Declare the mode
 
@@ -109,7 +113,7 @@ only with work that does not depend on the missing source, labeled as such.
 
 ## Route explicitly
 
-Load the matching domain orchestrator before technique work:
+When available, read the matching domain workflow before technique work:
 
 - symmetric primitive, hash, stream cipher, mode, MAC, or AEAD:
   `symmetric-cryptanalysis-orchestrator`;
@@ -117,18 +121,19 @@ Load the matching domain orchestrator before technique work:
   assumption: `public-key-cryptanalysis-orchestrator`;
 - machine-checked evidence: `formal-methods-router`, only when requested or when
   its expected assurance justifies its modeling cost;
-- mixed construction: load every applicable orchestrator and keep their claims
+- mixed construction: read available applicable workflows and keep their claims
   separate.
 
-Also load the object-level workflow when relevant: `analyze-scheme`,
+Also read the object-level workflow when relevant and available: `analyze-scheme`,
 `analyze-paper`, `validate-attack`, `verify-claim`, `derive-cost`, or
 `discover-cryptanalysis`.
 
 For a full scheme assessment, cover every applicable family. For a proposal,
 selected mathematical question, or paper verification, choose the capabilities
-needed for that assignment. Load a technique skill before relying on its procedure
-and explain why it was used. A question outside current scope is unexamined, not
-mathematically inapplicable.
+needed for that assignment. Read a technique skill before claiming to use its
+procedure and explain why it was used. If absent, identify the missing resource and use
+only the available instructions and evidence without claiming full coverage.
+A question outside current scope is unexamined, not mathematically inapplicable.
 
 ## Execute the investigation
 
@@ -176,7 +181,8 @@ needed to assess the requested product:
 - the mode and frozen target;
 - the source-grounding record, including searched channels, opened sources, and
   retrieval gaps;
-- a skill trace naming the skills actually loaded and used;
+- a method/skill trace naming instructions actually read and used, with the
+  access route and any missing specialist material;
 - assessment coverage where assigned, distinguishing unexamined from inapplicable;
 - evidence and scope for every material finding;
 - the research proposal or mathematics produced in DISCOVER mode, with unresolved premises;
@@ -201,25 +207,13 @@ as the requested research result.
 
 ## Use the current platform correctly
 
-Keep the investigation procedure platform-neutral. When running in Claude
-Science, read:
-
-- [`reference/claude-science.md`](reference/claude-science.md) before the first
-  call to `ask_user`, `generate_plan`, `update_step_status`, `host.delegate`,
-  `request_network_access`, or `save_artifacts`; its exact call patterns and
-  verified elicitation and approval rules are required, not optional background;
-- [`reference/tools.md`](reference/tools.md) before any literature, web, or
-  document retrieval; translate capability needs to the tools actually present;
-- [`reference/computation.md`](reference/computation.md) before selecting,
-  installing, provisioning, or remotely invoking computational software;
-- [`reference/environment.md`](reference/environment.md) when sandbox, network,
-  kernel, connector, or artifact behavior affects the work.
-
-If a named tool is unavailable, discover the current equivalent. After a
-repeated identical failure, stop retrying that route, record the retriable
-failure, try a distinct route, and tell the user if the capability remains
-blocked. Do not fabricate a successful call or silently downgrade the grounding
-requirement.
+Use [the environment guide](reference/environment.md) for resource loading,
+optional storage and delegation, and an in-chat fallback. Use
+[retrieval guidance](reference/tools.md) before source retrieval and
+[computation guidance](reference/computation.md) before material runs.
+These are capability contracts, not a required tool API. Follow the current
+host's actual permissions and interfaces. A plan, script, or proof source that
+was only written is not an executed computation or checked proof.
 
 ## Assess contribution before reporting novelty
 

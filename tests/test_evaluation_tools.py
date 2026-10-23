@@ -29,7 +29,7 @@ class TraceEvidenceTests(unittest.TestCase):
                 **changes}
 
     def test_plain_text_names_are_not_events(self):
-        self.path.write_text("investigate cscience-skill-probe")
+        self.path.write_text("investigate skill-load-probe")
         with self.assertRaises(ValueError):
             successful_skill_loads(self.path)
 

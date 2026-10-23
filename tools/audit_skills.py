@@ -132,20 +132,21 @@ def validate_routing_cases(path: Path, skill_names: set[str]) -> list[str]:
     return failures
 
 
-def validate_adapter_contract(path: Path) -> list[str]:
-    failures: list[str] = []
-    contract = json.loads(path.read_text(encoding="utf-8"))
-    adapter = REPOSITORY_ROOT / contract["adapter"]
-    if not adapter.is_file():
-        return [f"adapter contract: missing adapter {contract['adapter']}"]
-
-    text = adapter.read_text(encoding="utf-8")
-    for literal in contract.get("required_literals", []):
-        if literal not in text:
-            failures.append(f"adapter contract: missing required literal {literal!r}")
-    for literal in contract.get("forbidden_literals", []):
-        if literal in text:
-            failures.append(f"adapter contract: forbidden literal remains {literal!r}")
+def validate_portability(skills_root: Path) -> list[str]:
+    """Reject reintroduction of private deployment APIs in distributed resources."""
+    patterns = {
+        "private host SDK": re.compile(r"\bhost\.(?:delegate|collect|artifacts|artifact_path|artifact_marker|lineage|submit_output|skills|mcp|send_message|children|stop_child|capabilities)\b"),
+        "private workflow API": re.compile(r"\b(?:generate_plan|update_step_status|save_artifacts|compute_submit|compute_result|compute_close|request_host_access)\b"),
+        "private installation path": re.compile(r"\.(?:cscience|claude-science)/"),
+    }
+    failures = []
+    for path in sorted(skills_root.rglob("*")):
+        if not path.is_file() or path.suffix not in {".md", ".py", ".yaml", ".json"}:
+            continue
+        for number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+            for label, pattern in patterns.items():
+                if pattern.search(line):
+                    failures.append(f"{path.relative_to(skills_root)}:{number}: {label}")
     return failures
 
 
@@ -155,11 +156,6 @@ def main() -> int:
     parser.add_argument("--output", type=Path, default=REPOSITORY_ROOT / "reports" / "skill-inventory.json")
     parser.add_argument("--registry-output", type=Path, default=REPOSITORY_ROOT / "config" / "skill-registry.json")
     parser.add_argument("--routing-cases", type=Path, default=REPOSITORY_ROOT / "tests" / "routing-cases.json")
-    parser.add_argument(
-        "--adapter-contract",
-        type=Path,
-        default=REPOSITORY_ROOT / "tests" / "claude-science-adapter-contract.json",
-    )
     parser.add_argument("--import-manifest", type=Path, default=REPOSITORY_ROOT / "config" / "imported-skills.json")
     args = parser.parse_args()
 
@@ -176,7 +172,9 @@ def main() -> int:
     )
     skill_names = {str(record["name"]) for record in report["skills"]}
     errors.extend(validate_routing_cases(args.routing_cases, skill_names))
-    errors.extend(validate_adapter_contract(args.adapter_contract))
+    portability_errors = validate_portability(args.skills_root)
+    errors.extend(portability_errors)
+    report["portability_errors"] = len(portability_errors)
     report["errors"] = len(errors)
 
     args.output.parent.mkdir(parents=True, exist_ok=True)

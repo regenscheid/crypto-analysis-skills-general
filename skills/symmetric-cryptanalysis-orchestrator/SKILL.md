@@ -11,6 +11,12 @@ metadata:
 
 # Symmetric Cryptanalysis Orchestrator
 
+Use [the environment guide](../investigate/reference/environment.md) to select
+available instructions and tools. Native skill invocation, a complete catalog,
+independent workers, and persistent files are optional. Read supplied text or
+files when no loader exists; identify missing procedures and unchecked scope.
+
+
 ## Use this skill when
 
 The task asks for an evaluation of a symmetric primitive, mode, construction, proposal, paper, attack claim, or implementation and requires more than one analytical technique. Use it at the beginning of a project and again whenever the target, model, or evidence changes materially.
@@ -39,7 +45,8 @@ Before adopting delegated cryptanalytic work, the main agent applies
 [orchestrator review](../investigate/reference/delegated-cryptanalysis-review.md)
 to omissions, premature stopping, connections across findings, and overlooked
 significance. This applies to all delegated cryptanalysis, not only proof work.
-Use the dedicated reviewer for correctness checks; its approval does not establish
+Use an available authorized independent reviewer for correctness checks, or
+label a sequential self-check accurately. A favorable review does not establish
 that the research went far enough or that important implications were recognized.
 
 ## Operating procedure

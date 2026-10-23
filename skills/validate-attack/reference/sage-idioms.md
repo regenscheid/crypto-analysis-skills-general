@@ -1,5 +1,10 @@
 # Sage idioms for cryptanalysis
 
+Historical environment observations and timings below describe earlier runs.
+They do not establish software availability, current versions, or measured
+behavior in this session. Confirm the actual runtime before using its outputs.
+
+
 Organised by **task**, not by API surface. The failure this addresses is not
 "doesn't know `GroebnerBasis`"; it is not knowing how to set up a problem so the
 tool answers the intended question.
@@ -13,7 +18,7 @@ Plausible, subtly wrong Sage is a major hallucination risk. Each entry therefore
 shows what it actually printed on the measured environment. If you add an
 entry, run it first.
 
-**Stack** — `SageMath 10.7`, `Python 3.11.15`, the Claude Science `sage` env.
+**Stack** — `SageMath 10.7`, `Python 3.11.15`, the original recorded SageMath environment.
 There may be multiple SageMath installations on a host. Print provenance with
 results:
 

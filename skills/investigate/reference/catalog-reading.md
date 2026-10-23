@@ -5,7 +5,8 @@ Do not require reproducing the historical result to record the idea it illustrat
 For a substantive mathematical dependency, inspect the relevant source statement
 or supply the needed derivation. Follow [paper use](paper-use-and-verification.md).
 
-The catalog's `get_catalog_info`, when available, lists editorial reading guides.
+If an optional catalog is connected, its `get_catalog_info` may list editorial
+reading guides. Without it, use inspected primary sources for the same comparisons.
 Selected records from `get_attack` include their applicable `reading_guides` with
 source IDs, locators, and the scope of the editorial review. Older servers may
 omit these fields; ordinary record/source reads still work. Cite the returned
