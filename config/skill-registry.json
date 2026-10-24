@@ -12,14 +12,6 @@
       "skill_id": "algebraic-sat-smt-cp-and-cube-analysis"
     },
     {
-      "domain": "core",
-      "skill_id": "analyze-paper"
-    },
-    {
-      "domain": "core",
-      "skill_id": "analyze-scheme"
-    },
-    {
       "domain": "symmetric",
       "skill_id": "arx-differential-rotational-rx-analysis"
     },
@@ -85,7 +77,39 @@
     },
     {
       "domain": "core",
+      "skill_id": "crypto-analyze-paper"
+    },
+    {
+      "domain": "core",
+      "skill_id": "crypto-analyze-scheme"
+    },
+    {
+      "domain": "core",
+      "skill_id": "crypto-derive-cost"
+    },
+    {
+      "domain": "core",
+      "skill_id": "crypto-investigate"
+    },
+    {
+      "domain": "core",
+      "skill_id": "crypto-magma"
+    },
+    {
+      "domain": "core",
       "skill_id": "crypto-review"
+    },
+    {
+      "domain": "core",
+      "skill_id": "crypto-validate-attack"
+    },
+    {
+      "domain": "core",
+      "skill_id": "crypto-verify-claim"
+    },
+    {
+      "domain": "core",
+      "skill_id": "crypto-workbench-knowledge"
     },
     {
       "domain": "formal",
@@ -106,10 +130,6 @@
     {
       "domain": "public-key",
       "skill_id": "decryption-failure-and-reaction-analysis"
-    },
-    {
-      "domain": "core",
-      "skill_id": "derive-cost"
     },
     {
       "domain": "symmetric",
@@ -276,10 +296,6 @@
       "skill_id": "interactive-proof-state-operation"
     },
     {
-      "domain": "core",
-      "skill_id": "investigate"
-    },
-    {
       "domain": "formal",
       "skill_id": "isabelle-crypthol-proof-development"
     },
@@ -354,10 +370,6 @@
     {
       "domain": "symmetric",
       "skill_id": "linear-family-analysis"
-    },
-    {
-      "domain": "core",
-      "skill_id": "magma"
     },
     {
       "domain": "core",
@@ -632,24 +644,12 @@
       "skill_id": "uov-oil-and-vinegar-analysis"
     },
     {
-      "domain": "core",
-      "skill_id": "validate-attack"
-    },
-    {
-      "domain": "core",
-      "skill_id": "verify-claim"
-    },
-    {
       "domain": "formal",
       "skill_id": "verus-rust-verification"
     },
     {
       "domain": "public-key",
       "skill_id": "vole-in-the-head-and-proof-derived-signature-analysis"
-    },
-    {
-      "domain": "core",
-      "skill_id": "workbench-knowledge"
     }
   ]
 }

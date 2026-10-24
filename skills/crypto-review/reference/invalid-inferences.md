@@ -1,7 +1,7 @@
 # Invalid inferences, and what to require instead
 
 > Part of `crypto-review`. This file is about **what conclusion follows from what
-> evidence**. Its sibling — the `analyze-paper` skill's `reference/mismatches.md`
+> evidence**. Its sibling — the `crypto-analyze-paper` skill's `reference/mismatches.md`
 > — is about **which notion was proved versus claimed**. They catch different
 > things: a paper can prove exactly the notion it claims and still be described
 > in a way this file rejects.
@@ -23,7 +23,7 @@ the evidence actually licenses.
 **"No attack was found, therefore it is secure"** is the most frequent of these in
 this workbench, and it has been written into the tooling more than once
 independently: a corpus miss is reported as *"absence is not evidence of
-security"* rather than as a result, and `verify-claim`'s failure mode 5 records
+security"* rather than as a result, and `crypto-verify-claim`'s failure mode 5 records
 three negatives concluded from an incomplete look in a single session.
 
 The reason it recurs is structural rather than careless. A search that finds
@@ -39,7 +39,7 @@ The source table also covered *"passes test vectors, therefore secure"*, *"TVLA
 passed, therefore no side channels"*, and *"A is faster than B"*. Those are
 correct and they are **out of scope for this workbench**, which evaluates
 primitives, constructions and parameter sets — not implementations, leakage, or
-benchmark profiles (see the layer table at the top of `analyze-scheme`).
+benchmark profiles (see the layer table at the top of `crypto-analyze-scheme`).
 
 They are recorded here rather than silently dropped, because the boundary is the
 useful part: if a review finds itself needing one of those rows, the honest answer

@@ -21,7 +21,7 @@ Apply this procedure to the assigned quantitative or empirical claim. Being
 listed as a related skill or citing a published result does not assign a fresh
 cost audit or reproduction. Retain rigorous checks when that is the task. Reuse
 compatible evidence and identify the changed dependency behind a repeated check;
-see [paper use and verification](../investigate/reference/paper-use-and-verification.md).
+see [paper use and verification](../crypto-investigate/reference/paper-use-and-verification.md).
 A mathematical proposal may state unresolved cost or empirical obligations
 without completing this workflow.
 

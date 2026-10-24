@@ -11,7 +11,7 @@ metadata:
 
 # Symmetric Cryptanalysis Orchestrator
 
-Use [the environment guide](../investigate/reference/environment.md) to select
+Use [the environment guide](../crypto-investigate/reference/environment.md) to select
 available instructions and tools. Native skill invocation, a complete catalog,
 independent workers, and persistent files are optional. Read supplied text or
 files when no loader exists; identify missing procedures and unchecked scope.
@@ -32,17 +32,17 @@ When an input is missing, record it as an explicit uncertainty and proceed with 
 ## Mathematical research assignment
 
 For a research proposal or a stated mathematical question, use
-[the research workflow](../investigate/reference/mathematical-research-workflow.md).
+[the research workflow](../crypto-investigate/reference/mathematical-research-workflow.md).
 The full evaluation procedure below applies when that evaluation is requested;
 a proposal or lemma does not require completing every assessment artifact.
 Use supplied assumptions and prior results at their stated evidence strength.
 A catalog link or published ingredient does not itself assign a paper audit;
-see [paper use and verification](../investigate/reference/paper-use-and-verification.md).
+see [paper use and verification](../crypto-investigate/reference/paper-use-and-verification.md).
 
 ## Apply research judgment after delegation
 
 Before adopting delegated cryptanalytic work, the main agent applies
-[orchestrator review](../investigate/reference/delegated-cryptanalysis-review.md)
+[orchestrator review](../crypto-investigate/reference/delegated-cryptanalysis-review.md)
 to omissions, premature stopping, connections across findings, and overlooked
 significance. This applies to all delegated cryptanalysis, not only proof work.
 Use an available authorized independent reviewer for correctness checks, or

@@ -8,8 +8,9 @@ environment is never a prerequisite to reading and using the methods.
 
 This is a general-purpose derivative of
 [crypto-analysis-skills](https://github.com/regenscheid/crypto-analysis-skills).
-It preserves the original Git history and the 162 canonical skill names. It is
-maintained separately; the original repository remains available upstream.
+It preserves the original Git history and all 162 methods. Generic core workflow
+names use a `crypto-` prefix to reduce conflicts with other installed packs;
+specialist skill IDs remain unchanged. This fork is maintained separately.
 
 ## Start here
 
@@ -17,17 +18,17 @@ For a chat with no repository access, paste [START_HERE.md](START_HERE.md) and
 supply the relevant skill files, target specification, and evidence. For an
 agent that can read this checkout, use:
 
-> Read START_HERE.md and skills/investigate/SKILL.md. Use the relevant methods in
+> Read START_HERE.md and skills/crypto-investigate/SKILL.md. Use the relevant methods in
 > this repository to analyze [target and question]. Determine which files and
 > tools you can actually access. Continue with the available evidence and mark
 > any missing sources, execution, or checks explicitly.
 
 Choose a small set of skills for the assignment. Installing the entire catalog
-is optional. Start with `investigate` for a broad investigation, `analyze-paper`
-for a paper audit, `verify-claim` for one claim, or
+is optional. Start with `crypto-investigate` for a broad investigation,
+`crypto-analyze-paper` for a paper audit, `crypto-verify-claim` for one claim, or
 `mathematical-research-development` for a stated mathematical question.
-`investigate` can select symmetric, public-key, and formal-method workflows when
-their files are available; it also works with a partial catalog. A missing skill
+`crypto-investigate` can select symmetric, public-key, and formal-method
+workflows when their files are available; it also works with a partial catalog. A missing skill
 is reported as unavailable, never as loaded or as a completed check.
 
 ## Use in different environments
@@ -72,6 +73,46 @@ installed version. Other hosts may use other paths. Resolve relative resources
 from the loaded skill's location, not an assumed working directory. Avoid
 installing another copy if the same canonical skill is already present.
 
+### Upgrade the core workflow names
+
+The following canonical names replace the original generic names:
+
+| Previous name | Current name |
+|---|---|
+| `investigate` | `crypto-investigate` |
+| `analyze-paper` | `crypto-analyze-paper` |
+| `analyze-scheme` | `crypto-analyze-scheme` |
+| `verify-claim` | `crypto-verify-claim` |
+| `validate-attack` | `crypto-validate-attack` |
+| `derive-cost` | `crypto-derive-cost` |
+| `magma` | `crypto-magma` |
+| `workbench-knowledge` | `crypto-workbench-knowledge` |
+
+Install the complete updated pack, including references and scripts. Remove only
+this pack's previous copies of the renamed directories from your host's skill
+location; do not remove another pack's skill with the same name. Update or retire
+an account-synced copy through the account's skill interface rather than deleting
+its cached folder. A name such as `anthropic-skills:investigate` identifies an
+account-synced skill and does not by itself identify a built-in. If the same pack
+was installed locally and through account sync, check both copies. A source-
+checkout rename does not remove an already installed copy. Start a fresh session
+after the upgrade and check the resolved path of the skill.
+Use `/crypto-investigate` in slash-command hosts or `$crypto-investigate` in Codex.
+
+A reported invocation failure for the previous `investigate` name motivated this
+change. It does not establish that a collision caused that host's rejection.
+The documented visibility rules treat missing overrides as enabled; the affected
+launcher and its effective settings must be checked in that environment. See
+[invocation settings](https://code.claude.com/docs/en/skills#override-skill-visibility-from-settings)
+and [name resolution](https://code.claude.com/docs/en/skills#resolve-skills-that-share-a-name).
+This pack supplies no host visibility overrides, and renaming does not override
+an intentional host restriction. If invocation is denied, retain the exact
+requested name, resolved path, host version, and error for diagnosis.
+
+External consumers should migrate the old IDs using
+[the explicit rename record](config/skill-migrations.json) and pin the new registry
+with its source commit. No runtime aliases for the old names are installed.
+
 ### Make upload and text bundles
 
 Packaging needs Python 3.10+ and only its standard library:
@@ -79,7 +120,7 @@ Packaging needs Python 3.10+ and only its standard library:
 ```sh
 python3 tools/package_skills.py --profile starter --output dist/starter
 python3 tools/package_skills.py --profile symmetric --output dist/symmetric
-python3 tools/package_skills.py --skill verify-claim --output dist/one-claim
+python3 tools/package_skills.py --skill crypto-verify-claim --output dist/one-claim
 ```
 
 Each output directory contains `skills/<name>.zip`, `context.md`, and a manifest
@@ -112,10 +153,10 @@ optional; prose or an unreplayed proof file is never machine-checked evidence.
 | Code execution | Check tools and versions in the actual execution context | Give derivations or runnable code explicitly labeled unexecuted |
 | SageMath, estimators, solvers, or provers | Use only when installed and suitable | Mark the relevant cost or proof obligation `NOT CHECKED` or `BLOCKED` |
 | Licensed Magma | Use a configured local or remote installation | Choose a suitable available alternative or leave the computation blocked |
-| Writable persistent files | Optionally use `workbench-knowledge` (Python/POSIX helpers) | Return a research handoff in the conversation; make no persistence claim |
+| Writable persistent files | Optionally use `crypto-workbench-knowledge` (Python/POSIX helpers) | Return a research handoff in the conversation; make no persistence claim |
 | Authorized independent workers | Optionally split work and review fixed returns | Work sequentially; describe a self-check accurately |
 
-Read [the environment guide](skills/investigate/reference/environment.md) for
+Read [the environment guide](skills/crypto-investigate/reference/environment.md) for
 resource loading, fallbacks, and resumption. No connector endpoint, remote host,
 operating system, project ID, artifact API, approval UI, or subagent profile is
 preconfigured by this repository. The external attack catalog is optional;
@@ -134,6 +175,7 @@ loops respect the user's scope and the current session's limits.
 | `skills/` | Runtime instructions, references, assets, and optional helpers |
 | `config/imported-skills.json` | Original source provenance and installed content hashes for 151 imported skills |
 | `config/skill-registry.json` | Generated canonical skill IDs for external consumers |
+| `config/skill-migrations.json` | Explicit previous-to-current core skill IDs; not runtime aliases |
 | `reports/skill-inventory.json` | Generated inventory, links, descriptions, and portability audit |
 | `tests/` | Host-neutral load probe, manual behavior cases, and Python regressions |
 | `tools/` | Audit, packaging, import, and offline evaluation utilities |
@@ -145,8 +187,8 @@ Run from the repository root:
 python3 tools/import_skill_packs.py --check
 python3 tools/audit_skills.py
 python3 -m unittest discover -s tests -v
-python3 skills/workbench-knowledge/scripts/knowledge.py --selftest
-python3 skills/workbench-knowledge/scripts/board.py --selftest
+python3 skills/crypto-workbench-knowledge/scripts/knowledge.py --selftest
+python3 skills/crypto-workbench-knowledge/scripts/board.py --selftest
 ```
 
 These check packaging and repository invariants; they do not establish model
@@ -163,6 +205,7 @@ and inventory with `audit_skills.py` whenever skills change.
 
 The attack catalog lives separately. Pin this fork's registry and commit when
 validating external skill references; catalog subject links neither load a skill
-nor prove an attack's applicability. Runtime IDs remain stable in this fork.
+nor prove an attack's applicability. Specialist IDs remain stable; the core
+renames are recorded in `config/skill-migrations.json`.
 Retain upstream provenance and existing per-skill license metadata when reusing
 or modifying imported material.

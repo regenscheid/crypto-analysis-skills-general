@@ -44,7 +44,7 @@ def select_skills(catalog: dict, profile: str | None, names: list[str]) -> list[
         return sorted(set(names))
     profile = profile or 'starter'
     starter = {name for name, item in catalog.items()
-               if item['domain'] == 'core' and name not in {'magma', 'workbench-knowledge'}}
+               if item['domain'] == 'core' and name not in {'crypto-magma', 'crypto-workbench-knowledge'}}
     starter |= ENTRY_POINTS & catalog.keys()
     if profile == 'all':
         return sorted(catalog)

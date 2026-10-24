@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "reason": "Namespace generic core workflow names to reduce ambiguity with other installed skills.",
+  "runtime_aliases": false,
+  "renames": [
+    {
+      "from": "investigate",
+      "to": "crypto-investigate"
+    },
+    {
+      "from": "analyze-paper",
+      "to": "crypto-analyze-paper"
+    },
+    {
+      "from": "analyze-scheme",
+      "to": "crypto-analyze-scheme"
+    },
+    {
+      "from": "verify-claim",
+      "to": "crypto-verify-claim"
+    },
+    {
+      "from": "validate-attack",
+      "to": "crypto-validate-attack"
+    },
+    {
+      "from": "derive-cost",
+      "to": "crypto-derive-cost"
+    },
+    {
+      "from": "magma",
+      "to": "crypto-magma"
+    },
+    {
+      "from": "workbench-knowledge",
+      "to": "crypto-workbench-knowledge"
+    }
+  ]
+}

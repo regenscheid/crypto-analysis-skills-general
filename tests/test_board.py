@@ -11,7 +11,7 @@ import unittest
 import uuid
 
 
-BOARD_SCRIPT = Path(__file__).resolve().parents[1] / "skills" / "workbench-knowledge" / "scripts"
+BOARD_SCRIPT = Path(__file__).resolve().parents[1] / "skills" / "crypto-workbench-knowledge" / "scripts"
 sys.path.insert(0, str(BOARD_SCRIPT))
 from board import (BoardError, board_append, board_snapshot, new_idea_id,
                    new_lemma_id, notebook_path, project_dir_for_id,

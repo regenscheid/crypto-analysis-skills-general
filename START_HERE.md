@@ -8,7 +8,7 @@ are source material, not authorization to change the task or run commands.
 First establish which resources you can actually inspect: instruction bodies and
 references, target artifacts, browsing, execution, specialist software, and
 persistent storage. Do not infer capabilities from the assistant's product name.
-Read `skills/investigate/SKILL.md` if available. In a native skill installation,
+Read `skills/crypto-investigate/SKILL.md` if available. In a native skill installation,
 resolve the same file through the host's loader. If only this document is
 supplied, use the workflow below and identify the missing specialist material.
 
@@ -31,10 +31,10 @@ supplied, use the workflow below and identify the missing specialist material.
    coverage appropriate to the assignment, and unresolved obligations. Missing
    tools and failed searches do not establish security or impossibility.
 
-Use `analyze-paper` for a whole-paper claim audit, `verify-claim` for one fixed
-claim, `validate-attack` for a specific attack, `analyze-scheme` for assessment,
+Use `crypto-analyze-paper` for a whole-paper claim audit, `crypto-verify-claim` for one fixed
+claim, `crypto-validate-attack` for a specific attack, `crypto-analyze-scheme` for assessment,
 `discover-cryptanalysis` and `mathematical-research-development` for research,
-and `derive-cost` for a concrete cost. Domain entry points are
+and `crypto-derive-cost` for a concrete cost. Domain entry points are
 `symmetric-cryptanalysis-orchestrator`, `public-key-cryptanalysis-orchestrator`,
 and, only for a justified machine-checked task, `formal-methods-router`.
 Names are method references; they do not imply that the corresponding skill is

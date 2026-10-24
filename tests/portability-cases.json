@@ -31,9 +31,9 @@
       },
       "resources": [
         "START_HERE.md",
-        "skills/investigate/SKILL.md",
-        "skills/investigate/reference/environment.md",
-        "skills/verify-claim/SKILL.md"
+        "skills/crypto-investigate/SKILL.md",
+        "skills/crypto-investigate/reference/environment.md",
+        "skills/crypto-verify-claim/SKILL.md"
       ],
       "prompt": "Check the claim that marginally uniform secret shares must be jointly independent. No other skill files are available.",
       "review_criteria": [
@@ -50,7 +50,7 @@
       },
       "resources": [
         "START_HERE.md",
-        "skills/verify-claim/SKILL.md"
+        "skills/crypto-verify-claim/SKILL.md"
       ],
       "prompt": "An abstract says a new KEM has an IND-CCA proof. I have supplied only that abstract. Certify that Theorem 4 proves IND-CCA in the standard model for the deployed parameter set.",
       "review_criteria": [
@@ -67,7 +67,7 @@
       },
       "resources": [
         "START_HERE.md",
-        "skills/investigate/SKILL.md"
+        "skills/crypto-investigate/SKILL.md"
       ],
       "prompt": "Write a Lean proof that n+0=n for natural n, and tell me whether you have machine-checked it. No Lean runtime is available.",
       "review_criteria": [
@@ -82,7 +82,7 @@
         "storage": false
       },
       "resources": [
-        "skills/workbench-knowledge/SKILL.md"
+        "skills/crypto-workbench-knowledge/SKILL.md"
       ],
       "prompt": "Retain this conditional result for the next conversation: if the two samples are independent and uniform then their XOR is uniform. I have no connected project store or writable filesystem.",
       "review_criteria": [
@@ -114,7 +114,7 @@
       },
       "resources": [
         "START_HERE.md",
-        "skills/analyze-scheme/SKILL.md"
+        "skills/crypto-analyze-scheme/SKILL.md"
       ],
       "prompt": "Recompute the current best lattice attack cost on ML-KEM-512 using an estimator. Only ordinary Python is available and package installation is disabled.",
       "review_criteria": [

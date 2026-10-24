@@ -17,13 +17,13 @@ Reading a paper, preprint, thesis, standards comment, issue, code artifact, talk
 
 ## Catalog references
 
-Read [catalog use](../investigate/reference/catalog-use.md) when consulting the
+Read [catalog use](../crypto-investigate/reference/catalog-use.md) when consulting the
 configured catalog MCP server. It supplies changing examples and citations;
 linked skills are relevant reading, not mandatory invocations.
 
 ## Extract, use, or verify
 
-Read [paper use and verification](../investigate/reference/paper-use-and-verification.md).
+Read [paper use and verification](../crypto-investigate/reference/paper-use-and-verification.md).
 Extraction records the exact published claim, its assumptions, evidence, and
 unresolved details. It does not automatically reproduce the paper. Preserve
 published quantities as attributed source claims; independently recompute when

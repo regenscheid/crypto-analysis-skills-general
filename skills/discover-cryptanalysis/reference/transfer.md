@@ -139,7 +139,7 @@ Neither belongs in an unconditional established conclusion.
 These are requirements for a result, not a gate on which mathematical questions
 may appear in a research proposal. A supporting lemma or conditional formulation
 may be the next useful product before a decisive test exists. Use
-[the research workflow](../../investigate/reference/mathematical-research-workflow.md)
+[the research workflow](../../crypto-investigate/reference/mathematical-research-workflow.md)
 for proposal breadth, research horizons, and meaningful intermediate progress.
 
 ## Record transfer provenance

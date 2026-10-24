@@ -6,7 +6,7 @@ license: Apache-2.0
 
 # Crypto review
 
-Use [the environment guide](../investigate/reference/environment.md) to read
+Use [the environment guide](../crypto-investigate/reference/environment.md) to read
 related instructions through a native loader, files, or supplied text. Tool names
 and Python record-keeping examples below apply only when those capabilities are
 available. Without them, analyze the inspected evidence and keep a text record;
@@ -42,7 +42,7 @@ Use the source routes actually available; supplied text may be the only route.
 Use compatible prior inspection with identifiable provenance when the statement,
 revision, and scope match. Reopen the affected source for a changed dependency,
 conflicting evidence, suspected attribution error, or an explicit fresh audit.
-Follow [paper use and verification](../investigate/reference/paper-use-and-verification.md).
+Follow [paper use and verification](../crypto-investigate/reference/paper-use-and-verification.md).
 When fresh retrieval is needed, use available source connectors; a cited paper
 is a checkable attribution:
 
@@ -191,7 +191,7 @@ attack that does not admit one.
 ## Contribution and originality
 
 Before claiming a new result, use
-[contribution assessment](../investigate/reference/contribution-assessment.md).
+[contribution assessment](../crypto-investigate/reference/contribution-assessment.md).
 State the closest known result, the changed scope, and the additional reasoning
 actually supplied. Distinguish routine applications and new evaluations from
 substantive extensions or potentially new methods. Keep correctness, originality,
@@ -200,7 +200,7 @@ and significance separate; a useful parameter-specific finding need not be novel
 ## If you can execute
 
 Inspect the available computational environment and tool versions through
-`investigate/reference/computation.md`. Do not assume SageMath or either estimator
+`crypto-investigate/reference/computation.md`. Do not assume SageMath or either estimator
 is installed, and do not promise a runtime before measuring a representative
 unit of work.
 

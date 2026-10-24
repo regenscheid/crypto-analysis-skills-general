@@ -17,7 +17,7 @@ The target has been modeled and the project needs a disciplined research agenda 
 
 ## Research maturity
 
-Use [the mathematical research workflow](../investigate/reference/mathematical-research-workflow.md)
+Use [the mathematical research workflow](../crypto-investigate/reference/mathematical-research-workflow.md)
 for proposals and incomplete arguments. Requirements for a ready experiment or
 an established result do not determine which open mathematical questions may be
 included in a proposal. Preserve unchecked premises, conditional implications,

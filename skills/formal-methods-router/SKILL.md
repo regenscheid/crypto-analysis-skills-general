@@ -14,7 +14,7 @@ metadata:
 
 # Formal Methods Router
 
-Use [the environment guide](../investigate/reference/environment.md) for the
+Use [the environment guide](../crypto-investigate/reference/environment.md) for the
 current session's instruction access, tools, and storage. Select only available
 backends; when a checker cannot run, return a plan or unreplayed source with the
 proof obligation still open. Native skill routing is optional: read available

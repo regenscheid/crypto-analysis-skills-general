@@ -23,22 +23,6 @@
       "name": "algebraic-sat-smt-cp-and-cube-analysis"
     },
     {
-      "description": "Work out whether a paper proves what it claims \u2014 separate the informal claim from the theorem, name the notion and the model, run the mismatch checklist, carry the reduction's loss into the concrete parameters, and say which claims are worth settling. Use when asked to audit whether a paper or security argument supports its claims. Reading or applying a published result alone does not assign this audit.",
-      "description_words": 68,
-      "domain": "core",
-      "lines": 203,
-      "missing_relative_links": [],
-      "name": "analyze-paper"
-    },
-    {
-      "description": "Map the complete attack surface of a cryptographic scheme by fixing its claims and parameters, identifying underlying problems and added structure, checking every applicable attack family and its preconditions, recomputing costs in named models, and locating thin margins or promising deviations. Use for new or modified schemes, parameter-security claims, NIST-category checks, construction reviews, attack prioritization, or the baseline phase of an active search for weaknesses. Covers public-key, lattice, multivariate, symmetric, and hash targets.",
-      "description_words": 73,
-      "domain": "core",
-      "lines": 156,
-      "missing_relative_links": [],
-      "name": "analyze-scheme"
-    },
-    {
       "description": "Analyzes addition\u2013rotation\u2013XOR designs with exact carry-aware differential models, rotational/RX properties, constants, key schedules, and hybrid attacks. Use when: The target is dominated by modular addition/subtraction, rotation, and XOR, or when XOR-only trail models fail to capture carries and rotational structure.",
       "description_words": 40,
       "domain": "symmetric",
@@ -167,12 +151,76 @@
       "name": "cross-prover-evidence-packaging"
     },
     {
+      "description": "Work out whether a paper proves what it claims \u2014 separate the informal claim from the theorem, name the notion and the model, run the mismatch checklist, carry the reduction's loss into the concrete parameters, and say which claims are worth settling. Use when asked to audit whether a paper or security argument supports its claims. Reading or applying a published result alone does not assign this audit.",
+      "description_words": 68,
+      "domain": "core",
+      "lines": 203,
+      "missing_relative_links": [],
+      "name": "crypto-analyze-paper"
+    },
+    {
+      "description": "Map the complete attack surface of a cryptographic scheme by fixing its claims and parameters, identifying underlying problems and added structure, checking every applicable attack family and its preconditions, recomputing costs in named models, and locating thin margins or promising deviations. Use for new or modified schemes, parameter-security claims, NIST-category checks, construction reviews, attack prioritization, or the baseline phase of an active search for weaknesses. Covers public-key, lattice, multivariate, symmetric, and hash targets.",
+      "description_words": 73,
+      "domain": "core",
+      "lines": 156,
+      "missing_relative_links": [],
+      "name": "crypto-analyze-scheme"
+    },
+    {
+      "description": "Produce a concrete cost for a target nothing has costed yet \u2014 search what is already known, find and read a reduction to a problem that IS costed, instantiate it with real parameters, verify at toy scale, and write the result back as an entry or a gap. Use when an attack's structure is understood but its cost cannot be obtained.",
+      "description_words": 61,
+      "domain": "core",
+      "lines": 221,
+      "missing_relative_links": [],
+      "name": "crypto-derive-cost"
+    },
+    {
+      "description": "Conduct cryptographic security investigations using relevant cryptanalysis and formal-method procedures available as native skills, files, or supplied text. Use whenever asked to analyze a scheme or paper, find issues or weaknesses, search for attacks, reproduce or validate a result, audit a security claim or proof, compare parameters, or resume cryptographic research. Infer the requested task from its intent; individual words such as \u201cnew\u201d do not by themselves select a mode.",
+      "description_words": 70,
+      "domain": "core",
+      "lines": 240,
+      "missing_relative_links": [],
+      "name": "crypto-investigate"
+    },
+    {
+      "description": "Use an available licensed Magma installation for exact finite-field, polynomial, group, elliptic-curve, or linear-algebra computations supporting cryptanalysis. Check capability and provenance first; if Magma is unavailable, use a suitable available alternative or report the computation as blocked.",
+      "description_words": 37,
+      "domain": "core",
+      "lines": 67,
+      "missing_relative_links": [],
+      "name": "crypto-magma"
+    },
+    {
       "description": "Review a supplied cryptographic analysis for cost-model, precondition, security-notion, parameter-provenance, and citation defects. Use for an assigned analysis review; merely citing or applying a paper does not require a fresh citation or paper audit.",
       "description_words": 34,
       "domain": "core",
       "lines": 227,
       "missing_relative_links": [],
       "name": "crypto-review"
+    },
+    {
+      "description": "Establish whether a claimed attack actually works \u2014 state its preconditions, decide whether analysis or an implementation settles the question, then do that one, and report what the result does and does not imply at full parameters. Use when a paper, a post, or an earlier session asserts an attack and the question is whether to believe it.",
+      "description_words": 58,
+      "domain": "core",
+      "lines": 258,
+      "missing_relative_links": [],
+      "name": "crypto-validate-attack"
+    },
+    {
+      "description": "Check whether one specified claim in a paper, report, or security argument is correct. Audit its reasoning or reproduce the relevant evidence and report supported, refuted, or unresolved. Use for an assigned claim-verification task; merely citing or applying a published result does not require auditing that result.",
+      "description_words": 47,
+      "domain": "core",
+      "lines": 312,
+      "missing_relative_links": [],
+      "name": "crypto-verify-claim"
+    },
+    {
+      "description": "Read and extend project research notes, evidence, gaps, and lessons across cryptographic investigations. Use when prior work should be reused or a result should be retained. Python file helpers and an append-only research board are optional; without persistent storage, return a text handoff.",
+      "description_words": 43,
+      "domain": "core",
+      "lines": 102,
+      "missing_relative_links": [],
+      "name": "crypto-workbench-knowledge"
     },
     {
       "description": "Defines adversarial experiments, oracles, resources, success events, advantages, correctness events, and multi-user or quantum variants precisely enough for mechanized security proofs.",
@@ -213,14 +261,6 @@
       "lines": 59,
       "missing_relative_links": [],
       "name": "decryption-failure-and-reaction-analysis"
-    },
-    {
-      "description": "Produce a concrete cost for a target nothing has costed yet \u2014 search what is already known, find and read a reduction to a problem that IS costed, instantiate it with real parameters, verify at toy scale, and write the result back as an entry or a gap. Use when an attack's structure is understood but its cost cannot be obtained.",
-      "description_words": 61,
-      "domain": "core",
-      "lines": 221,
-      "missing_relative_links": [],
-      "name": "derive-cost"
     },
     {
       "description": "Finds, evaluates, clusters, validates, and extends XOR, modular, truncated, higher-order, and mixed-domain differential properties. Use when: The target has nonuniform propagation of differences through nonlinear operations, slow diffusion, controllable input structures, useful truncated patterns, or a published differential that may transfer.",
@@ -551,14 +591,6 @@
       "name": "interactive-proof-state-operation"
     },
     {
-      "description": "Conduct cryptographic security investigations using relevant cryptanalysis and formal-method procedures available as native skills, files, or supplied text. Use whenever asked to analyze a scheme or paper, find issues or weaknesses, search for attacks, reproduce or validate a result, audit a security claim or proof, compare parameters, or resume cryptographic research. Infer the requested task from its intent; individual words such as \u201cnew\u201d do not by themselves select a mode.",
-      "description_words": 70,
-      "domain": "core",
-      "lines": 240,
-      "missing_relative_links": [],
-      "name": "investigate"
-    },
-    {
       "description": "Develops cryptographic definitions and game-based proofs in Isabelle/HOL using CryptHOL, probabilistic programs, oracle constructions, and Sledgehammer-assisted reasoning.",
       "description_words": 17,
       "domain": "formal",
@@ -709,14 +741,6 @@
       "lines": 62,
       "missing_relative_links": [],
       "name": "linear-family-analysis"
-    },
-    {
-      "description": "Use an available licensed Magma installation for exact finite-field, polynomial, group, elliptic-curve, or linear-algebra computations supporting cryptanalysis. Check capability and provenance first; if Magma is unavailable, use a suitable available alternative or report the computation as blocked.",
-      "description_words": 37,
-      "domain": "core",
-      "lines": 67,
-      "missing_relative_links": [],
-      "name": "magma"
     },
     {
       "description": "Develop an explicitly stated mathematical question into definitions, lemmas, derivations, counterexamples, or scoped partial results. Use for a stated mathematical problem, proof exploration, an incomplete argument, or extended derivation work. Formal proof assistants are optional.",
@@ -1263,22 +1287,6 @@
       "name": "uov-oil-and-vinegar-analysis"
     },
     {
-      "description": "Establish whether a claimed attack actually works \u2014 state its preconditions, decide whether analysis or an implementation settles the question, then do that one, and report what the result does and does not imply at full parameters. Use when a paper, a post, or an earlier session asserts an attack and the question is whether to believe it.",
-      "description_words": 58,
-      "domain": "core",
-      "lines": 258,
-      "missing_relative_links": [],
-      "name": "validate-attack"
-    },
-    {
-      "description": "Check whether one specified claim in a paper, report, or security argument is correct. Audit its reasoning or reproduce the relevant evidence and report supported, refuted, or unresolved. Use for an assigned claim-verification task; merely citing or applying a published result does not require auditing that result.",
-      "description_words": 47,
-      "domain": "core",
-      "lines": 312,
-      "missing_relative_links": [],
-      "name": "verify-claim"
-    },
-    {
       "description": "Verifies annotated Rust using Verus specifications, ghost state, linear ghost types, SMT-backed proof, and explicit separation between mathematical integers and machine values.",
       "description_words": 22,
       "domain": "formal",
@@ -1293,14 +1301,6 @@
       "lines": 58,
       "missing_relative_links": [],
       "name": "vole-in-the-head-and-proof-derived-signature-analysis"
-    },
-    {
-      "description": "Read and extend project research notes, evidence, gaps, and lessons across cryptographic investigations. Use when prior work should be reused or a result should be retained. Python file helpers and an append-only research board are optional; without persistent storage, return a text handoff.",
-      "description_words": 43,
-      "domain": "core",
-      "lines": 102,
-      "missing_relative_links": [],
-      "name": "workbench-knowledge"
     }
   ],
   "skills_by_domain": {

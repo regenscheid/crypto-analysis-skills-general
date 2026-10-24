@@ -5,7 +5,7 @@ description: Develop mathematical cryptanalysis questions, research proposals, a
 
 # Develop mathematical cryptanalysis
 
-Use [the environment guide](../investigate/reference/environment.md) to read
+Use [the environment guide](../crypto-investigate/reference/environment.md) to read
 related instructions through a native loader, files, or supplied text. Tool names
 and Python record-keeping examples below apply only when those capabilities are
 available. Without them, analyze the inspected evidence and keep a text record;
@@ -15,7 +15,7 @@ label missing source retrieval, computation, or independent checks explicitly.
 Start with `MODE: DISCOVER` and identify the requested product: a research
 proposal, development of a selected mathematical question, or a scoped assessment
 supported by that mathematics. Read
-[the research workflow](../investigate/reference/mathematical-research-workflow.md).
+[the research workflow](../crypto-investigate/reference/mathematical-research-workflow.md).
 It governs agenda breadth, research maturity, checking effort, and completion.
 
 ## Fix the mathematical question and scope
@@ -35,8 +35,8 @@ Use the user's specified objects and existing host context.
 
 Identify the closest known ingredients and the unresolved inference. Use the
 catalog and primary literature for examples, definitions, and the limits of prior
-results. Follow [catalog use](../investigate/reference/catalog-use.md) and
-[paper use and verification](../investigate/reference/paper-use-and-verification.md).
+results. Follow [catalog use](../crypto-investigate/reference/catalog-use.md) and
+[paper use and verification](../crypto-investigate/reference/paper-use-and-verification.md).
 An adequately sourced result can be used without independently auditing its paper.
 Check its hypotheses here and keep any uncertainty in dependent conclusions.
 
@@ -91,7 +91,7 @@ when its first implementation costs more than it saves.
 ## Continue a discovery investigation across sessions
 
 When supported persistent Python storage is available and sustained discovery
-needs it, optionally use the [project research board](../workbench-knowledge/reference/research-board.md).
+needs it, optionally use the [project research board](../crypto-workbench-knowledge/reference/research-board.md).
 Resolve one unique project directory beneath `CRYPTO_FILES`, read the shared
 `knowledge.md`, `gaps.md`, and `lessons.md`, and reduce all per-session
 ledgers before ideating. If workers are available and authorized, confirm their
@@ -122,7 +122,7 @@ critic accepts a closure. Do not turn disagreement into a majority vote or a
 single blended summary.
 
 When authorized workers or a sequential change of perspective would help, use
-[open-brief inventor](../investigate/reference/open-brief-inventor.md)
+[open-brief inventor](../crypto-investigate/reference/open-brief-inventor.md)
 phases when the current lenses are exhausted. Give them confirmed
 lemmas, published SOTA rows, and closed lanes as exclusions; do not make
 every narrow subagent reread the entire board. The target stays fixed:
@@ -132,12 +132,12 @@ only a lack of idea, time, tools, or context.
 
 ## Check the conclusion that is actually claimed
 
-Use [evidence interpretation](../investigate/reference/evidence-interpretation.md).
+Use [evidence interpretation](../crypto-investigate/reference/evidence-interpretation.md).
 State whether a conclusion is conditional, empirical, exactly checked, or proved.
 A quantitative cost claim needs its appropriate model, units, success event, and
 relevant resource accounting; an unpriced mathematical lemma can remain useful.
 
-Use `verify-claim` when the correctness of a specified paper claim is the assigned
+Use `crypto-verify-claim` when the correctness of a specified paper claim is the assigned
 question. Independently check a new mathematical argument when presenting it as
 an established result; review the fixed argument and report a gap without silently
 repairing it. Reproduction is appropriate for an empirical claim that depends on
@@ -147,18 +147,18 @@ it, not a universal prerequisite to research proposals or theoretical results.
 
 For delegated cryptanalytic work, including research proposals and scoped
 assessments, apply
-[orchestrator review](../investigate/reference/delegated-cryptanalysis-review.md)
+[orchestrator review](../crypto-investigate/reference/delegated-cryptanalysis-review.md)
 to omissions, premature stopping, connections, and overlooked significance.
 A correctness review alone does not establish the depth of the research.
 
 Return the formulation, known ingredients reused, mathematics produced, scope,
 remaining obligations, and why the next inference matters. Distinguish the end
 of this work episode from resolution of the overall research question. Use
-`workbench-knowledge` for the project research record and the host's plan and
+`crypto-workbench-knowledge` for the project research record and the host's plan and
 artifact facilities for execution and resumption.
 
 Before originality language, read
-[contribution assessment](../investigate/reference/contribution-assessment.md).
+[contribution assessment](../crypto-investigate/reference/contribution-assessment.md).
 Identify the additional reasoning beyond the closest known result. A routine
 application at another parameter set can matter to standards evaluation without
 being a new method. Catalog absence, independent rediscovery, or changed notation

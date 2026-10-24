@@ -24,23 +24,23 @@ class TraceEvidenceTests(unittest.TestCase):
         return self.path
 
     def load_event(self, **changes):
-        return {"kind": "skill_load", "skill_id": "investigate", "call_id": "call-1",
+        return {"kind": "skill_load", "skill_id": "crypto-investigate", "call_id": "call-1",
                 "status": "succeeded", "body_sha256": hashlib.sha256(b"body").hexdigest(),
                 **changes}
 
     def test_plain_text_names_are_not_events(self):
-        self.path.write_text("investigate skill-load-probe")
+        self.path.write_text("crypto-investigate skill-load-probe")
         with self.assertRaises(ValueError):
             successful_skill_loads(self.path)
 
     def test_failure_and_response_mentions_do_not_count(self):
         path = self.trace([self.load_event(status="failed"),
-                           {"kind": "response", "text": "Loaded investigate"}])
+                           {"kind": "response", "text": "Loaded crypto-investigate"}])
         self.assertEqual(successful_skill_loads(path), set())
 
     def test_success_requires_body_identity_and_call_identity(self):
         event = self.load_event()
-        self.assertEqual(successful_skill_loads(self.trace([event])), {"investigate"})
+        self.assertEqual(successful_skill_loads(self.trace([event])), {"crypto-investigate"})
         for key in ["body_sha256", "call_id"]:
             broken = {k: v for k, v in event.items() if k != key}
             with self.subTest(key=key), self.assertRaises(ValueError):

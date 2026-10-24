@@ -10,7 +10,8 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'tools'))
 from package_skills import build_bundle, select_skills, skill_catalog
-from audit_skills import validate_portability
+from audit_skills import validate_migrations, validate_portability
+from import_skill_packs import rewrite_text
 
 
 class PackagingTests(unittest.TestCase):
@@ -21,27 +22,27 @@ class PackagingTests(unittest.TestCase):
 
     def test_exact_resources_and_hashes_round_trip(self):
         # This skill has a real executable helper as well as instructions.
-        manifest = build_bundle(ROOT, self.output, names=['verify-claim'])
+        manifest = build_bundle(ROOT, self.output, names=['crypto-verify-claim'])
         self.assertEqual(len(manifest['skills']), 1)
         skill = manifest['skills'][0]
         archive = self.output / skill['archive']
         self.assertEqual(hashlib.sha256(archive.read_bytes()).hexdigest(), skill['archive_sha256'])
         with zipfile.ZipFile(archive) as bundle:
-            self.assertIn('verify-claim/scripts/reproduce.py', bundle.namelist())
-            self.assertTrue(all(name.startswith('verify-claim/') for name in bundle.namelist()))
+            self.assertIn('crypto-verify-claim/scripts/reproduce.py', bundle.namelist())
+            self.assertTrue(all(name.startswith('crypto-verify-claim/') for name in bundle.namelist()))
             for name in bundle.namelist():
-                relative = name.removeprefix('verify-claim/')
+                relative = name.removeprefix('crypto-verify-claim/')
                 body = bundle.read(name)
-                self.assertEqual(body, (ROOT / 'skills/verify-claim' / relative).read_bytes())
+                self.assertEqual(body, (ROOT / 'skills/crypto-verify-claim' / relative).read_bytes())
                 self.assertEqual(hashlib.sha256(body).hexdigest(), skill['files'][relative])
         packet = (self.output / 'context.md').read_bytes()
         self.assertEqual(hashlib.sha256(packet).hexdigest(), manifest['context_sha256'])
-        self.assertIn((ROOT / 'skills/verify-claim/SKILL.md').read_bytes(), packet)
+        self.assertIn((ROOT / 'skills/crypto-verify-claim/SKILL.md').read_bytes(), packet)
         self.assertEqual(manifest, json.loads((self.output / 'manifest.json').read_text()))
 
     def test_deterministic_archives_and_packet(self):
-        first = build_bundle(ROOT, self.output, names=['investigate', 'verify-claim'])
-        second = build_bundle(ROOT, Path(self.tmp.name) / 'second', names=['verify-claim', 'investigate'])
+        first = build_bundle(ROOT, self.output, names=['crypto-investigate', 'crypto-verify-claim'])
+        second = build_bundle(ROOT, Path(self.tmp.name) / 'second', names=['crypto-verify-claim', 'crypto-investigate'])
         self.assertEqual(first, second)
 
     def test_existing_output_is_not_overwritten(self):
@@ -49,7 +50,7 @@ class PackagingTests(unittest.TestCase):
         sentinel = self.output / 'keep.txt'
         sentinel.write_text('retained')
         with self.assertRaisesRegex(ValueError, 'already exists'):
-            build_bundle(ROOT, self.output, names=['verify-claim'])
+            build_bundle(ROOT, self.output, names=['crypto-verify-claim'])
         self.assertEqual(sentinel.read_text(), 'retained')
         self.assertEqual(list(self.output.iterdir()), [sentinel])
 
@@ -76,15 +77,38 @@ class PackagingTests(unittest.TestCase):
     def test_domain_profiles_include_core_and_requested_domain(self):
         catalog = skill_catalog(ROOT)
         starter = set(select_skills(catalog, 'starter', []))
-        self.assertIn('investigate', starter)
+        self.assertIn('crypto-investigate', starter)
         self.assertIn('formal-methods-router', starter)
-        self.assertNotIn('workbench-knowledge', starter)
+        self.assertNotIn('crypto-workbench-knowledge', starter)
         for domain in ['symmetric', 'public-key', 'formal']:
             selected = set(select_skills(catalog, domain, []))
             self.assertTrue(starter <= selected)
             self.assertTrue({name for name, item in catalog.items() if item['domain'] == domain} <= selected)
             self.assertTrue(all(name in starter or catalog[name]['domain'] == domain for name in selected))
         self.assertEqual(set(select_skills(catalog, 'all', [])), set(catalog))
+
+
+class SkillMigrationTests(unittest.TestCase):
+    def test_pack_refresh_updates_explicit_references_but_preserves_prose(self):
+        source = ("Use `investigate` with [environment](../../investigate/reference/environment.md), "
+                  "`verify-claim`, and [costs](../derive-cost/SKILL.md). "
+                  "Then investigate the claim.\n```sh\nmagma -b job.m\n```\n")
+        result = rewrite_text(source, 'symmetric', 'example')
+        self.assertIn('`crypto-investigate`', result)
+        self.assertIn('../../crypto-investigate/reference/environment.md', result)
+        self.assertIn('`crypto-verify-claim`', result)
+        self.assertIn('../crypto-derive-cost/SKILL.md', result)
+        self.assertIn('Then investigate the claim.', result)
+        self.assertIn('magma -b job.m', result)
+
+    def test_registry_and_rename_record_have_no_dangling_or_duplicate_ids(self):
+        names = set(skill_catalog(ROOT))
+        self.assertEqual(validate_migrations(ROOT / 'config/skill-migrations.json', names), [])
+
+    def test_retired_name_cannot_be_reintroduced_as_an_alias(self):
+        names = set(skill_catalog(ROOT)) | {'investigate'}
+        failures = validate_migrations(ROOT / 'config/skill-migrations.json', names)
+        self.assertIn('skill migration: retired name still installed investigate', failures)
 
 
 class PortabilityAuditTests(unittest.TestCase):

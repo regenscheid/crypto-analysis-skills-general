@@ -7,7 +7,7 @@
       "expected_mode": "DISCOVER",
       "requires_grounding": true,
       "expected_skills": [
-        "investigate",
+        "crypto-investigate",
         "public-key-cryptanalysis-orchestrator",
         "public-key-literature-attack-extractor",
         "ntru-and-falcon-analysis",
@@ -21,7 +21,7 @@
       "expected_mode": "VALIDATE",
       "requires_grounding": true,
       "expected_skills": [
-        "investigate",
+        "crypto-investigate",
         "symmetric-cryptanalysis-orchestrator",
         "mode-mac-and-aead-analysis",
         "distinguisher-to-key-recovery-extension",
@@ -34,7 +34,7 @@
       "expected_mode": "VALIDATE",
       "requires_grounding": true,
       "expected_skills": [
-        "investigate",
+        "crypto-investigate",
         "public-key-cryptanalysis-orchestrator",
         "kem-transform-and-cca-analysis",
         "security-proof-rom-qrom-and-tightness-auditor",
@@ -47,7 +47,7 @@
       "expected_mode": "FORMALIZE",
       "requires_grounding": true,
       "expected_skills": [
-        "investigate",
+        "crypto-investigate",
         "formal-methods-router",
         "lean-bitvectors-and-word-arithmetic",
         "implementation-refinement-and-equivalence"
@@ -59,7 +59,7 @@
       "expected_mode": "VALIDATE",
       "requires_grounding": true,
       "expected_skills": [
-        "investigate",
+        "crypto-investigate",
         "public-key-cryptanalysis-orchestrator",
         "lattice-hard-problem-and-estimator-analysis",
         "public-key-reproduction-and-falsification-planner",
@@ -72,7 +72,7 @@
       "expected_mode": "ASSESS",
       "requires_grounding": true,
       "expected_skills": [
-        "investigate",
+        "crypto-investigate",
         "public-key-cryptanalysis-orchestrator",
         "public-key-literature-attack-extractor",
         "module-lattice-signature-analysis"

@@ -96,7 +96,15 @@ def rewrite_text(text: str, domain: str, source_name: str) -> str:
         reference_domain, reference_name = match.groups()
         return installed_name(reference_domain, reference_name)
 
-    return NAMESPACED_SKILL.sub(replace_namespaced, text)
+    text = NAMESPACED_SKILL.sub(replace_namespaced, text)
+    # This fork renamed its generic core workflows. Source packs may still
+    # reference those methods; rewrite explicit IDs and paths, not ordinary prose.
+    migrations = json.loads((REPOSITORY_ROOT / "config" / "skill-migrations.json").read_text(encoding="utf-8"))
+    for rename in migrations["renames"]:
+        old, new = rename["from"], rename["to"]
+        text = text.replace(f"`{old}`", f"`{new}`")
+        text = re.sub(rf"(?<![a-z0-9-]){re.escape(old)}(?=/)", new, text)
+    return text
 
 
 def rewrite_tree(root: Path, domain: str, source_name: str) -> None:

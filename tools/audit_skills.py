@@ -132,6 +132,25 @@ def validate_routing_cases(path: Path, skill_names: set[str]) -> list[str]:
     return failures
 
 
+def validate_migrations(path: Path, skill_names: set[str]) -> list[str]:
+    """A renamed ID must resolve to one current skill without a retired alias."""
+    migrations = json.loads(path.read_text(encoding="utf-8"))
+    failures = []
+    previous_ids = set()
+    current_ids = set()
+    for rename in migrations["renames"]:
+        previous, current = rename["from"], rename["to"]
+        if previous in previous_ids or current in current_ids:
+            failures.append(f"skill migration: duplicate mapping {previous} -> {current}")
+        previous_ids.add(previous)
+        current_ids.add(current)
+        if current not in skill_names:
+            failures.append(f"skill migration: unknown destination {current}")
+        if previous in skill_names:
+            failures.append(f"skill migration: retired name still installed {previous}")
+    return failures
+
+
 def validate_portability(skills_root: Path) -> list[str]:
     """Reject reintroduction of private deployment APIs in distributed resources."""
     patterns = {
@@ -157,6 +176,7 @@ def main() -> int:
     parser.add_argument("--registry-output", type=Path, default=REPOSITORY_ROOT / "config" / "skill-registry.json")
     parser.add_argument("--routing-cases", type=Path, default=REPOSITORY_ROOT / "tests" / "routing-cases.json")
     parser.add_argument("--import-manifest", type=Path, default=REPOSITORY_ROOT / "config" / "imported-skills.json")
+    parser.add_argument("--skill-migrations", type=Path, default=REPOSITORY_ROOT / "config" / "skill-migrations.json")
     args = parser.parse_args()
 
     report, errors, warnings = audit(args.skills_root)
@@ -172,6 +192,7 @@ def main() -> int:
     )
     skill_names = {str(record["name"]) for record in report["skills"]}
     errors.extend(validate_routing_cases(args.routing_cases, skill_names))
+    errors.extend(validate_migrations(args.skill_migrations, skill_names))
     portability_errors = validate_portability(args.skills_root)
     errors.extend(portability_errors)
     report["portability_errors"] = len(portability_errors)

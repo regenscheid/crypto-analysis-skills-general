@@ -5,7 +5,7 @@ description: Develop an explicitly stated mathematical question into definitions
 
 # Develop a mathematical argument
 
-Use [the environment guide](../investigate/reference/environment.md) to read
+Use [the environment guide](../crypto-investigate/reference/environment.md) to read
 related instructions through a native loader, files, or supplied text. Tool names
 and Python record-keeping examples below apply only when those capabilities are
 available. Without them, analyze the inspected evidence and keep a text record;
@@ -18,10 +18,10 @@ or extended derivation work, read [development guidance](references/development.
 for alternative representations, sustained reasoning, and proportionate checking.
 
 For proposals, longer research horizons, and continuation milestones, read
-[the research workflow](../investigate/reference/mathematical-research-workflow.md).
-For literature ingredients, use [paper use and verification](../investigate/reference/paper-use-and-verification.md).
+[the research workflow](../crypto-investigate/reference/mathematical-research-workflow.md).
+For literature ingredients, use [paper use and verification](../crypto-investigate/reference/paper-use-and-verification.md).
 For empirical evidence, the statistical skill is directly available without
-formalization. Consult [catalog reading](../investigate/reference/catalog-reading.md)
+formalization. Consult [catalog reading](../crypto-investigate/reference/catalog-reading.md)
 when historical examples would clarify a mathematical concept or scope distinction.
 
 ## Make the question precise
@@ -65,14 +65,14 @@ rules out.
 
 ## Check the claim at the right strength
 
-Read [evidence interpretation](../investigate/reference/evidence-interpretation.md)
+Read [evidence interpretation](../crypto-investigate/reference/evidence-interpretation.md)
 when deciding what a derivation or computation establishes. Review quantifiers,
 boundary cases, hidden assumptions, and dependence between lemmas. Separate
 development from independent checking when the conclusion warrants it. A formal
 proof assistant is one assurance option, not a requirement for doing mathematics.
 
 If work was delegated, the main agent applies
-[orchestrator review](../investigate/reference/delegated-cryptanalysis-review.md)
+[orchestrator review](../crypto-investigate/reference/delegated-cryptanalysis-review.md)
 to its depth, omissions, connections, and significance before synthesis. Use
 an available authorized reviewer for correctness, or label a sequential self-check
 accurately; a checked argument can still leave
@@ -80,7 +80,7 @@ important parts of the requested mathematical development undone.
 
 ## Assess what was contributed
 
-Read [contribution assessment](../investigate/reference/contribution-assessment.md)
+Read [contribution assessment](../crypto-investigate/reference/contribution-assessment.md)
 before claiming originality. Separate a known theorem's instantiation, a new
 evaluation, a substantive extension, and a potentially new result. Identify the
 additional mathematical step; new notation or a different parameter value does

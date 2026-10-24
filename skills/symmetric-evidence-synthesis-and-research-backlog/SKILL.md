@@ -17,7 +17,7 @@ Enough evidence exists to update a review, recommendation, standards comment, re
 
 ## Research maturity
 
-Use [the mathematical research workflow](../investigate/reference/mathematical-research-workflow.md)
+Use [the mathematical research workflow](../crypto-investigate/reference/mathematical-research-workflow.md)
 for proposals and incomplete arguments. Requirements for a ready experiment or
 an established result do not determine which open mathematical questions may be
 included in a proposal. Preserve unchecked premises, conditional implications,
@@ -40,7 +40,7 @@ evidence maturity, review outcome, coverage, and contribution distinct.
 ## Contribution and originality
 
 Before claiming a new result, use
-[contribution assessment](../investigate/reference/contribution-assessment.md).
+[contribution assessment](../crypto-investigate/reference/contribution-assessment.md).
 State the closest known result, the changed scope, and the additional reasoning
 actually supplied. Distinguish routine applications and new evaluations from
 substantive extensions or potentially new methods. Keep correctness, originality,
