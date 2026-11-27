@@ -1,6 +1,6 @@
 ---
 name: symmetric-attack-complexity-and-success-auditor
-description: "Recomputes an attack end to end, normalizes resource units, checks success and false positives, and compares it with the correct generic baseline and security claim. Use when: Before accepting, reporting, transferring, or comparing any cryptanalytic complexity. It is especially important for papers or agent outputs that quote one exponent without a complete derivation."
+description: "Recompute a symmetric attack end to end, normalize resource units, check success probability and false positives, and compare it with the right generic baseline and claim. Use before accepting, reporting, transferring or comparing any symmetric attack complexity."
 metadata:
   version: "0.1"
   display-name: "Attack Complexity and Success Auditor"

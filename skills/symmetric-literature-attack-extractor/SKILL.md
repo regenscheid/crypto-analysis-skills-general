@@ -1,6 +1,6 @@
 ---
 name: symmetric-literature-attack-extractor
-description: "Extracts a published or discovered symmetric-cryptanalysis result into a normalized, source-grounded attack record suitable for reproduction and transfer. Use when: Reading a paper, preprint, thesis, standards comment, issue, code artifact, talk, or internal agent report that claims a cryptanalytic property or attack. Run it before attempting to adapt the result."
+description: "Extract a published or discovered symmetric-cryptanalysis result into a normalized, source-grounded attack record for reproduction and transfer. Use when reading a paper, comment, code or report that claims a symmetric attack, before adapting it."
 metadata:
   version: "0.1"
   display-name: "Literature Attack Extractor"

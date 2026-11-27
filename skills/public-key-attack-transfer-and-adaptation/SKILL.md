@@ -1,6 +1,6 @@
 ---
 name: public-key-attack-transfer-and-adaptation
-description: "Decomposes an attack from literature or prior agent work, maps every indispensable requirement to a new public-key target, and develops minimally modified falsifiable adaptations. Use for cross-version, cross-parameter, cross-family, reduced-to-full, component-to-construction, and toy-to-real transfer."
+description: "Decompose a public-key attack from the literature or prior work, map each indispensable requirement to a new public-key target, and develop minimal falsifiable adaptations. Use for cross-version, cross-parameter, cross-family, reduced-to-full and toy-to-real transfer."
 metadata:
   version: "0.1"
   display-name: "Attack Transfer and Adaptation"

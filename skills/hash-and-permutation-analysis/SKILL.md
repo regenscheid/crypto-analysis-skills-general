@@ -1,6 +1,6 @@
 ---
 name: hash-and-permutation-analysis
-description: "Evaluates hash functions, compression functions, XOFs, and public permutations for collision, preimage, second-preimage, distinguishing, multicollision, herding, rebound, and sponge-specific weaknesses. Use when: The target is a hash function, XOF, compression function, sponge/duplex construction, public permutation, or hash-based composition. Always distinguish the primitive/permutation property from the full construction property."
+description: "Evaluate hash functions, XOFs, compression functions, sponges and public permutations for collision, preimage, distinguishing, multicollision, herding and sponge-specific attacks. Use when the target is a hash or permutation; keeps primitive and full-construction properties apart."
 metadata:
   version: "0.1"
   display-name: "Hash and Permutation Analysis"

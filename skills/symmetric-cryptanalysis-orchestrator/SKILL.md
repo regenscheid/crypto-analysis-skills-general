@@ -1,6 +1,6 @@
 ---
 name: symmetric-cryptanalysis-orchestrator
-description: "Coordinates a research-grade symmetric-cryptanalysis evaluation, selects specialist skills, and maintains a shared claim/evidence state. Use when: The task asks for an evaluation of a symmetric primitive, mode, construction, proposal, paper, attack claim, or implementation and requires more than one analytical technique. Use it at the beginning of a project and again whenever the target, model, or evidence changes materially."
+description: "Route a symmetric-cryptanalysis evaluation (primitive, mode, construction, paper, attack claim or implementation) to its specialist skills and keep one claim and evidence state. Use at the start of such a project and when the target, model or evidence changes."
 metadata:
   version: "0.1"
   display-name: "Symmetric Cryptanalysis Orchestrator"

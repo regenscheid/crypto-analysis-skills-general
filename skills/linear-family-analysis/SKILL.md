@@ -1,6 +1,6 @@
 ---
 name: linear-family-analysis
-description: "Analyzes linear approximations, trails, hulls, multiple/multidimensional distinguishers, and key-recovery extensions with sign and dependency accounting. Use when: The target’s Boolean or word operations exhibit biased linear relations, the diffusion layer permits low-weight masks, or literature provides useful approximations or zero-correlation structure."
+description: "Analyze linear approximations, trails, hulls and multiple or multidimensional linear attacks on symmetric primitives with sign and dependency accounting. Use when operations show biased linear relations, diffusion allows low-weight masks, or published approximations exist."
 metadata:
   version: "0.1"
   display-name: "Linear Family Analysis"

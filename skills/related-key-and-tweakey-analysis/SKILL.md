@@ -1,6 +1,6 @@
 ---
 name: related-key-and-tweakey-analysis
-description: "Formalizes realistic key/tweak relations, propagates them through schedules, and evaluates related-key/tweakey differentials, symmetries, and recovery attacks. Use when: The key/tweak schedule has low diffusion, linear recurrences, repeated subkeys, symmetries, or a literature attack assumes chosen related keys or tweaks. Also use it to determine whether such a model is meaningful for the intended interface."
+description: "Formalize realistic key and tweak relations, propagate them through schedules, and evaluate related-key and tweakey differentials, symmetries and key recovery. Use when the schedule diffuses weakly or an attack assumes related keys; also judges whether that model fits the interface."
 metadata:
   version: "0.1"
   display-name: "Related-Key and Tweakey Analysis"

@@ -1,6 +1,6 @@
 ---
 name: crypto-analyze-paper
-description: Work out whether a paper proves what it claims — separate the informal claim from the theorem, name the notion and the model, run the mismatch checklist, carry the reduction's loss into the concrete parameters, and say which claims are worth settling. Use when asked to audit whether a paper or security argument supports its claims. Reading or applying a published result alone does not assign this audit.
+description: "Audit whether a paper or security argument proves what it claims: separate claim from theorem, name notion and model, run the mismatch checklist, carry the reduction loss into concrete parameters. Use when assigned that audit; merely reading or applying a result does not assign it."
 license: Apache-2.0
 ---
 

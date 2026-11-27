@@ -1,6 +1,6 @@
 ---
 name: slide-invariant-subspace-and-symmetry-analysis
-description: "Finds exploitable self-similarity, slid pairs, invariant subspaces/partitions, fixed structures, and weak-key symmetries while checking constants and schedules. Use when: Rounds repeat or nearly repeat, constants are weak or periodic, key schedules preserve relations, affine/nonlinear subspaces may map to themselves, or the primitive has complementations, rotations, branch permutations, or other automorphisms."
+description: "Find exploitable self-similarity in symmetric primitives: slid pairs, invariant subspaces and partitions, fixed structures and weak-key symmetries, checking constants and schedules. Use when rounds repeat, constants are weak or periodic, or the design has automorphisms."
 metadata:
   version: "0.1"
   display-name: "Slide, Invariant-Subspace, and Symmetry Analysis"

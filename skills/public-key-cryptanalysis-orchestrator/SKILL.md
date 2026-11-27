@@ -1,6 +1,6 @@
 ---
 name: public-key-cryptanalysis-orchestrator
-description: "Routes a public-key cryptanalysis project through security-model, construction-level, hard-problem, implementation-interface, proof, cost, transfer, and reproduction skills while maintaining one shared evidence state. Use when starting or resuming an evaluation of a signature, KEM, public-key encryption scheme, key-agreement mechanism, or hybrid construction."
+description: "Route a public-key evaluation (signature, KEM, PKE, key agreement, hybrid) through the security-model, structure, hard-problem, implementation, proof, cost, transfer and reproduction skills with one evidence state. Use when starting or resuming such an evaluation."
 metadata:
   version: "0.1"
   display-name: "Public-Key Cryptanalysis Orchestrator"

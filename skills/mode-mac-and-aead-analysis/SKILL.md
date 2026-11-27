@@ -1,6 +1,6 @@
 ---
 name: mode-mac-and-aead-analysis
-description: "Analyzes symmetric constructions and interfaces for privacy, authenticity, nonce behavior, tag bounds, domain separation, multi-user effects, and misuse resistance. Use when: The target composes a block cipher, tweakable cipher, stream cipher, hash, or permutation into encryption, authentication, key wrap, storage, record protection, or AEAD. This skill emphasizes game/interface analysis and generic/algebraic attacks rather than only reduced-round primitive attacks."
+description: "Analyze symmetric modes, MACs, key wrap and AEAD for privacy, authenticity, nonce behavior, tag bounds, domain separation, multi-user effects and misuse. Use when a block cipher, hash or permutation is composed into an encryption or authentication construction."
 metadata:
   version: "0.1"
   display-name: "Mode, MAC, and AEAD Analysis"

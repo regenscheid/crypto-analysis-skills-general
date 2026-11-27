@@ -1,6 +1,6 @@
 ---
 name: quantum-symmetric-attack-analysis
-description: "Formalizes Q1/Q2 access and evaluates Grover, collision, period-finding, and hybrid quantum attacks using concrete oracle, depth, qubit, and verification costs. Use when: A security claim invokes “quantum security,” a classical attack may be accelerated quantumly, or a construction exposes algebraic/periodic structure to quantum queries."
+description: "Formalize Q1/Q2 quantum access and evaluate Grover, collision, period-finding and hybrid quantum attacks on symmetric constructions with concrete oracle, depth, qubit and verification costs. Use when a claim invokes quantum security or structure may be exposed to quantum queries."
 metadata:
   version: "0.1"
   display-name: "Quantum Symmetric Attack Analysis"

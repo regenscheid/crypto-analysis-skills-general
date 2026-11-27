@@ -1,6 +1,6 @@
 ---
 name: stream-cipher-analysis
-description: "Analyzes initialization and keystream generation using correlation, algebraic/cube, guess-and-determine, state recovery, resynchronization, and time-memory-data attacks. Use when: The target generates keystream or a stateful output from a key and IV/nonce, including synchronous stream ciphers, LFSR/NLFSR constructions, filter/combiner generators, ARX state machines, or stream-like modes."
+description: "Analyze stream-cipher initialization and keystream generation with correlation, algebraic and cube, guess-and-determine, state-recovery, resynchronization and time-memory-data attacks. Use when the target produces keystream from a key and IV, including LFSR/NLFSR and ARX state machines."
 metadata:
   version: "0.1"
   display-name: "Stream Cipher Analysis"

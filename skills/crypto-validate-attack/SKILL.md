@@ -1,6 +1,6 @@
 ---
 name: crypto-validate-attack
-description: Establish whether a claimed attack actually works — state its preconditions, decide whether analysis or an implementation settles the question, then do that one, and report what the result does and does not imply at full parameters. Use when a paper, a post, or an earlier session asserts an attack and the question is whether to believe it.
+description: "Establish whether a claimed attack actually works: state its preconditions, choose analysis or an implementation to settle it, do that, and say what the result implies at full parameters. Use when a paper, post or earlier session asserts an attack and the question is whether to believe it."
 license: Apache-2.0
 ---
 

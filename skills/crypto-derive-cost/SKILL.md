@@ -1,6 +1,6 @@
 ---
 name: crypto-derive-cost
-description: Produce a concrete cost for a target nothing has costed yet — search what is already known, find and read a reduction to a problem that IS costed, instantiate it with real parameters, verify at toy scale, and write the result back as an entry or a gap. Use when an attack's structure is understood but its cost cannot be obtained.
+description: "Produce a concrete cost where none is published: find and read a reduction to a costed problem, instantiate it with real parameters, verify at toy scale, and record the result or the gap. Use when an attack's structure is understood but its cost is not available."
 license: Apache-2.0
 ---
 

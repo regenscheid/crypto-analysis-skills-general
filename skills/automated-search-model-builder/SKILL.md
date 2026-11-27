@@ -1,6 +1,6 @@
 ---
 name: automated-search-model-builder
-description: "Selects, constructs, validates, and audits exact or relaxed automated models for symmetric-cryptanalysis searches. Use when: Searching differential/linear trails, integral/division properties, impossible transitions, ARX characteristics, boomerang components, algebraic solutions, meet-in-the-middle cuts, or other combinatorial structures with a solver or custom search."
+description: "Build, validate and audit exact or relaxed solver models for symmetric-cryptanalysis searches (trails, division properties, impossible transitions, MITM cuts). Use before trusting a solver's search result; public-key models are automated-algebra-and-search-model-builder."
 metadata:
   version: "0.1"
   display-name: "Automated Search Model Builder"

@@ -1,6 +1,6 @@
 ---
 name: arx-differential-rotational-rx-analysis
-description: "Analyzes addition–rotation–XOR designs with exact carry-aware differential models, rotational/RX properties, constants, key schedules, and hybrid attacks. Use when: The target is dominated by modular addition/subtraction, rotation, and XOR, or when XOR-only trail models fail to capture carries and rotational structure."
+description: "Analyze addition-rotation-XOR (ARX) designs with carry-aware differential models, rotational and RX properties, constants and key schedules. Use when modular addition, rotation and XOR dominate, or when XOR-only trail models miss carries."
 metadata:
   version: "0.1"
   display-name: "ARX Differential, Rotational, and RX Analysis"

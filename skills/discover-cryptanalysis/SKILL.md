@@ -1,6 +1,6 @@
 ---
 name: discover-cryptanalysis
-description: Develop mathematical cryptanalysis questions, research proposals, and scoped results about specified cryptographic constructions, assumptions, or parameters. Use for human-directed standards research, unexplored mathematical questions, proposed extensions of known results, or continued development of a selected question. Distinguish a requested proposal from a request to carry out the mathematical work.
+description: "Develop mathematical cryptanalysis questions, research proposals and scoped results about specified constructions, assumptions or parameters. Use for directed standards research, unexplored questions or extensions of known results; tells a requested proposal apart from doing the mathematics."
 ---
 
 # Develop mathematical cryptanalysis

@@ -1,6 +1,6 @@
 ---
 name: distinguisher-to-key-recovery-extension
-description: "Attempts to extend a structural property or distinguisher into a key/state-recovery attack with explicit round boundaries, filtering, ranking, false positives, and verification. Use when: A differential, linear, integral, zero-correlation, impossible, boomerang, algebraic, or other property exists but the security claim concerns key/state recovery or full-round use."
+description: "Extend a symmetric distinguisher or structural property into key or state recovery with explicit round boundaries, filtering, ranking, false positives and verification. Use when a property exists but the claim concerns key recovery or full rounds."
 metadata:
   version: "0.1"
   display-name: "Distinguisher to Key/State Recovery Extension"

@@ -1,6 +1,6 @@
 ---
 name: symmetric-attack-hypothesis-generator-and-triage
-description: "Generates structurally justified, falsifiable attack hypotheses from claims, design features, literature skeletons, and reduced or toy findings, then prioritizes them by likely claim impact and information gain. Use when: A design map and claim model exist, but the project needs novel attack directions or a disciplined choice among many plausible techniques. Use it before expensive solver searches or large experiments, and again when a failed test changes the design understanding."
+description: "Generate falsifiable symmetric attack hypotheses from claims, design features, literature and reduced-round findings, then rank them by claim impact and information gain. Use when a design map and claim model exist and directions must be chosen before expensive searches."
 metadata:
   version: "0.1"
   display-name: "Attack Hypothesis Generator and Triage"

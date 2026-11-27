@@ -1,9 +1,9 @@
 {
-  "description_words": 4860,
+  "description_words": 4314,
   "errors": 0,
   "portability_errors": 0,
   "schema_version": 1,
-  "skill_body_lines": 13205,
+  "skill_body_lines": 13151,
   "skill_count": 162,
   "skills": [
     {
@@ -15,16 +15,16 @@
       "name": "aeneas-charon-rust-to-lean"
     },
     {
-      "description": "Models symmetric primitives as equations or exact constraints, evaluates solver/cube attacks, and separates concrete solver success from scalable cryptanalytic claims. Use when: The target has low-degree Boolean structure, sparse equations, exploitable initialization, controllable public variables, or a solver may recover key/state or certify structural properties.",
-      "description_words": 45,
+      "description": "Model a symmetric primitive as equations or exact constraints and evaluate SAT/SMT/CP, algebraic and cube attacks. Use when it has low-degree or sparse structure or controllable public variables; separates concrete solver success from scalable attack claims.",
+      "description_words": 36,
       "domain": "symmetric",
       "lines": 62,
       "missing_relative_links": [],
       "name": "algebraic-sat-smt-cp-and-cube-analysis"
     },
     {
-      "description": "Analyzes addition\u2013rotation\u2013XOR designs with exact carry-aware differential models, rotational/RX properties, constants, key schedules, and hybrid attacks. Use when: The target is dominated by modular addition/subtraction, rotation, and XOR, or when XOR-only trail models fail to capture carries and rotational structure.",
-      "description_words": 40,
+      "description": "Analyze addition-rotation-XOR (ARX) designs with carry-aware differential models, rotational and RX properties, constants and key schedules. Use when modular addition, rotation and XOR dominate, or when XOR-only trail models miss carries.",
+      "description_words": 31,
       "domain": "symmetric",
       "lines": 62,
       "missing_relative_links": [],
@@ -39,8 +39,8 @@
       "name": "automated-algebra-and-search-model-builder"
     },
     {
-      "description": "Selects, constructs, validates, and audits exact or relaxed automated models for symmetric-cryptanalysis searches. Use when: Searching differential/linear trails, integral/division properties, impossible transitions, ARX characteristics, boomerang components, algebraic solutions, meet-in-the-middle cuts, or other combinatorial structures with a solver or custom search.",
-      "description_words": 40,
+      "description": "Build, validate and audit exact or relaxed solver models for symmetric-cryptanalysis searches (trails, division properties, impossible transitions, MITM cuts). Use before trusting a solver's search result; public-key models are automated-algebra-and-search-model-builder.",
+      "description_words": 30,
       "domain": "symmetric",
       "lines": 63,
       "missing_relative_links": [],
@@ -55,8 +55,8 @@
       "name": "bitvector-equivalence-and-sat-lowering"
     },
     {
-      "description": "Builds boomerang, amplified-boomerang, and rectangle attacks with dependence-aware middle transitions and quartet-level data accounting. Use when: No single long differential is strong enough, but the cipher can be split into upper and lower regions with useful differentials whose middle interaction may form quartets.",
-      "description_words": 43,
+      "description": "Build boomerang, amplified-boomerang and rectangle attacks on symmetric primitives with dependence-aware middle transitions and quartet-level data accounting. Use when no single long differential suffices but upper and lower differentials may combine.",
+      "description_words": 31,
       "domain": "symmetric",
       "lines": 60,
       "missing_relative_links": [],
@@ -151,39 +151,35 @@
       "name": "cross-prover-evidence-packaging"
     },
     {
-      "description": "Work out whether a paper proves what it claims \u2014 separate the informal claim from the theorem, name the notion and the model, run the mismatch checklist, carry the reduction's loss into the concrete parameters, and say which claims are worth settling. Use when asked to audit whether a paper or security argument supports its claims. Reading or applying a published result alone does not assign this audit.",
-      "description_words": 68,
+      "description": "Audit whether a paper or security argument proves what it claims: separate claim from theorem, name notion and model, run the mismatch checklist, carry the reduction loss into concrete parameters. Use when assigned that audit; merely reading or applying a result does not assign it.",
+      "description_words": 45,
       "domain": "core",
       "lines": 187,
       "missing_relative_links": [],
       "name": "crypto-analyze-paper"
     },
     {
-      "description": "Map the complete attack surface of a cryptographic scheme by fixing its claims and parameters, identifying underlying problems and added structure, checking every applicable attack family and its preconditions, recomputing costs in named models, and locating thin margins or promising deviations. Use for new or modified schemes, parameter-security claims, NIST-category checks, construction reviews, attack prioritization, or the baseline phase of an active search for weaknesses. Covers public-key, lattice, multivariate, symmetric, and hash targets.",
-      "description_words": 73,
+      "description": "Map the attack surface of a cryptographic scheme: fix claims and parameters, check every applicable attack family and its preconditions, recompute costs in named models, find thin margins. Use for scheme or parameter assessments and NIST-category checks, public-key, symmetric or hash.",
+      "description_words": 41,
       "domain": "core",
       "lines": 156,
       "missing_relative_links": [],
       "name": "crypto-analyze-scheme"
     },
     {
-      "description": "Produce a concrete cost for a target nothing has costed yet \u2014 search what is already known, find and read a reduction to a problem that IS costed, instantiate it with real parameters, verify at toy scale, and write the result back as an entry or a gap. Use when an attack's structure is understood but its cost cannot be obtained.",
-      "description_words": 61,
+      "description": "Produce a concrete cost where none is published: find and read a reduction to a costed problem, instantiate it with real parameters, verify at toy scale, and record the result or the gap. Use when an attack's structure is understood but its cost is not available.",
+      "description_words": 46,
       "domain": "core",
       "lines": 193,
       "missing_relative_links": [],
       "name": "crypto-derive-cost"
     },
     {
-      "description": "Conduct cryptographic security investigations using relevant cryptanalysis and formal-method procedures available as native skills, files, or supplied text. Use whenever asked to analyze a scheme or paper, find issues or weaknesses, search for attacks, reproduce or validate a result, audit a security claim or proof, compare parameters, or resume cryptographic research. Infer the requested task from its intent; individual words such as \u201cnew\u201d do not by themselves select a mode.",
-      "description_words": 70,
+      "description": "Entry point for cryptographic security investigations: declare the mode, freeze the target, route to the domain and object-level skills, ground sources and report from evidence. Use to analyze a scheme or paper, search for attacks, validate a result, audit a claim, or resume research.",
+      "description_words": 44,
       "domain": "core",
-      "lines": 244,
-      "missing_relative_links": [
-        "reference/environment.md -> hosts/cryptography-atlas.md",
-        "reference/environment.md -> hosts/claude-code.md",
-        "reference/environment.md -> hosts/codex.md"
-      ],
+      "lines": 236,
+      "missing_relative_links": [],
       "name": "crypto-investigate"
     },
     {
@@ -203,18 +199,18 @@
       "name": "crypto-review"
     },
     {
-      "description": "Establish whether a claimed attack actually works \u2014 state its preconditions, decide whether analysis or an implementation settles the question, then do that one, and report what the result does and does not imply at full parameters. Use when a paper, a post, or an earlier session asserts an attack and the question is whether to believe it.",
-      "description_words": 58,
+      "description": "Establish whether a claimed attack actually works: state its preconditions, choose analysis or an implementation to settle it, do that, and say what the result implies at full parameters. Use when a paper, post or earlier session asserts an attack and the question is whether to believe it.",
+      "description_words": 48,
       "domain": "core",
       "lines": 243,
       "missing_relative_links": [],
       "name": "crypto-validate-attack"
     },
     {
-      "description": "Check whether one specified claim in a paper, report, or security argument is correct. Audit its reasoning or reproduce the relevant evidence and report supported, refuted, or unresolved. Use for an assigned claim-verification task; merely citing or applying a published result does not require auditing that result.",
-      "description_words": 47,
+      "description": "Check whether one specified claim in a paper, report or security argument is correct, by auditing its reasoning or reproducing its evidence, and report supported, refuted or unresolved. Use for an assigned claim check; citing or applying a published result does not require one.",
+      "description_words": 44,
       "domain": "core",
-      "lines": 300,
+      "lines": 254,
       "missing_relative_links": [],
       "name": "crypto-verify-claim"
     },
@@ -267,16 +263,16 @@
       "name": "decryption-failure-and-reaction-analysis"
     },
     {
-      "description": "Finds, evaluates, clusters, validates, and extends XOR, modular, truncated, higher-order, and mixed-domain differential properties. Use when: The target has nonuniform propagation of differences through nonlinear operations, slow diffusion, controllable input structures, useful truncated patterns, or a published differential that may transfer.",
-      "description_words": 41,
+      "description": "Find, evaluate, cluster and extend XOR, modular, truncated, higher-order and mixed differential properties of symmetric primitives. Use when differences propagate nonuniformly, diffusion is slow, or a published differential may transfer.",
+      "description_words": 30,
       "domain": "symmetric",
       "lines": 63,
       "missing_relative_links": [],
       "name": "differential-family-analysis"
     },
     {
-      "description": "Constructs and validates differential-linear distinguishers and recovery attacks without assuming unjustified independence at the middle connection. Use when: A target admits a relatively likely differential over an early region and a useful linear approximation over a later region, or when the middle connection has exploitable nonlinear dependence.",
-      "description_words": 47,
+      "description": "Construct and validate differential-linear distinguishers and key recovery on symmetric primitives without assuming unjustified independence at the middle connection. Use when an early differential and a later linear approximation may be joined.",
+      "description_words": 32,
       "domain": "symmetric",
       "lines": 61,
       "missing_relative_links": [],
@@ -291,16 +287,16 @@
       "name": "digital-signature-forgery-and-malleability-analysis"
     },
     {
-      "description": "Develop mathematical cryptanalysis questions, research proposals, and scoped results about specified cryptographic constructions, assumptions, or parameters. Use for human-directed standards research, unexplored mathematical questions, proposed extensions of known results, or continued development of a selected question. Distinguish a requested proposal from a request to carry out the mathematical work.",
-      "description_words": 49,
+      "description": "Develop mathematical cryptanalysis questions, research proposals and scoped results about specified constructions, assumptions or parameters. Use for directed standards research, unexplored questions or extensions of known results; tells a requested proposal apart from doing the mathematics.",
+      "description_words": 36,
       "domain": "core",
       "lines": 168,
       "missing_relative_links": [],
       "name": "discover-cryptanalysis"
     },
     {
-      "description": "Attempts to extend a structural property or distinguisher into a key/state-recovery attack with explicit round boundaries, filtering, ranking, false positives, and verification. Use when: A differential, linear, integral, zero-correlation, impossible, boomerang, algebraic, or other property exists but the security claim concerns key/state recovery or full-round use.",
-      "description_words": 46,
+      "description": "Extend a symmetric distinguisher or structural property into key or state recovery with explicit round boundaries, filtering, ranking, false positives and verification. Use when a property exists but the claim concerns key recovery or full rounds.",
+      "description_words": 36,
       "domain": "symmetric",
       "lines": 63,
       "missing_relative_links": [],
@@ -451,8 +447,8 @@
       "name": "generic-baseline-and-security-level-calculator"
     },
     {
-      "description": "Computes exact generic and exhaustive-attack baselines for the formalized model so specialized attacks are compared against the correct target. Use when: Before calling an attack non-generic, faster than brute force, practical, or security-reducing. Re-run it when the model, number of users, data allowance, nonce behavior, tag length, or quantum access changes.",
-      "description_words": 51,
+      "description": "Compute exact generic and exhaustive-attack baselines for a symmetric security model so attacks are compared against the right target. Use before calling an attack faster than generic, and again when the model changes; public-key: generic-baseline-and-security-level-calculator.",
+      "description_words": 35,
       "domain": "symmetric",
       "lines": 69,
       "missing_relative_links": [],
@@ -483,8 +479,8 @@
       "name": "hardware-circuit-and-hdl-equivalence-verification"
     },
     {
-      "description": "Evaluates hash functions, compression functions, XOFs, and public permutations for collision, preimage, second-preimage, distinguishing, multicollision, herding, rebound, and sponge-specific weaknesses. Use when: The target is a hash function, XOF, compression function, sponge/duplex construction, public permutation, or hash-based composition. Always distinguish the primitive/permutation property from the full construction property.",
-      "description_words": 48,
+      "description": "Evaluate hash functions, XOFs, compression functions, sponges and public permutations for collision, preimage, distinguishing, multicollision, herding and sponge-specific attacks. Use when the target is a hash or permutation; keeps primitive and full-construction properties apart.",
+      "description_words": 34,
       "domain": "symmetric",
       "lines": 65,
       "missing_relative_links": [],
@@ -555,8 +551,8 @@
       "name": "implementation-refinement-and-equivalence"
     },
     {
-      "description": "Constructs exact miss-in-the-middle impossible differentials and zero-correlation linear properties, then evaluates elimination and statistical recovery attacks. Use when: Forward and backward propagation sets may contradict, deterministic diffusion creates unreachable transitions, or a linear hull may have provably zero correlation over a key class.",
-      "description_words": 43,
+      "description": "Construct exact impossible differentials and zero-correlation linear properties of symmetric primitives and evaluate elimination and statistical key-recovery attacks. Use when forward and backward propagation may contradict or a hull may have zero correlation.",
+      "description_words": 33,
       "domain": "symmetric",
       "lines": 62,
       "missing_relative_links": [],
@@ -579,8 +575,8 @@
       "name": "integer-factorization-and-rsa-analysis"
     },
     {
-      "description": "Finds and verifies integral properties using structured sets, algebraic degree, generalized and bit-based division properties, and extends them to recovery attacks. Use when: The primitive has byte/word/bit structure, controllable input sets, bounded algebraic-degree growth, or diffusion patterns that may produce balanced, constant, or otherwise predictable aggregates.",
-      "description_words": 46,
+      "description": "Find and verify integral properties of symmetric primitives with structured sets, algebraic degree and division properties, and extend them to key recovery. Use when controllable input sets or bounded degree growth may give balanced or predictable sums.",
+      "description_words": 37,
       "domain": "symmetric",
       "lines": 63,
       "missing_relative_links": [],
@@ -739,8 +735,8 @@
       "name": "lean-project-reproducibility-and-supply-chain"
     },
     {
-      "description": "Analyzes linear approximations, trails, hulls, multiple/multidimensional distinguishers, and key-recovery extensions with sign and dependency accounting. Use when: The target\u2019s Boolean or word operations exhibit biased linear relations, the diffusion layer permits low-weight masks, or literature provides useful approximations or zero-correlation structure.",
-      "description_words": 41,
+      "description": "Analyze linear approximations, trails, hulls and multiple or multidimensional linear attacks on symmetric primitives with sign and dependency accounting. Use when operations show biased linear relations, diffusion allows low-weight masks, or published approximations exist.",
+      "description_words": 34,
       "domain": "symmetric",
       "lines": 62,
       "missing_relative_links": [],
@@ -755,16 +751,16 @@
       "name": "mathematical-research-development"
     },
     {
-      "description": "Designs and audits state-matching attacks using cuts, partial computation, splice-and-cut, initial structures, dissection, and biclique techniques. Use when: The target can be decomposed into forward and backward computations with partially independent key/state variables, has a narrow internal cut, repeated/expandable subcomputations, or enough degrees of freedom for biclique/initial-structure methods.",
-      "description_words": 48,
+      "description": "Design and audit meet-in-the-middle attacks on symmetric primitives: cuts, partial matching, splice-and-cut, initial structures, dissection and bicliques. Use when the computation splits into forward and backward parts with partly independent key or state bits.",
+      "description_words": 34,
       "domain": "symmetric",
       "lines": 60,
       "missing_relative_links": [],
       "name": "mitm-dissection-and-biclique-analysis"
     },
     {
-      "description": "Analyzes symmetric constructions and interfaces for privacy, authenticity, nonce behavior, tag bounds, domain separation, multi-user effects, and misuse resistance. Use when: The target composes a block cipher, tweakable cipher, stream cipher, hash, or permutation into encryption, authentication, key wrap, storage, record protection, or AEAD. This skill emphasizes game/interface analysis and generic/algebraic attacks rather than only reduced-round primitive attacks.",
-      "description_words": 58,
+      "description": "Analyze symmetric modes, MACs, key wrap and AEAD for privacy, authenticity, nonce behavior, tag bounds, domain separation, multi-user effects and misuse. Use when a block cipher, hash or permutation is composed into an encryption or authentication construction.",
+      "description_words": 37,
       "domain": "symmetric",
       "lines": 65,
       "missing_relative_links": [],
@@ -875,8 +871,8 @@
       "name": "premise-retrieval-and-lemma-search"
     },
     {
-      "description": "Builds an exact structural and assumption map of a symmetric primitive or construction to expose attack-relevant dependencies and boundaries. Use when: Before selecting attack techniques, transferring a published attack, or encoding a search model. It prevents analysis of an idealized cipher that differs from the specified or implemented object.",
-      "description_words": 49,
+      "description": "Map the exact structure and assumptions of a symmetric primitive or construction to expose attack-relevant dependencies before choosing techniques or encoding a search. Use first on a symmetric target; for public-key schemes use scheme-structure-and-assumption-mapper.",
+      "description_words": 34,
       "domain": "symmetric",
       "lines": 65,
       "missing_relative_links": [],
@@ -947,16 +943,16 @@
       "name": "public-key-attack-hypothesis-generator-and-triage"
     },
     {
-      "description": "Decomposes an attack from literature or prior agent work, maps every indispensable requirement to a new public-key target, and develops minimally modified falsifiable adaptations. Use for cross-version, cross-parameter, cross-family, reduced-to-full, component-to-construction, and toy-to-real transfer.",
-      "description_words": 34,
+      "description": "Decompose a public-key attack from the literature or prior work, map each indispensable requirement to a new public-key target, and develop minimal falsifiable adaptations. Use for cross-version, cross-parameter, cross-family, reduced-to-full and toy-to-real transfer.",
+      "description_words": 33,
       "domain": "public-key",
       "lines": 69,
       "missing_relative_links": [],
       "name": "public-key-attack-transfer-and-adaptation"
     },
     {
-      "description": "Routes a public-key cryptanalysis project through security-model, construction-level, hard-problem, implementation-interface, proof, cost, transfer, and reproduction skills while maintaining one shared evidence state. Use when starting or resuming an evaluation of a signature, KEM, public-key encryption scheme, key-agreement mechanism, or hybrid construction.",
-      "description_words": 41,
+      "description": "Route a public-key evaluation (signature, KEM, PKE, key agreement, hybrid) through the security-model, structure, hard-problem, implementation, proof, cost, transfer and reproduction skills with one evidence state. Use when starting or resuming such an evaluation.",
+      "description_words": 34,
       "domain": "public-key",
       "lines": 86,
       "missing_relative_links": [],
@@ -987,8 +983,8 @@
       "name": "public-key-reproduction-and-falsification-planner"
     },
     {
-      "description": "Converts informal public-key security statements into explicit PKE, KEM, signature, key-agreement, correctness, multi-user, random-oracle, and quantum games. Use whenever a document says \u201cCCA secure,\u201d \u201cunforgeable,\u201d \u201c128-bit secure,\u201d \u201cpost-quantum secure,\u201d \u201cforward secure,\u201d or similar without a complete adversary experiment.",
-      "description_words": 38,
+      "description": "Turn informal public-key security statements into explicit PKE, KEM, signature, key-agreement, correctness, multi-user, ROM and quantum games. Use when a document says CCA secure, unforgeable, 128-bit or post-quantum secure without a full experiment; symmetric: security-model-and-claim-formalizer.",
+      "description_words": 35,
       "domain": "public-key",
       "lines": 65,
       "missing_relative_links": [],
@@ -1019,8 +1015,8 @@
       "name": "quantum-public-key-attack-analysis"
     },
     {
-      "description": "Formalizes Q1/Q2 access and evaluates Grover, collision, period-finding, and hybrid quantum attacks using concrete oracle, depth, qubit, and verification costs. Use when: A security claim invokes \u201cquantum security,\u201d a classical attack may be accelerated quantumly, or a construction exposes algebraic/periodic structure to quantum queries.",
-      "description_words": 44,
+      "description": "Formalize Q1/Q2 quantum access and evaluate Grover, collision, period-finding and hybrid quantum attacks on symmetric constructions with concrete oracle, depth, qubit and verification costs. Use when a claim invokes quantum security or structure may be exposed to quantum queries.",
+      "description_words": 39,
       "domain": "symmetric",
       "lines": 61,
       "missing_relative_links": [],
@@ -1035,8 +1031,8 @@
       "name": "rank-metric-code-analysis"
     },
     {
-      "description": "Constructs inbound\u2013outbound attacks on wide permutations and hash-like designs, with explicit degrees of freedom, nonlinear matching, and outbound probabilities. Use when: A wide-trail permutation or compression function has a dense nonlinear middle region that can be solved using internal degrees of freedom, surrounded by probabilistic differential propagation.",
-      "description_words": 47,
+      "description": "Construct inbound-outbound (rebound) attacks on wide permutations and hash-like designs with explicit degrees of freedom, nonlinear matching and outbound probabilities. Use when a dense nonlinear middle can be solved with internal freedom between probabilistic differential parts.",
+      "description_words": 36,
       "domain": "symmetric",
       "lines": 61,
       "missing_relative_links": [],
@@ -1059,8 +1055,8 @@
       "name": "reflective-decision-procedure-design"
     },
     {
-      "description": "Formalizes realistic key/tweak relations, propagates them through schedules, and evaluates related-key/tweakey differentials, symmetries, and recovery attacks. Use when: The key/tweak schedule has low diffusion, linear recurrences, repeated subkeys, symmetries, or a literature attack assumes chosen related keys or tweaks. Also use it to determine whether such a model is meaningful for the intended interface.",
-      "description_words": 54,
+      "description": "Formalize realistic key and tweak relations, propagate them through schedules, and evaluate related-key and tweakey differentials, symmetries and key recovery. Use when the schedule diffuses weakly or an attack assumes related keys; also judges whether that model fits the interface.",
+      "description_words": 40,
       "domain": "symmetric",
       "lines": 62,
       "missing_relative_links": [],
@@ -1099,16 +1095,16 @@
       "name": "scheme-structure-and-assumption-mapper"
     },
     {
-      "description": "Converts informal symmetric-cryptography security statements into explicit games, adversary powers, success events, resources, assumptions, and non-goals. Use when: A specification, paper, review, or discussion says a primitive or construction is \u201csecure,\u201d \u201c128-bit secure,\u201d \u201cindistinguishable,\u201d \u201cauthenticated,\u201d \u201cmisuse-resistant,\u201d or \u201cresistant to attack\u201d without an exact game and resource statement. Run it before evaluating attacks or comparing complexities.",
-      "description_words": 55,
+      "description": "Turn informal symmetric-cryptography security statements into explicit games, adversary powers, success events, resources and non-goals. Use before evaluating attacks when a symmetric primitive is called secure or 128-bit without a game; public-key: public-key-security-model-and-claim-formalizer.",
+      "description_words": 33,
       "domain": "symmetric",
       "lines": 77,
       "missing_relative_links": [],
       "name": "security-model-and-claim-formalizer"
     },
     {
-      "description": "Audits security games, reductions, simulations, bad-event bounds, concrete constants, model restrictions, and ideal-to-real instantiation for symmetric constructions. Use when: A security claim is justified by a theorem, game-hopping proof, reduction, idealized primitive model, or concrete advantage table. This skill checks what the result actually establishes and whether the bound survives concrete instantiation and operational use.",
-      "description_words": 55,
+      "description": "Audit symmetric constructions' security games, reductions, bad-event bounds, concrete constants, idealized models and instantiation. Use when a symmetric claim rests on a theorem or advantage table; public-key ROM/QROM proofs use security-proof-rom-qrom-and-tightness-auditor.",
+      "description_words": 31,
       "domain": "symmetric",
       "lines": 70,
       "missing_relative_links": [],
@@ -1139,8 +1135,8 @@
       "name": "sidh-sike-active-and-structural-attack-analysis"
     },
     {
-      "description": "Finds exploitable self-similarity, slid pairs, invariant subspaces/partitions, fixed structures, and weak-key symmetries while checking constants and schedules. Use when: Rounds repeat or nearly repeat, constants are weak or periodic, key schedules preserve relations, affine/nonlinear subspaces may map to themselves, or the primitive has complementations, rotations, branch permutations, or other automorphisms.",
-      "description_words": 50,
+      "description": "Find exploitable self-similarity in symmetric primitives: slid pairs, invariant subspaces and partitions, fixed structures and weak-key symmetries, checking constants and schedules. Use when rounds repeat, constants are weak or periodic, or the design has automorphisms.",
+      "description_words": 35,
       "domain": "symmetric",
       "lines": 62,
       "missing_relative_links": [],
@@ -1171,8 +1167,8 @@
       "name": "squirrel-computational-and-pq-protocol-proof"
     },
     {
-      "description": "Analyzes initialization and keystream generation using correlation, algebraic/cube, guess-and-determine, state recovery, resynchronization, and time-memory-data attacks. Use when: The target generates keystream or a stateful output from a key and IV/nonce, including synchronous stream ciphers, LFSR/NLFSR constructions, filter/combiner generators, ARX state machines, or stream-like modes.",
-      "description_words": 44,
+      "description": "Analyze stream-cipher initialization and keystream generation with correlation, algebraic and cube, guess-and-determine, state-recovery, resynchronization and time-memory-data attacks. Use when the target produces keystream from a key and IV, including LFSR/NLFSR and ARX state machines.",
+      "description_words": 34,
       "domain": "symmetric",
       "lines": 63,
       "missing_relative_links": [],
@@ -1203,56 +1199,56 @@
       "name": "symcrypt-verified-crypto-workflow"
     },
     {
-      "description": "Recomputes an attack end to end, normalizes resource units, checks success and false positives, and compares it with the correct generic baseline and security claim. Use when: Before accepting, reporting, transferring, or comparing any cryptanalytic complexity. It is especially important for papers or agent outputs that quote one exponent without a complete derivation.",
-      "description_words": 53,
+      "description": "Recompute a symmetric attack end to end, normalize resource units, check success probability and false positives, and compare it with the right generic baseline and claim. Use before accepting, reporting, transferring or comparing any symmetric attack complexity.",
+      "description_words": 37,
       "domain": "symmetric",
       "lines": 76,
       "missing_relative_links": [],
       "name": "symmetric-attack-complexity-and-success-auditor"
     },
     {
-      "description": "Generates structurally justified, falsifiable attack hypotheses from claims, design features, literature skeletons, and reduced or toy findings, then prioritizes them by likely claim impact and information gain. Use when: A design map and claim model exist, but the project needs novel attack directions or a disciplined choice among many plausible techniques. Use it before expensive solver searches or large experiments, and again when a failed test changes the design understanding.",
-      "description_words": 70,
+      "description": "Generate falsifiable symmetric attack hypotheses from claims, design features, literature and reduced-round findings, then rank them by claim impact and information gain. Use when a design map and claim model exist and directions must be chosen before expensive searches.",
+      "description_words": 39,
       "domain": "symmetric",
       "lines": 80,
       "missing_relative_links": [],
       "name": "symmetric-attack-hypothesis-generator-and-triage"
     },
     {
-      "description": "Decomposes an attack from literature or prior agent work, maps each indispensable requirement to a new target, and develops minimally modified falsifiable adaptations. Use when: A known attack on one primitive, version, parameter set, round count, component, or adversary model might apply to another. Also use it to transfer an agent-discovered reduced or toy attack toward the real target.",
-      "description_words": 59,
+      "description": "Decompose a symmetric attack from the literature or prior work, map each indispensable requirement to a new target, and develop minimal falsifiable adaptations. Use when an attack on one primitive, version, round count or adversary model might apply to another.",
+      "description_words": 40,
       "domain": "symmetric",
       "lines": 72,
       "missing_relative_links": [],
       "name": "symmetric-attack-transfer-and-adaptation"
     },
     {
-      "description": "Coordinates a research-grade symmetric-cryptanalysis evaluation, selects specialist skills, and maintains a shared claim/evidence state. Use when: The task asks for an evaluation of a symmetric primitive, mode, construction, proposal, paper, attack claim, or implementation and requires more than one analytical technique. Use it at the beginning of a project and again whenever the target, model, or evidence changes materially.",
-      "description_words": 59,
+      "description": "Route a symmetric-cryptanalysis evaluation (primitive, mode, construction, paper, attack claim or implementation) to its specialist skills and keep one claim and evidence state. Use at the start of such a project and when the target, model or evidence changes.",
+      "description_words": 39,
       "domain": "symmetric",
       "lines": 110,
       "missing_relative_links": [],
       "name": "symmetric-cryptanalysis-orchestrator"
     },
     {
-      "description": "Converts attack records, proofs, reproductions, failures, and disagreements into claim-level judgments and a prioritized falsifiable research agenda. Use when: Enough evidence exists to update a review, recommendation, standards comment, research plan, or team knowledge base. It should be the only skill that writes final claim-level conclusions.",
-      "description_words": 46,
+      "description": "Turn symmetric attack records, proofs, reproductions, failures and disagreements into claim-level judgments and a ranked, falsifiable research agenda. Use when enough evidence exists to update a review, recommendation or plan; it writes the final claim-level conclusions.",
+      "description_words": 36,
       "domain": "symmetric",
       "lines": 95,
       "missing_relative_links": [],
       "name": "symmetric-evidence-synthesis-and-research-backlog"
     },
     {
-      "description": "Extracts a published or discovered symmetric-cryptanalysis result into a normalized, source-grounded attack record suitable for reproduction and transfer. Use when: Reading a paper, preprint, thesis, standards comment, issue, code artifact, talk, or internal agent report that claims a cryptanalytic property or attack. Run it before attempting to adapt the result.",
-      "description_words": 50,
+      "description": "Extract a published or discovered symmetric-cryptanalysis result into a normalized, source-grounded attack record for reproduction and transfer. Use when reading a paper, comment, code or report that claims a symmetric attack, before adapting it.",
+      "description_words": 34,
       "domain": "symmetric",
       "lines": 81,
       "missing_relative_links": [],
       "name": "symmetric-literature-attack-extractor"
     },
     {
-      "description": "Designs decisive, controlled, reproducible tests of symmetric-cryptanalysis claims, from exhaustive toy checks through full experiments and solver certificates. Use when: A claim depends on computation, simulation, solver output, undocumented code, probabilistic evidence, or an attack transfer. Use it to turn \u201ctry this\u201d into a smallest decisive and independently repeatable test.",
-      "description_words": 50,
+      "description": "Design decisive, controlled, reproducible tests of symmetric-cryptanalysis claims, from exhaustive toy checks to full experiments and solver certificates. Use when a claim rests on computation, simulation, solver output or an attack transfer.",
+      "description_words": 32,
       "domain": "symmetric",
       "lines": 76,
       "missing_relative_links": [],
@@ -1313,5 +1309,5 @@
     "public-key": 59,
     "symmetric": 29
   },
-  "warnings": 3
+  "warnings": 0
 }

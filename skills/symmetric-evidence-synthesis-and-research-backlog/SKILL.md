@@ -1,6 +1,6 @@
 ---
 name: symmetric-evidence-synthesis-and-research-backlog
-description: "Converts attack records, proofs, reproductions, failures, and disagreements into claim-level judgments and a prioritized falsifiable research agenda. Use when: Enough evidence exists to update a review, recommendation, standards comment, research plan, or team knowledge base. It should be the only skill that writes final claim-level conclusions."
+description: "Turn symmetric attack records, proofs, reproductions, failures and disagreements into claim-level judgments and a ranked, falsifiable research agenda. Use when enough evidence exists to update a review, recommendation or plan; it writes the final claim-level conclusions."
 metadata:
   version: "0.1"
   display-name: "Evidence Synthesis and Research Backlog"
