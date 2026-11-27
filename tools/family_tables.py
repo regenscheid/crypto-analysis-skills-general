@@ -37,9 +37,13 @@ def registry(root: Path) -> list[dict]:
     return json.loads((root / "config/skill-registry.json").read_text(encoding="utf-8"))["skills"]
 
 
-def first_sentence(text: str) -> str:
+def first_sentence(text: str, limit: int = 110) -> str:
+    """The description's first sentence, cut at a word to keep the table small."""
     match = re.match(r"(.+?[.!?])(?:\s|$)", text)
-    return (match.group(1) if match else text).strip()
+    sentence = (match.group(1) if match else text).strip()
+    if len(sentence) <= limit:
+        return sentence
+    return sentence[:limit].rsplit(" ", 1)[0].rstrip(",;:") + " …"
 
 
 def similar_pairs(skills: list[dict]) -> list[tuple[str, str]]:
