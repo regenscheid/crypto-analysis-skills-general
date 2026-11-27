@@ -70,7 +70,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `lean-bitvectors-and-word-arithmetic`
 - `sat-lrat-certification`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
 - `arx-differential-rotational-rx-analysis`
 

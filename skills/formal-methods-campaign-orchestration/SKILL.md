@@ -45,7 +45,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 
 1. Freeze the root definitions, namespace plan, toolchain, style rules, forbidden shortcuts, and completion criteria before distributing obligations.
 2. Partition the proof DAG into work packages with one owner per theorem or file. Prefer packages whose interfaces are narrow and independently replayable.
-3. Give each worker only the required context: theorem statement, imports, relevant definitions, nearby lemmas, references, and allowed tools. Avoid loading the entire CryptoSkills catalog into each proof session.
+3. Give each worker only the required context: theorem statement, imports, relevant definitions, nearby lemmas, references, and allowed tools. Avoid loading the entire skill catalog into each proof session.
 4. Use isolated branches, worktrees, or containers. Require workers to report actual prover diagnostics, modified files, new assumptions, and commands rather than prose-only claims of completion.
 5. Create specialized roles when useful: specification author, lemma prover, search/certificate worker, proof repairer, adversarial reviewer, and replay verifier. The generator must not approve its own result without an independent check.
 6. Merge foundational lemmas before dependent proofs and rerun all affected nodes. Reject changes that weaken theorem statements, introduce unexplained axioms, or alter definitions to make goals trivial.
@@ -72,7 +72,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `proof-obligation-and-lemma-planning`
 - `proof-artifact-replay-and-publication`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
 - No fixed cross-pack dependency. Invoke from any cryptanalysis skill whose claim matches this capability.
 

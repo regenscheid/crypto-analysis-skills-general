@@ -72,7 +72,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `bitvector-equivalence-and-sat-lowering`
 - `formal-claim-and-model-authoring`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
 - `quantum-public-key-attack-analysis`
 - `quantum-symmetric-attack-analysis`

@@ -6,7 +6,7 @@
 - Natural-language claim:
 - Target artifact, version, and parameter set:
 - Claim kind: existence / counterexample / equivalence / correctness / lower bound / optimality / security reduction / protocol / leakage / numerical
-- Requesting CryptoSkills task or attack record:
+- Requesting task or attack record:
 
 ## Why formalize?
 

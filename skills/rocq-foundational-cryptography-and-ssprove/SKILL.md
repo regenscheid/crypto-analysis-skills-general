@@ -72,7 +72,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `cryptographic-security-game-definition`
 - `probabilistic-program-coupling-and-relational-reasoning`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
 - No fixed cross-pack dependency. Invoke from any cryptanalysis skill whose claim matches this capability.
 

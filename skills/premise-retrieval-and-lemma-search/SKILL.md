@@ -58,7 +58,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - A ranked, type-checked premise list.
 - Exact import and namespace requirements.
 - Bridge lemmas and representation-conversion notes.
-- A project lemma index entry suitable for future CryptoSkills tasks.
+- A project lemma index entry suitable for future tasks with these skills.
 
 ## Non-negotiable guardrails
 
@@ -72,7 +72,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `interactive-proof-state-operation`
 - `lean-cryptographic-formalization`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
 - No fixed cross-pack dependency. Invoke from any cryptanalysis skill whose claim matches this capability.
 

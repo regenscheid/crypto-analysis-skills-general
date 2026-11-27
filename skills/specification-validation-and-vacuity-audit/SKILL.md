@@ -72,7 +72,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `formal-claim-and-model-authoring`
 - `normative-specification-to-executable-model`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
 - `scheme-structure-and-assumption-mapper`
 - `primitive-structure-and-assumption-mapper`

@@ -72,7 +72,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `jasmin-easycrypt-high-assurance-crypto`
 - `fstar-hacl-evercrypt-and-vale`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
 - `nonce-randomness-and-hidden-number-analysis`
 - `mode-mac-and-aead-analysis`

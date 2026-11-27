@@ -78,7 +78,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `formal-claim-and-model-authoring`
 - `evidence-trust-and-tcb-audit`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
 - `automated-algebra-and-search-model-builder`
 - `security-proof-rom-qrom-and-tightness-auditor`

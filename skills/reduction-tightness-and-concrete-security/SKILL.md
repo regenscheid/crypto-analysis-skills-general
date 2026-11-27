@@ -72,7 +72,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `lean-probability-combinatorics-and-bounds`
 - `qrom-and-post-quantum-proof-modeling`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
 - `public-key-attack-complexity-and-success-auditor`
 - `symmetric-attack-complexity-and-success-auditor`

@@ -72,7 +72,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `easycrypt-proof-development`
 - `probabilistic-program-coupling-and-relational-reasoning`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
 - `security-proof-rom-qrom-and-tightness-auditor`
 - `security-proof-and-bound-auditor`

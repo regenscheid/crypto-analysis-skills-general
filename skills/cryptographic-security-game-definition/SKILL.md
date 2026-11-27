@@ -72,7 +72,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `game-hopping-and-hybrid-proof`
 - `reduction-tightness-and-concrete-security`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
 - `public-key-security-model-and-claim-formalizer`
 - `security-model-and-claim-formalizer`

@@ -72,7 +72,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `constant-time-and-leakage-verification`
 - `jasmin-easycrypt-high-assurance-crypto`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
 - `lattice-kem-and-pke-analysis`
 - `mode-mac-and-aead-analysis`

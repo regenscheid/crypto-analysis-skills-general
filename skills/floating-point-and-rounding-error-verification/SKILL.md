@@ -72,9 +72,9 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `exact-probability-counting-and-tail-bound-certification`
 - `empirical-statistical-and-heuristic-claim-separation`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
-- `decryption-failure-correctness-and-reaction-analysis`
+- `decryption-failure-and-reaction-analysis`
 - `ntru-and-falcon-analysis`
 
 ## Associated primary references

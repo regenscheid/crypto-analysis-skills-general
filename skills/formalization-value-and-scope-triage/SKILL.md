@@ -46,7 +46,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 1. List the decision the formal artifact is intended to support: validate a suspected attack, eliminate a class of mistakes, certify a finite search, establish a reusable lemma, audit a proof, or connect code to a standard.
 2. Create three scope candidates: minimum decisive obligation, useful intermediate development, and ambitious end-to-end result. State exactly what each would and would not establish.
 3. Assess semantic availability: mathematical structures, probability model, machine-word semantics, floating-point model, protocol adversary, source-language subset, hardware intrinsics, and external primitives.
-4. Assess evidence leverage. Prefer obligations whose proof would invalidate many dependent claims, resolve a disputed assumption, certify a high-value negative result, or become shared infrastructure for several CryptoSkills families.
+4. Assess evidence leverage. Prefer obligations whose proof would invalidate many dependent claims, resolve a disputed assumption, certify a high-value negative result, or become shared infrastructure for several skill families in this pack.
 5. Assess specification risk separately from proof difficulty. A hard proof of a trustworthy specification may be worthwhile; an easy proof of a code-derived or underspecified model may be nearly valueless.
 6. Identify expected counterexamples and boundary cases before proving. A formalization that cannot express malformed inputs, failure behavior, weak keys, or correlated randomness may answer the wrong question.
 7. Choose milestones that produce useful artifacts even if the full proof fails: executable specification plus vectors, isolated lemma library, verified witness checker, encoding correspondence theorem, or replayable proof skeleton.
@@ -72,7 +72,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `formal-claim-and-model-authoring`
 - `proof-obligation-and-lemma-planning`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
 - No fixed cross-pack dependency. Invoke from any cryptanalysis skill whose claim matches this capability.
 

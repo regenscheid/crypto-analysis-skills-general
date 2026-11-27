@@ -385,8 +385,8 @@ per-trial cost      serial    pooled(8)   speedup
 index.
 
 **The crossover is around 20 ms per trial.** Below it the pool costs more than
-the work — process spawn is ~20 ms each. 94% of this workbench's runs finish in
-under ten seconds *in total*, so most of them should not be pooled at all.
+the work — process spawn is ~20 ms each. In one recorded set of analysis runs, 94%
+finished in under ten seconds *in total*; most such runs should not be pooled at all.
 **Time one trial before reaching for a pool**; `crypto-investigate`'s compute route
 carries the rule.
 

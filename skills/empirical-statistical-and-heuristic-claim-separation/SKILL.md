@@ -76,7 +76,7 @@ a prerequisite. A request about evidence does not require a proof-assistant plan
 - `formalization-value-and-scope-triage`
 - `exact-probability-counting-and-tail-bound-certification`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
 - `public-key-evidence-synthesis-and-research-backlog`
 - `symmetric-evidence-synthesis-and-research-backlog`

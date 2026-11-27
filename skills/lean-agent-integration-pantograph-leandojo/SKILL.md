@@ -20,7 +20,7 @@ Builds controlled LLM or search-agent interfaces to Lean using structured proof 
 
 ## Use this skill when
 
-Use this skill when developing an AI proof worker, theorem-retrieval service, proof repair agent, or benchmark harness for the CryptoSkills project.
+Use this skill when developing an AI proof worker, theorem-retrieval service, proof repair agent, or benchmark harness for this skill pack.
 
 ## Do not invoke automatically
 
@@ -72,7 +72,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `interactive-proof-state-operation`
 - `formal-methods-campaign-orchestration`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
 - No fixed cross-pack dependency. Invoke from any cryptanalysis skill whose claim matches this capability.
 

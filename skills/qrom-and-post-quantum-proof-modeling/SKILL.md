@@ -72,7 +72,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `quantum-algorithm-circuit-and-resource-verification`
 - `reduction-tightness-and-concrete-security`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
 - `security-proof-rom-qrom-and-tightness-auditor`
 - `quantum-symmetric-attack-analysis`

@@ -72,7 +72,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `lean-finite-algebra-and-number-theory`
 - `formal-claim-and-model-authoring`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
 - `multivariate-public-key-analysis`
 - `algebraic-sat-smt-cp-and-cube-analysis`

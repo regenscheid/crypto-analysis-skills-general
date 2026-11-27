@@ -51,7 +51,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 6. Benchmark kernel reduction, generated proof-term size, native execution, and replay time. Split computation from checking if direct reduction produces impractical terms.
 7. Expose a narrow user-facing tactic or checker with deterministic diagnostics and stable output artifacts. Do not let it silently change the theorem statement or add assumptions.
 8. Audit all foreign functions, compiled code, solver calls, and generated certificates. Record whether the final theorem is kernel-reduced, reconstructed, or relies on an extension.
-9. Package the soundness theorem, implementation, examples, and versioning policy as reusable CryptoSkills infrastructure.
+9. Package the soundness theorem, implementation, examples, and versioning policy as reusable infrastructure for these skills.
 
 ## Output contract
 
@@ -72,7 +72,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `lean-metaprogramming-and-custom-tactics`
 - `lean-certificate-import-and-reflection`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
 - No fixed cross-pack dependency. Invoke from any cryptanalysis skill whose claim matches this capability.
 

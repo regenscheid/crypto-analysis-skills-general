@@ -21,7 +21,7 @@ the evidence actually licenses.
 ## The one that recurs here
 
 **"No attack was found, therefore it is secure"** is the most frequent of these in
-this workbench, and it has been written into the tooling more than once
+cryptanalytic work with these skills, and it has been written into the tooling more than once
 independently: a corpus miss is reported as *"absence is not evidence of
 security"* rather than as a result, and `crypto-verify-claim`'s failure mode 5 records
 three negatives concluded from an incomplete look in a single session.
@@ -37,13 +37,13 @@ and only the second licenses anything.
 
 The source table also covered *"passes test vectors, therefore secure"*, *"TVLA
 passed, therefore no side channels"*, and *"A is faster than B"*. Those are
-correct and they are **out of scope for this workbench**, which evaluates
+correct and they are **out of scope for this pack**, which evaluates
 primitives, constructions and parameter sets — not implementations, leakage, or
 benchmark profiles (see the layer table at the top of `crypto-analyze-scheme`).
 
 They are recorded here rather than silently dropped, because the boundary is the
 useful part: if a review finds itself needing one of those rows, the honest answer
-is that the question is outside what this workbench can evaluate — not to answer
+is that the question is outside what this pack can evaluate — not to answer
 it anyway.
 
 ---

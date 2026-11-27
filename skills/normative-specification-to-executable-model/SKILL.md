@@ -72,7 +72,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `implementation-refinement-and-equivalence`
 - `specification-validation-and-vacuity-audit`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
 - `scheme-structure-and-assumption-mapper`
 - `primitive-structure-and-assumption-mapper`

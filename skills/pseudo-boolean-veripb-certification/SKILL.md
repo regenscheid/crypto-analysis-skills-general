@@ -71,7 +71,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `optimization-and-optimality-certification`
 - `lean-certificate-import-and-reflection`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
 - `differential-family-analysis`
 - `integral-and-division-property-analysis`

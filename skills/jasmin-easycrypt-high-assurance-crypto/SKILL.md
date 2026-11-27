@@ -71,7 +71,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `constant-time-and-leakage-verification`
 - `easycrypt-proof-development`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
 - `primitive-structure-and-assumption-mapper`
 

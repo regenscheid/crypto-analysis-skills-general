@@ -72,7 +72,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `bitvector-equivalence-and-sat-lowering`
 - `sat-lrat-certification`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
 - `algebraic-sat-smt-cp-and-cube-analysis`
 - `arx-differential-rotational-rx-analysis`

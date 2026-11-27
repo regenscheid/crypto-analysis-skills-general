@@ -71,7 +71,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `fiat-crypto-and-verified-arithmetic-synthesis`
 - `cryptoline-arithmetic-implementation-verification`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
 - No fixed cross-pack dependency. Invoke from any cryptanalysis skill whose claim matches this capability.
 
