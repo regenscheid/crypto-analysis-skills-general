@@ -1,6 +1,6 @@
 ---
 name: security-proof-and-bound-auditor
-description: "Audits security games, reductions, simulations, bad-event bounds, concrete constants, model restrictions, and ideal-to-real instantiation for symmetric constructions. Use when: A security claim is justified by a theorem, game-hopping proof, reduction, idealized primitive model, or concrete advantage table. This skill checks what the result actually establishes and whether the bound survives concrete instantiation and operational use."
+description: "Audit symmetric constructions' security games, reductions, bad-event bounds, concrete constants, idealized models and instantiation. Use when a symmetric claim rests on a theorem or advantage table; public-key ROM/QROM proofs use security-proof-rom-qrom-and-tightness-auditor."
 metadata:
   version: "0.1"
   display-name: "Security Proof and Bound Auditor"

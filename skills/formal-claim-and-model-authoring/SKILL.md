@@ -72,7 +72,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `specification-validation-and-vacuity-audit`
 - `normative-specification-to-executable-model`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
 - `public-key-security-model-and-claim-formalizer`
 - `security-model-and-claim-formalizer`

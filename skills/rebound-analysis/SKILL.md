@@ -1,6 +1,6 @@
 ---
 name: rebound-analysis
-description: "Constructs inbound–outbound attacks on wide permutations and hash-like designs, with explicit degrees of freedom, nonlinear matching, and outbound probabilities. Use when: A wide-trail permutation or compression function has a dense nonlinear middle region that can be solved using internal degrees of freedom, surrounded by probabilistic differential propagation."
+description: "Construct inbound-outbound (rebound) attacks on wide permutations and hash-like designs with explicit degrees of freedom, nonlinear matching and outbound probabilities. Use when a dense nonlinear middle can be solved with internal freedom between probabilistic differential parts."
 metadata:
   version: "0.1"
   display-name: "Rebound Analysis"

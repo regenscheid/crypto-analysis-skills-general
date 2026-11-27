@@ -24,7 +24,7 @@ Use this skill when Lean is selected as the general-purpose proof assistant or c
 
 ## Do not invoke automatically
 
-Do not choose Lean solely because other CryptoSkills use it. EasyCrypt, Tamarin, CryptoVerif, Jasmin, Verus, or a certified solver may be a better primary environment for probabilistic reductions, protocols, optimized code, or large finite searches.
+Do not choose Lean solely because other skills in this pack use it. EasyCrypt, Tamarin, CryptoVerif, Jasmin, Verus, or a certified solver may be a better primary environment for probabilistic reductions, protocols, optimized code, or large finite searches.
 
 ## Optional entry contract
 
@@ -73,7 +73,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `lean-bitvectors-and-word-arithmetic`
 - `normative-specification-to-executable-model`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
 - `scheme-structure-and-assumption-mapper`
 - `primitive-structure-and-assumption-mapper`

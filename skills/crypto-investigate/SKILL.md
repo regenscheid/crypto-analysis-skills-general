@@ -1,6 +1,6 @@
 ---
 name: crypto-investigate
-description: Conduct cryptographic security investigations using relevant cryptanalysis and formal-method procedures available as native skills, files, or supplied text. Use whenever asked to analyze a scheme or paper, find issues or weaknesses, search for attacks, reproduce or validate a result, audit a security claim or proof, compare parameters, or resume cryptographic research. Infer the requested task from its intent; individual words such as “new” do not by themselves select a mode.
+description: "Entry point for cryptographic security investigations: declare the mode, freeze the target, route to the domain and object-level skills, ground sources and report from evidence. Use to analyze a scheme or paper, search for attacks, validate a result, audit a claim, or resume research."
 ---
 
 # Investigate cryptographic security
@@ -15,9 +15,13 @@ Do not merely recommend skills or stop after writing a plan.
 ## Scope and mathematical work
 
 Use available project context and a short written or native plan when helpful.
-With Python and durable writable storage, optionally use `crypto-workbench-knowledge`
-and its research board. Otherwise retain the research record in the conversation
-and return a handoff for the user to keep. Do not assume automatic persistence.
+Check what is already established about the target before redoing it, and
+record each result with its evidence, limits, and what was not checked.
+Use the host's own record of results if it has one; otherwise follow
+`crypto-workbench-knowledge` (without durable storage, a handoff in the
+conversation).
+See [where results are kept](reference/environment.md#plans-records-and-resumption). Do not assume
+automatic persistence.
 Physical-security investigations are outside this effort's scope.
 
 For an explicitly stated mathematical question, use
@@ -160,17 +164,10 @@ A failed search or solver timeout supports a scoped statement about the attempt.
 ## Select computational tools by capability
 
 Before a computation can become load-bearing, read
-[`reference/computation.md`](reference/computation.md). Identify the capability
-the method requires, inspect the execution routes actually available on the
-current platform, and choose the best suitable implementation. Do not assume
-Python, SageMath, R, Magma, or any other named program is always present or
-always preferred.
-
-Prefer a suitable executable already visible inside the analysis environment,
-then an existing managed environment, then an isolated environment provisioned
-through the platform, and finally an approved configured remote resource.
-Preserve the host's sandbox, permissions, credential handling, environment
-management, and execution manifests.
+[`reference/computation.md`](reference/computation.md): identify the capability
+the method requires, inspect the execution routes actually available, and
+choose the best suitable implementation. Do not assume Python, SageMath, R,
+Magma, or any other named program is always present or always preferred.
 
 ## Enforce completion
 
@@ -207,13 +204,12 @@ as the requested research result.
 
 ## Use the current platform correctly
 
-Use [the environment guide](reference/environment.md) for resource loading,
-optional storage and delegation, and an in-chat fallback. Use
-[retrieval guidance](reference/tools.md) before source retrieval and
-[computation guidance](reference/computation.md) before material runs.
-These are capability contracts, not a required tool API. Follow the current
-host's actual permissions and interfaces. A plan, script, or proof source that
-was only written is not an executed computation or checked proof.
+Use [the environment guide](reference/environment.md) (and its host note, when
+the host is known) for loading, records and delegation,
+[retrieval guidance](reference/tools.md) before source retrieval, and
+[computation guidance](reference/computation.md) before material runs. These are
+capability contracts, not a required tool API. A plan, script, or proof source
+that was only written is not an executed computation or checked proof.
 
 ## Assess contribution before reporting novelty
 

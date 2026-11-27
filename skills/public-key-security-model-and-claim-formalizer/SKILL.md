@@ -1,6 +1,6 @@
 ---
 name: public-key-security-model-and-claim-formalizer
-description: "Converts informal public-key security statements into explicit PKE, KEM, signature, key-agreement, correctness, multi-user, random-oracle, and quantum games. Use whenever a document says “CCA secure,” “unforgeable,” “128-bit secure,” “post-quantum secure,” “forward secure,” or similar without a complete adversary experiment."
+description: "Turn informal public-key security statements into explicit PKE, KEM, signature, key-agreement, correctness, multi-user, ROM and quantum games. Use when a document says CCA secure, unforgeable, 128-bit or post-quantum secure without a full experiment; symmetric: security-model-and-claim-formalizer."
 metadata:
   version: "0.1"
   display-name: "Public-Key Security Model and Claim Formalizer"

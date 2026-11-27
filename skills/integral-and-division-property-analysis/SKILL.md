@@ -1,6 +1,6 @@
 ---
 name: integral-and-division-property-analysis
-description: "Finds and verifies integral properties using structured sets, algebraic degree, generalized and bit-based division properties, and extends them to recovery attacks. Use when: The primitive has byte/word/bit structure, controllable input sets, bounded algebraic-degree growth, or diffusion patterns that may produce balanced, constant, or otherwise predictable aggregates."
+description: "Find and verify integral properties of symmetric primitives with structured sets, algebraic degree and division properties, and extend them to key recovery. Use when controllable input sets or bounded degree growth may give balanced or predictable sums."
 metadata:
   version: "0.1"
   display-name: "Integral and Division-Property Analysis"

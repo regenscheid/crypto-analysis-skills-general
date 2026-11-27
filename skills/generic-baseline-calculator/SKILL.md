@@ -1,6 +1,6 @@
 ---
 name: generic-baseline-calculator
-description: "Computes exact generic and exhaustive-attack baselines for the formalized model so specialized attacks are compared against the correct target. Use when: Before calling an attack non-generic, faster than brute force, practical, or security-reducing. Re-run it when the model, number of users, data allowance, nonce behavior, tag length, or quantum access changes."
+description: "Compute exact generic and exhaustive-attack baselines for a symmetric security model so attacks are compared against the right target. Use before calling an attack faster than generic, and again when the model changes; public-key: generic-baseline-and-security-level-calculator."
 metadata:
   version: "0.1"
   display-name: "Generic Baseline Calculator"

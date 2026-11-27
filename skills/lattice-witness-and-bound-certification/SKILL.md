@@ -72,7 +72,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `computer-algebra-witness-certification`
 - `optimization-and-optimality-certification`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
 - `lattice-hard-problem-and-estimator-analysis`
 - `nonce-randomness-and-hidden-number-analysis`

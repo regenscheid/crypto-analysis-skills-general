@@ -51,7 +51,7 @@ def _cost(x):
     cryptographic_estimators returns the STRING '--' for an inadmissible
     family. Sorting raw output therefore dies with
     `TypeError: '<' not supported between instances of 'str' and 'float'`.
-    Five of six analysts in the blind regression hit this. The '--' is a
+    Analyses that sort raw estimator output hit this often. The '--' is a
     precondition finding, not an error.
     """
     if isinstance(x, str):

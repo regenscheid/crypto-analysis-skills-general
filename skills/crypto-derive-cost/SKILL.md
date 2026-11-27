@@ -1,20 +1,20 @@
 ---
 name: crypto-derive-cost
-description: Produce a concrete cost for a target nothing has costed yet — search what is already known, find and read a reduction to a problem that IS costed, instantiate it with real parameters, verify at toy scale, and write the result back as an entry or a gap. Use when an attack's structure is understood but its cost cannot be obtained.
+description: "Produce a concrete cost where none is published: find and read a reduction to a costed problem, instantiate it with real parameters, verify at toy scale, and record the result or the gap. Use when an attack's structure is understood but its cost is not available."
 license: Apache-2.0
 ---
 
 # Derive a cost where none was published
 
 Use [the environment guide](../crypto-investigate/reference/environment.md) to read
-related instructions through a native loader, files, or supplied text. Tool names
-and Python record-keeping examples below apply only when those capabilities are
-available. Without them, analyze the inspected evidence and keep a text record;
-label missing source retrieval, computation, or independent checks explicitly.
+related instructions through a native loader, files, or supplied text, and
+[the retrieval reference](../crypto-investigate/reference/tools.md) for sources.
+Without retrieval or execution, analyze the inspected evidence and label missing
+source retrieval, computation, or independent checks explicitly.
 
 
-This is the workbench's miss handler: what happens when it does not already
-know something. One hop, bounded by construction —
+This is the pack's miss handler: what happens when nothing already
+known answers the question. One hop, bounded by construction —
 
 > target nothing has costed → candidate reduction → **instantiate at toy
 > scale** → verify or refute → write back
@@ -31,8 +31,8 @@ argument is `crypto-analyze-paper`'s job, not this. Here a reduction is a route:
 carries you from a target you cannot price to a problem an estimator can, and it
 is worth exactly as much as the cost that comes out the far end.
 
-It exists because of a specific observed failure. In a blind test on Rainbow,
-the analysis derived the MinRank structure **correctly** and still could not
+It exists because of a specific observed failure. In one analysis of Rainbow,
+the work derived the MinRank structure **correctly** and still could not
 produce a cost, because nothing turned that derivation into
 `MRProblem(q, m, n, k, r)`. The reasoning was right and the answer was missing.
 The gap was not knowledge; it was the step between a derivation and a
@@ -46,65 +46,45 @@ Independent work can run sequentially; delegation is optional and subject to the
 host's capabilities and permissions. Follow
 [the environment guide](../crypto-investigate/reference/environment.md).
 
-## 1. Search what is already known — including the dead ends
+## 1. Check what is already established — including the dead ends
 
-Follow [crypto-workbench-knowledge's project setup](../crypto-workbench-knowledge/SKILL.md#read-it-first)
-to import its helpers and resolve the stable `project_dir` before reading or
-writing research records.
-
-```
-nist-mcp_search_csrc             already broken? the round-status reports say
-firecrawl-mcp_firecrawl_search   pqc-forum posts and official comments
-e-print-mcp_search_eprint        the preprint literature
-```
-```python
-from knowledge import read_all
-print(read_all(project_dir=project_dir))  # knowledge, gaps, and lessons for this project
-```
-
-**Do this first, every time.** A returned gap is as valuable as an entry: it
-tells you a door is already known to be closed and which one. This project ran a
-603-second parameter sweep to settle a descent question before noticing the
-estimator ships no descent model — a gap record would have cost one call and
-saved the run.
+**Do this first, every time.** Look for an existing cost, reduction, or
+recorded dead end. Use the host's own record of results if it has one; otherwise follow
+`crypto-workbench-knowledge` (without durable storage, a handoff in the
+conversation). A recorded gap
+is as valuable as a result: it tells you a door is already known to be closed
+and which one. A 603-second parameter sweep was once run to settle a descent
+question before anyone noticed the estimator ships no descent model; a recorded
+gap would have saved the run.
 
 **Ask whether it is already broken before costing it.** The cheapest possible
 outcome is discovering the target is broken and the attack is already written
 down. A large share of competition cryptanalysis was never a paper — it was a
-`pqc-forum` post or an official comment — so `e-print-mcp_search_eprint` alone
-will miss it. Check the NIST round-status reports (IR 8240/8309/8413/8528/8610)
-and search the web. **A miss is not evidence of security**; it is a claim about
-your search, and it must name its channels.
+`pqc-forum` post or an official comment — so a preprint search alone will miss
+it. Check the official round-status reports and search the web, as
+[the retrieval reference](../crypto-investigate/reference/tools.md#cover-the-open-web-gap)
+describes. **A miss is not evidence of security**; it is a claim about your
+search, and it must name its channels.
 
-If the KB answers your question, you are done. Say so and stop.
+If an established result answers your question, you are done. Say so and stop.
 
 ## 2. Find the reduction, and read it — do not recall it
 
-Search the corpora for how the target reduces to something standard:
+Search the literature for how the target reduces to something standard, in
+[the retrieval order](../crypto-investigate/reference/tools.md#look-in-this-order)
+— queries such as "<scheme> key recovery reduces to" or "<scheme> MinRank
+attack" — then open the body of what you find and read the pages that state
+the reduction.
 
-```
-e-print-mcp_search_eprint("<scheme> key recovery reduces to")
-e-print-mcp_search_eprint("<scheme> MinRank attack")
-```
+A reduction remembered rather than read is the failure to guard against, and
+abstracts are enough to *identify* a reduction but rarely enough to
+*parameterise* it. A session once derived a cost model from an abstract, got a
+reduction one equation wrong, and only found out when someone opened the PDF.
+The body had the theorem in it the whole time.
 
-Read what you find — and there is now a mechanism behind that word:
-
-```
-e-print-mcp_eprint_fulltext(paper_id, query)    the paper's BODY, from a local cache
-```
-
-A reduction remembered rather than read is the failure this whole workbench is
-built against, and abstracts are enough to *identify* a reduction but rarely
-enough to *parameterise* it. This project spent a session deriving a cost model
-from an abstract, getting a reduction one equation wrong, and only finding out
-when a human handed over the PDF. The body had the theorem in it the whole time.
-
-First read of a paper takes **up to about two minutes** — the watcher polls the
-queue every 60 seconds and the browser fetch itself is 20-40 seconds (measured).
-Every read after that is instant. Come back on a later pass rather than
-concluding it is broken because it is not there yet. If the body is genuinely
-unreachable, say the parameterisation is unverified and mark it so downstream —
-but check the cache before claiming that.
+A paper a reader has not yet fetched may take a while to arrive. Come back on a
+later pass rather than concluding it is unreachable. If the body is genuinely
+unreachable, say the parameterisation is unverified and mark it so downstream.
 
 ## 3. Instantiate — this is the step that was missing
 
@@ -168,32 +148,24 @@ From `crypto-review`, the checks that matter most here:
 - Which **cost model** is this, and does it match what the comparison target
   used? A figure without its model is not a result.
 
-## 6. Write back — both outcomes
+## 6. Record both outcomes
 
-**It worked** — the reduction holds and the instance prices:
+Use the host's own record of results if it has one; otherwise follow
+`crypto-workbench-knowledge` (without durable storage, a handoff in the
+conversation).
 
-```python
-from knowledge import add_entry, add_gap
+**It worked** — the reduction holds and the instance prices: record the
+statement ("<scheme> key recovery reduces to MinRank with q=…, m=…, n=…, k=…,
+r=…; cheapest family <X> at 2^<c>"), the paper and page the reduction came
+from, the toy-scale verification run, the cost model, and what was not checked.
 
-add_entry("<scheme> key recovery reduces to MinRank with "
-          "q=…, m=…, n=…, k=…, r=…; cheapest family <X> at 2^<c>",
-          kind="reduction",
-          evidence=[{"kind": "paper", "ref": "…", "note": "source of the reduction"},
-                    {"kind": "computation", "ref": "…", "note": "toy-scale verification"}],
-          project_dir=project_dir)
-```
-
-**It did not** — say so with the same effort:
-
-```python
-add_gap(question="…", looked_in=["ePrint", "NIST", "firecrawl", "web"],
-        finding="…", project_dir=project_dir)
-```
+**It did not** — say so with the same effort: the question, the channels
+searched, and what was found.
 
 A negative finding must be as cheap to record as a positive one. If it is not,
 it does not get recorded, and the next session repeats your search.
 
-Then update the available plan or written record with the outcome. A cost derived but not independently checked is a result awaiting
+Then update the available plan or record with the outcome. A cost derived but not independently checked is a result awaiting
 verification, not an established one; say which it is.
 
 ## What this deliberately does not do

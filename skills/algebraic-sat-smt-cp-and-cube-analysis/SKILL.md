@@ -1,6 +1,6 @@
 ---
 name: algebraic-sat-smt-cp-and-cube-analysis
-description: "Models symmetric primitives as equations or exact constraints, evaluates solver/cube attacks, and separates concrete solver success from scalable cryptanalytic claims. Use when: The target has low-degree Boolean structure, sparse equations, exploitable initialization, controllable public variables, or a solver may recover key/state or certify structural properties."
+description: "Model a symmetric primitive as equations or exact constraints and evaluate SAT/SMT/CP, algebraic and cube attacks. Use when it has low-degree or sparse structure or controllable public variables; separates concrete solver success from scalable attack claims."
 metadata:
   version: "0.1"
   display-name: "Algebraic, SAT/SMT/CP, and Cube Analysis"

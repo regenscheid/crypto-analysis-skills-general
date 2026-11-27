@@ -23,6 +23,7 @@ REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_STAGING_ROOT = REPOSITORY_ROOT / ".skill-packs"
 DEFAULT_SKILLS_ROOT = REPOSITORY_ROOT / "skills"
 DEFAULT_MANIFEST = REPOSITORY_ROOT / "config" / "imported-skills.json"
+MANIFEST_SOURCE = f"{DEFAULT_STAGING_ROOT.name} (local staging; not committed)"
 
 
 @dataclass(frozen=True)
@@ -165,7 +166,7 @@ def import_packs(
 
     manifest = {
         "schema_version": 1,
-        "source": ".agents (local staging; not committed)",
+        "source": MANIFEST_SOURCE,
         "skill_count": len(records),
         "collision_policy": "qualify the six shared workflow names by domain",
         "skills": records,
@@ -183,6 +184,9 @@ def import_packs(
 def check_import(skills_root: Path, manifest_path: Path) -> int:
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     failures: list[str] = []
+    if manifest.get("source") != MANIFEST_SOURCE:
+        failures.append(f"manifest source is {manifest.get('source')!r}, "
+                        f"expected {MANIFEST_SOURCE!r}")
     for record in manifest["skills"]:
         destination = skills_root / record["installed_name"]
         if not destination.is_dir():

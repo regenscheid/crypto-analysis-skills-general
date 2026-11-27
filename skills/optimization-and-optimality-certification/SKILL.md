@@ -71,7 +71,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `pseudo-boolean-veripb-certification`
 - `sat-lrat-certification`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
 - `generic-baseline-and-security-level-calculator`
 - `differential-family-analysis`

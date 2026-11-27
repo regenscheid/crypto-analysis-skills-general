@@ -1,6 +1,6 @@
 ---
 name: security-model-and-claim-formalizer
-description: "Converts informal symmetric-cryptography security statements into explicit games, adversary powers, success events, resources, assumptions, and non-goals. Use when: A specification, paper, review, or discussion says a primitive or construction is “secure,” “128-bit secure,” “indistinguishable,” “authenticated,” “misuse-resistant,” or “resistant to attack” without an exact game and resource statement. Run it before evaluating attacks or comparing complexities."
+description: "Turn informal symmetric-cryptography security statements into explicit games, adversary powers, success events, resources and non-goals. Use before evaluating attacks when a symmetric primitive is called secure or 128-bit without a game; public-key: public-key-security-model-and-claim-formalizer."
 metadata:
   version: "0.1"
   display-name: "Security Model and Claim Formalizer"

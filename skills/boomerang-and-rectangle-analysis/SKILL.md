@@ -1,6 +1,6 @@
 ---
 name: boomerang-and-rectangle-analysis
-description: "Builds boomerang, amplified-boomerang, and rectangle attacks with dependence-aware middle transitions and quartet-level data accounting. Use when: No single long differential is strong enough, but the cipher can be split into upper and lower regions with useful differentials whose middle interaction may form quartets."
+description: "Build boomerang, amplified-boomerang and rectangle attacks on symmetric primitives with dependence-aware middle transitions and quartet-level data accounting. Use when no single long differential suffices but upper and lower differentials may combine."
 metadata:
   version: "0.1"
   display-name: "Boomerang and Rectangle Analysis"

@@ -12,6 +12,12 @@ source IDs, locators, and the scope of the editorial review. Older servers may
 omit these fields; ordinary record/source reads still work. Cite the returned
 snapshot and canonical IDs. Missing guides indicate incomplete reference curation.
 
+The catalog validates skill IDs against the skill registry it was pinned to. If
+it rejects a `crypto-` skill ID as unknown, the skill may be registered there
+under its earlier name; look the name up in this pack's rename record,
+`config/skill-migrations.json` (for example `crypto-validate-attack` was
+`validate-attack`), and query with the earlier name.
+
 | Mathematical reading question | What the comparison should expose |
 |---|---|
 | Which distribution is required? | Distinguish marginals, joint distributions, conditioning, and implementation observations. Uniform marginals do not imply independence. |

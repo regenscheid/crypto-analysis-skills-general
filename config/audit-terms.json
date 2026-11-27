@@ -1,0 +1,140 @@
+{
+ "schema_version": 1,
+ "comment": "Terms tools/audit_skills.py rejects in the pack's text. allowed_in lists the files where a term is deliberately kept (alias reading of old records, the importer's provenance, and this list).",
+ "scan": [
+  "skills/**/*",
+  "README.md",
+  "START_HERE.md",
+  "tests/*.md",
+  "tests/*.json",
+  "tools/*.py"
+ ],
+ "exclude": [
+  "config/audit-terms.json",
+  "tools/audit_skills.py",
+  "tests/test_audit.py"
+ ],
+ "retired_tool_names": [
+  {
+   "pattern": "\\bnist-mcp_[a-z_]+",
+   "label": "retired NIST tool (nist-mcp); use nist-csrc-mcp_nist_search / nist_get_publication / nist_read"
+  },
+  {
+   "pattern": "\\bportal_list_servers\\b",
+   "label": "retired connector listing tool"
+  },
+  {
+   "pattern": "(?<!search_)eprint_fulltext\\(\\s*paper_id\\s*,\\s*query",
+   "label": "retired eprint_fulltext(paper_id, query) form; use search_eprint_fulltext or eprint_fulltext(paper_id, start_page, page_count)"
+  }
+ ],
+ "first_product": [
+  {
+   "pattern": "Claude[ -]Science|\\bclaude-science\\b|\\bCScience\\b|\\bcscience\\b",
+   "label": "first product's name"
+  },
+  {
+   "pattern": "\\.(?:cscience|claude-science)/",
+   "label": "first product's installation path"
+  },
+  {
+   "pattern": "crypto-workbench-files",
+   "label": "first product's default storage path"
+  },
+  {
+   "pattern": "\\bchild_frame_id\\b|\\broot[-_]frame[-_]id\\b",
+   "label": "first product's frame identifiers; use worker_id"
+  },
+  {
+   "pattern": "\\bcontext_summary\\b",
+   "label": "first product's delegation field; use worker context"
+  },
+  {
+   "pattern": "\\bstructured_output\\b",
+   "label": "first product's return field; use structured return"
+  },
+  {
+   "pattern": "\\bGrantMissing\\b|host-path grant",
+   "label": "first product's permission model; use RecordWriteError"
+  },
+  {
+   "pattern": "\\bedit_file\\b",
+   "label": "first product's file tool name"
+  },
+  {
+   "pattern": "\\b(?:this|the|whole) workbench\\b|workbench's",
+   "label": "first product's framing"
+  },
+  {
+   "pattern": "\\bthe dedicated reviewer\\b|\\bA dedicated reviewer\\b",
+   "label": "first product's reviewer profile; say an independent reviewer"
+  },
+  {
+   "pattern": "CryptoSkills",
+   "label": "pre-import pack name"
+  }
+ ],
+ "allowed_in": {
+  "\\bchild_frame_id\\b|\\broot[-_]frame[-_]id\\b": [
+   "skills/crypto-workbench-knowledge/scripts/board.py",
+   "skills/crypto-workbench-knowledge/reference/research-board.md",
+   "tools/board_metrics.py",
+   "tests/board-metrics-contract.md",
+   "tests/test_board.py",
+   "tests/test_board_metrics.py"
+  ],
+  "\\bcontext_summary\\b": [
+   "tools/board_metrics.py",
+   "tests/board-metrics-contract.md",
+   "tests/test_board_metrics.py"
+  ],
+  "\\bstructured_output\\b": [
+   "tools/board_metrics.py",
+   "tests/board-metrics-contract.md",
+   "tests/test_board_metrics.py"
+  ],
+  "CryptoSkills": [
+   "tools/import_skill_packs.py"
+  ]
+ },
+ "not_skill_names": [
+  "research-paper",
+  "official-manual",
+  "official-project",
+  "official-repository",
+  "official-documentation",
+  "official-project-report",
+  "formal-development",
+  "official-text",
+  "independent-check",
+  "lattice-estimator",
+  "pqc-forum",
+  "public-key",
+  "research-monograph",
+  "charon-pin",
+  "lean-toolchain",
+  "exists-trace",
+  "library-mcp",
+  "e-print-mcp",
+  "nist-csrc-mcp",
+  "paper-search-mcp",
+  "web-fetch-mcp",
+  "firecrawl-mcp",
+  "attack-catalog-mcp",
+  "recording-results",
+  "literature-search",
+  "delegating-work",
+  "allowed-tools",
+  "disable-model-invocation",
+  "skill-installer",
+  "mathematical-research-cases",
+  "reconstructed-ranked-research-prompt",
+  "delegated-cryptanalysis-cases",
+  "delegated-mathematics-cases"
+ ],
+ "limits": {
+  "name_max": 64,
+  "description_max": 300,
+  "why": "name: the Agent Skills limit (Atlas import, Anthropic's overview); description: the Atlas index's 300-character convention, stricter than Claude Code (1,536 in its listing) and the Atlas import (1,024); Codex states none."
+ }
+}

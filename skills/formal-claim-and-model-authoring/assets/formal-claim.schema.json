@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://cryptoskills.example/schemas/formal-claim.schema.json",
-  "title": "CryptoSkills Formal Claim",
+  "title": "Formal Claim",
   "type": "object",
   "required": [
     "claim_id",

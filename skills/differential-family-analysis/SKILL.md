@@ -1,6 +1,6 @@
 ---
 name: differential-family-analysis
-description: "Finds, evaluates, clusters, validates, and extends XOR, modular, truncated, higher-order, and mixed-domain differential properties. Use when: The target has nonuniform propagation of differences through nonlinear operations, slow diffusion, controllable input structures, useful truncated patterns, or a published differential that may transfer."
+description: "Find, evaluate, cluster and extend XOR, modular, truncated, higher-order and mixed differential properties of symmetric primitives. Use when differences propagate nonuniformly, diffusion is slow, or a published differential may transfer."
 metadata:
   version: "0.1"
   display-name: "Differential Family Analysis"

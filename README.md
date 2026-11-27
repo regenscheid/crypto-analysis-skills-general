@@ -55,23 +55,29 @@ See the [OpenAI skill documentation](https://learn.chatgpt.com/docs/build-skills
 and [Anthropic skill documentation](https://support.claude.com/en/articles/12512180-use-skills-in-claude)
 for current native support. Product interfaces and account availability can change.
 
-### Coding agents
+### Coding agents and research platforms
 
 An agent with file access can read the checkout directly without installing
-anything. For native discovery, copy selected **whole skill directories**, with
-references and scripts, to the skill location supported by your agent:
+anything. For native discovery, install **whole skill directories**, with
+references and scripts, side by side in one skills directory, so the `../`
+links between skills resolve. Each supported host has a short note, read only
+on that host, mapping the pack's capabilities to the host's tools and saying
+where results are kept:
 
-| Host | Project location | Personal location |
+| Host | Install | Note |
 |---|---|---|
-| Codex | `.agents/skills/<name>/` | `~/.agents/skills/<name>/` |
-| Anthropic coding agent | `.claude/skills/<name>/` | `~/.claude/skills/<name>/` |
+| Claude Code | `.claude/skills/<name>/` or `~/.claude/skills/<name>/`, or the plugin marketplace from `package_skills.py --host claude-code` | [claude-code.md](skills/crypto-investigate/reference/hosts/claude-code.md) |
+| Codex | `.agents/skills/<name>/` or `~/.agents/skills/<name>/` (`package_skills.py --host codex`) | [codex.md](skills/crypto-investigate/reference/hosts/codex.md) |
+| Cryptography Atlas | `skills import --archive` of `package_skills.py --host atlas` | [cryptography-atlas.md](skills/crypto-investigate/reference/hosts/cryptography-atlas.md) |
 
-Confirm the locations against the
-[OpenAI documentation](https://learn.chatgpt.com/docs/build-skills) or
-[Anthropic coding documentation](https://code.claude.com/docs/en/skills) for the
-installed version. Other hosts may use other paths. Resolve relative resources
-from the loaded skill's location, not an assumed working directory. Avoid
-installing another copy if the same canonical skill is already present.
+The Claude Code and Codex notes state only what those vendors' documentation
+said when checked (the pages and the date are in each note). Both load the
+names and descriptions of every installed skill up front within a budget, so
+installing all 162 skills shortens or drops descriptions: install the starter
+set and add a domain when the work needs it. Other hosts may use other paths.
+Resolve relative resources from the loaded skill's location, not an assumed
+working directory. Avoid installing another copy if the same canonical skill is
+already present.
 
 ### Upgrade the core workflow names
 
@@ -121,13 +127,20 @@ Packaging needs Python 3.10+ and only its standard library:
 python3 tools/package_skills.py --profile starter --output dist/starter
 python3 tools/package_skills.py --profile symmetric --output dist/symmetric
 python3 tools/package_skills.py --skill crypto-verify-claim --output dist/one-claim
+python3 tools/package_skills.py --profile starter --host claude-code --output dist/claude-code
+python3 tools/package_skills.py --profile starter --host codex --output dist/codex
+python3 tools/package_skills.py --profile all --host atlas --output dist/atlas
 ```
 
-Each output directory contains `skills/<name>.zip`, `context.md`, and a manifest
-with skill IDs and file hashes. Profiles are selections, not transitive dependency
-installers: cross-skill references remain optional and are labeled when absent.
-The starter selection contains the main workflows and domain entry points;
-`public-key`, `formal`, and `all` are also available. Large selections can exceed
+Without `--host`, each output directory contains `skills/<name>.zip` (one
+top-level skill folder each), `context.md`, and a manifest with skill IDs and
+file hashes. A single-skill ZIP cannot carry the files it links to in other
+skills; the manifest lists them and `context.md` includes them. With `--host`,
+the output is a whole-pack layout for that host, and every skill a selected
+skill links to is added so links resolve. The starter selection contains the
+core workflows and domain entry points, with `crypto-workbench-knowledge` except
+for Atlas (which keeps results in its ledger) and without `crypto-magma`;
+`symmetric`, `public-key`, `formal`, and `all` add a domain or everything. Large selections can exceed
 an assistant's context window. Use individual skills for focused questions.
 Generated bundles are ignored by Git. Packaging does not install skills, execute
 their scripts, or configure any connector.
@@ -137,7 +150,11 @@ their scripts, or configure any connector.
 The catalog contains 11 core workflows, 29 symmetric cryptanalysis skills,
 59 public-key cryptanalysis skills, and 63 formal-method skills. Names shared
 between imported packs retain `symmetric-` or `public-key-` prefixes. The generated
-[skill registry](config/skill-registry.json) lists every canonical ID and domain.
+[skill registry](config/skill-registry.json) lists every canonical ID and domain,
+and each domain router lists its specialist skills in a generated family table
+([symmetric](skills/symmetric-cryptanalysis-orchestrator/references/skill-family.md),
+[public-key](skills/public-key-cryptanalysis-orchestrator/references/skill-family.md),
+[formal](skills/formal-methods-router/references/skill-family.md)).
 
 The methods preserve target and attacker models, source provenance, concrete
 cost accounting, bounded negative results, and distinctions among proofs,
@@ -153,20 +170,28 @@ optional; prose or an unreplayed proof file is never machine-checked evidence.
 | Code execution | Check tools and versions in the actual execution context | Give derivations or runnable code explicitly labeled unexecuted |
 | SageMath, estimators, solvers, or provers | Use only when installed and suitable | Mark the relevant cost or proof obligation `NOT CHECKED` or `BLOCKED` |
 | Licensed Magma | Use a configured local or remote installation | Choose a suitable available alternative or leave the computation blocked |
-| Writable persistent files | Optionally use `crypto-workbench-knowledge` (Python/POSIX helpers) | Return a research handoff in the conversation; make no persistence claim |
+| The host's own record of results (a ledger, project memory) | Record results there; do not keep a second record | — |
+| Writable files but no host record | Keep results with `crypto-workbench-knowledge` (Python/POSIX helpers) in a directory the user names | Return a research handoff in the conversation; make no persistence claim |
 | Authorized independent workers | Optionally split work and review fixed returns | Work sequentially; describe a self-check accurately |
 
 Read [the environment guide](skills/crypto-investigate/reference/environment.md) for
-resource loading, fallbacks, and resumption. No connector endpoint, remote host,
+resource loading, fallbacks, where results are kept, and resumption, and
+[the retrieval reference](skills/crypto-investigate/reference/tools.md) for the
+order in which to look for sources (a curated paper library first, then ePrint,
+NIST publications, and general search) and the current names of the research
+services' tools. No connector endpoint, remote host,
 operating system, project ID, artifact API, approval UI, or subagent profile is
 preconfigured by this repository. The external attack catalog is optional;
 primary sources and supplied artifacts can be used directly.
 
 The dedicated runtime adapter, internal planning and artifact calls, model alias
-mapping checks, and deployment-specific compute wrappers from the upstream
-application have been removed. The research board remains an optional Python
-helper, with a text handoff when durable storage is unavailable. Long research
-loops respect the user's scope and the current session's limits.
+mapping checks, deployment-specific compute wrappers, and the upstream
+application's delegation fields and permission model have been removed;
+`tools/audit_skills.py` fails if they return. No skill requires the note
+helpers: the core skills check what is established and record results in the
+host's own record when it has one, otherwise with `crypto-workbench-knowledge`
+and its research board, otherwise in a text handoff. Long research loops respect
+the user's scope and the current session's limits.
 
 ## Maintainer layout and validation
 
@@ -176,6 +201,7 @@ loops respect the user's scope and the current session's limits.
 | `config/imported-skills.json` | Original source provenance and installed content hashes for 151 imported skills |
 | `config/skill-registry.json` | Generated canonical skill IDs for external consumers |
 | `config/skill-migrations.json` | Explicit previous-to-current core skill IDs; not runtime aliases |
+| `config/audit-terms.json`, `config/route-budget.json` | Terms the audit rejects, and the ordinary routes it measures |
 | `reports/skill-inventory.json` | Generated inventory, links, descriptions, and portability audit |
 | `tests/` | Host-neutral load probe, manual behavior cases, and Python regressions |
 | `tools/` | Audit, packaging, import, and offline evaluation utilities |
@@ -186,10 +212,18 @@ Run from the repository root:
 ```sh
 python3 tools/import_skill_packs.py --check
 python3 tools/audit_skills.py
+python3 tools/family_tables.py --check
 python3 -m unittest discover -s tests -v
-python3 skills/crypto-workbench-knowledge/scripts/knowledge.py --selftest
-python3 skills/crypto-workbench-knowledge/scripts/board.py --selftest
+(cd skills/crypto-workbench-knowledge && python3 scripts/knowledge.py --selftest)
+(cd skills/crypto-workbench-knowledge && python3 scripts/board.py --selftest)
 ```
+
+The audit also guards against retired tool names, the upstream product's names
+and fields, unregistered skill names, broken links and anchors, descriptions
+over 300 characters, host notes naming undocumented tools, and ordinary routes
+over the load budget in `config/route-budget.json`. Regenerate the routers'
+family tables with `python3 tools/family_tables.py` after adding or renaming a
+skill.
 
 These check packaging and repository invariants; they do not establish model
 behavior or scientific correctness. Use [portability cases](tests/portability-cases.json)
@@ -206,6 +240,8 @@ and inventory with `audit_skills.py` whenever skills change.
 The attack catalog lives separately. Pin this fork's registry and commit when
 validating external skill references; catalog subject links neither load a skill
 nor prove an attack's applicability. Specialist IDs remain stable; the core
-renames are recorded in `config/skill-migrations.json`.
+renames are recorded in `config/skill-migrations.json`. The catalog's current
+pin predates the `crypto-` renames, so it may reject a `crypto-` ID that it
+knows under the earlier name until it is re-pinned to this registry.
 Retain upstream provenance and existing per-skill license metadata when reusing
 or modifying imported material.

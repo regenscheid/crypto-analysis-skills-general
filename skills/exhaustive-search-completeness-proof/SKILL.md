@@ -71,7 +71,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `finite-search-model-and-encoding-validation`
 - `optimization-and-optimality-certification`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
 - `public-key-reproduction-and-falsification-planner`
 - `symmetric-reproduction-and-falsification-planner`

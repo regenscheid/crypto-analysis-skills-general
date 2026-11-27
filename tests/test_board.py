@@ -3,19 +3,22 @@
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
 import tempfile
 import unittest
+from unittest import mock
 import uuid
 
 
 BOARD_SCRIPT = Path(__file__).resolve().parents[1] / "skills" / "crypto-workbench-knowledge" / "scripts"
 sys.path.insert(0, str(BOARD_SCRIPT))
-from board import (BoardError, board_append, board_snapshot, new_idea_id,
+from board import (BoardError, BoardWriteError, board_append, board_snapshot, new_idea_id,
                    new_lemma_id, notebook_path, project_dir_for_id,
-                   rebuild_notebook)
+                   provenance_worker_id, rebuild_notebook)
+import knowledge
 
 
 class BoardTests(unittest.TestCase):
@@ -53,14 +56,14 @@ class BoardTests(unittest.TestCase):
         outcome = self.outcome(idea_id, state="resolved", notebook_append="## First check\n")
         event_id = board_append(self.project, "session-a", "outcome", outcome,
                                 provenance={"delegation_id": outcome["delegation_id"],
-                                            "child_frame_id": "frame-1"})
+                                            "worker_id": "worker-1"})
         ledger = self.project / "board" / "sessions" / "session-a.jsonl"
         entries = [json.loads(line) for line in ledger.read_text().splitlines()]
         self.assertEqual(entries[-1]["payload"], outcome)
         self.assertEqual(entries[-1]["event_id"], event_id)
         self.assertEqual(entries[-1]["provenance"],
                          {"delegation_id": outcome["delegation_id"],
-                          "child_frame_id": "frame-1"})
+                          "worker_id": "worker-1"})
         self.assertEqual(board_snapshot(self.project)["ideas"][0]["state"], "open")
         self.assertEqual(notebook_path(self.project, "session-a", idea_id).read_text(),
                          "## First check\n")
@@ -179,7 +182,7 @@ class BoardTests(unittest.TestCase):
         with self.assertRaises(BoardError):
             board_append(self.project, "session-a", "outcome", outcome,
                          provenance={"delegation_id": "different",
-                                     "child_frame_id": "frame-1"})
+                                     "worker_id": "worker-1"})
         with self.assertRaises(BoardError):
             board_append(self.project, "session-a", "outcome",
                          {key: value for key, value in outcome.items()
@@ -190,6 +193,54 @@ class BoardTests(unittest.TestCase):
         with self.assertRaises(BoardError):
             board_append(self.project, "session-a", "idea",
                          {"idea_id": "I1", "title": "Missing base lemmas"})
+
+    def test_old_provenance_key_is_read_and_new_key_is_written(self) -> None:
+        outcome = self.outcome("I1")
+        board_append(self.project, "session-a", "idea", self.idea("I1"))
+        board_append(self.project, "session-a", "outcome", outcome,
+                     provenance={"delegation_id": outcome["delegation_id"],
+                                 "child_frame_id": "worker-old"})
+        ledger = self.project / "board" / "sessions" / "session-a.jsonl"
+        written = json.loads(ledger.read_text().splitlines()[-1])["provenance"]
+        self.assertEqual(written, {"delegation_id": outcome["delegation_id"],
+                                   "worker_id": "worker-old"})
+        self.assertEqual(provenance_worker_id({"child_frame_id": "w"}), "w")
+        self.assertEqual(provenance_worker_id({"worker_id": "w2"}), "w2")
+        # An old ledger line with the old key still reads.
+        old = dict(json.loads(ledger.read_text().splitlines()[-1]))
+        old["provenance"] = {"delegation_id": outcome["delegation_id"],
+                             "child_frame_id": "worker-old"}
+        with ledger.open("a") as fh:
+            fh.write(json.dumps(old) + "\n")
+        self.assertEqual(len(board_snapshot(self.project)["ideas"]), 1)
+
+    def test_unset_or_read_only_directory_fails_with_a_message(self) -> None:
+        with mock.patch.dict(os.environ, {}, clear=False):
+            os.environ.pop("CRYPTO_FILES", None)
+            with self.assertRaisesRegex(BoardError, "no record directory"):
+                project_dir_for_id("proj_test")
+        with mock.patch.object(knowledge, "BASE", None):
+            with self.assertRaisesRegex(knowledge.RecordLocationError, "no record directory"):
+                knowledge.read_all()
+        read_only = Path(self.temporary.name) / "read-only"
+        read_only.mkdir()
+        read_only.chmod(0o555)
+        self.addCleanup(read_only.chmod, 0o755)
+        if os.access(read_only, os.W_OK):
+            self.skipTest("running with privileges that ignore directory modes")
+        with self.assertRaisesRegex(knowledge.RecordWriteError, "not writable"):
+            knowledge.add_lesson("x", project_dir=str(read_only))
+        with self.assertRaisesRegex(BoardWriteError, "not writable"):
+            board_append(read_only / "projects" / "p", "session-1", "idea", self.idea("I1"))
+        for script in ("knowledge.py", "board.py"):
+            env = {key: value for key, value in os.environ.items() if key != "CRYPTO_FILES"}
+            args = [sys.executable, str(BOARD_SCRIPT / script)]
+            if script == "board.py":
+                args += ["--snapshot", "relative/dir"]
+            result = subprocess.run(args, capture_output=True, text=True, env=env)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertNotIn("Traceback", result.stderr)
+            self.assertIn(script + ":", result.stderr)
 
     def test_duplicate_idea_id_is_detected_across_sessions(self) -> None:
         board_append(self.project, "session-a", "idea", self.idea("I1"))

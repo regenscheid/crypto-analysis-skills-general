@@ -72,7 +72,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `cryptopt-verified-arithmetic-optimization`
 - `cryptoline-arithmetic-implementation-verification`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
 - `elliptic-curve-discrete-log-and-ecc-analysis`
 - `lattice-hard-problem-and-estimator-analysis`

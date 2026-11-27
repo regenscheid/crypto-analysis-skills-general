@@ -71,7 +71,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `finite-search-model-and-encoding-validation`
 - `lean-certificate-import-and-reflection`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
 - `automated-search-model-builder`
 

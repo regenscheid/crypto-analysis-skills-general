@@ -1,6 +1,6 @@
 ---
 name: differential-linear-analysis
-description: "Constructs and validates differential-linear distinguishers and recovery attacks without assuming unjustified independence at the middle connection. Use when: A target admits a relatively likely differential over an early region and a useful linear approximation over a later region, or when the middle connection has exploitable nonlinear dependence."
+description: "Construct and validate differential-linear distinguishers and key recovery on symmetric primitives without assuming unjustified independence at the middle connection. Use when an early differential and a later linear approximation may be joined."
 metadata:
   version: "0.1"
   display-name: "Differential-Linear Analysis"

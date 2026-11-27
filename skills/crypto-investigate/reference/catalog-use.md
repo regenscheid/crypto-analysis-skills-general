@@ -42,7 +42,7 @@ Catalog membership and record dates do not establish scientific priority; use
 
 Investigations use read-only catalog operations. Deliberate maintainer edits to
 the repository are a separate process; these skills do not submit observations,
-proposals, or discoveries to the catalog. Use accessible project records or an in-chat handoff for resumption;
-`crypto-workbench-knowledge` is an optional persistent-file implementation.
+proposals, or discoveries to the catalog. For resumption use the host's own
+record if it has one, otherwise `crypto-workbench-knowledge`, or an in-chat handoff.
 Physical-security investigations are outside this effort's scope;
 historical catalog records can remain available without expanding that scope.

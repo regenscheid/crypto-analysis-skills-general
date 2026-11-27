@@ -1,16 +1,16 @@
 ---
 name: crypto-analyze-paper
-description: Work out whether a paper proves what it claims — separate the informal claim from the theorem, name the notion and the model, run the mismatch checklist, carry the reduction's loss into the concrete parameters, and say which claims are worth settling. Use when asked to audit whether a paper or security argument supports its claims. Reading or applying a published result alone does not assign this audit.
+description: "Audit whether a paper or security argument proves what it claims: separate claim from theorem, name notion and model, run the mismatch checklist, carry the reduction loss into concrete parameters. Use when assigned that audit; merely reading or applying a result does not assign it."
 license: Apache-2.0
 ---
 
 # Does the paper prove what it claims?
 
 Use [the environment guide](../crypto-investigate/reference/environment.md) to read
-related instructions through a native loader, files, or supplied text. Tool names
-and Python record-keeping examples below apply only when those capabilities are
-available. Without them, analyze the inspected evidence and keep a text record;
-label missing source retrieval, computation, or independent checks explicitly.
+related instructions through a native loader, files, or supplied text, and
+[the retrieval reference](../crypto-investigate/reference/tools.md) for sources.
+Without retrieval or execution, analyze the inspected evidence and label missing
+source retrieval, computation, or independent checks explicitly.
 
 
 Two statements about the same paper, both honest, that a review has to keep apart:
@@ -46,43 +46,33 @@ Independent work can run sequentially; delegation is optional and subject to the
 host's capabilities and permissions. Follow
 [the environment guide](../crypto-investigate/reference/environment.md).
 
-## Step 0 — Read what is already known
+## Step 0 — Check what is already established
 
-Follow [crypto-workbench-knowledge's project setup](../crypto-workbench-knowledge/SKILL.md#read-it-first)
-to import its helpers and resolve the stable `project_dir` before reading or
-writing research records.
+Look first for earlier audits of this paper, checked claims, and recorded dead
+ends. Use the host's own record of results if it has one; otherwise follow
+`crypto-workbench-knowledge` (without durable storage, a handoff in the
+conversation). A recorded
+gap describes the scope and outcome of an earlier attempt. A search miss or
+unavailable tool is not a mathematical obstruction; reconsider it when the
+source, model, or capability changes.
 
-```python
-from knowledge import read_all
-print(read_all(project_dir=project_dir))  # knowledge, gaps, and lessons for this project
-```
-
-```
-nist-mcp_search_csrc            is the scheme already broken? round reports
-firecrawl-mcp_firecrawl_search  the forum post or comment that is not a paper
-```
-
-A recorded gap describes the scope and outcome of an earlier attempt. A search
-miss or unavailable tool is not a mathematical obstruction; reconsider it when
-the source, model, or capability changes. The round reports and a web search
-can be relevant because **a
-large share of competition cryptanalysis was never a paper** — it was a
-`pqc-forum` post or an official comment, and `e-print-mcp_search_eprint` will not
+Then ask whether the scheme the paper is about is already broken: the official
+round-status reports and a web search, as
+[the retrieval reference](../crypto-investigate/reference/tools.md#cover-the-open-web-gap)
+describes. **A large share of competition cryptanalysis was never a paper** — it
+was a `pqc-forum` post or an official comment, and a preprint search will not
 find it.
 
 ## Step 1 — Read the body, then write down what is claimed
 
-```
-e-print-mcp_eprint_fulltext(paper_id, query)    the BODY, from a local cache
-nist-mcp_csrc_fulltext(ref, query)           the same, for standards
-```
+Open the paper's body (for standards, the exact edition) through the
+[retrieval order](../crypto-investigate/reference/tools.md#look-in-this-order),
+and note the page of every statement you will rely on.
 
 An abstract identifies a result; it rarely states one precisely enough to audit.
-A reduction remembered rather than read is the failure this workbench is built
-against — this project once derived a cost model from an abstract, got the
-reduction one equation wrong, and found out only when a human handed over the
-PDF. Discover the available retrieval capability; historical fetch timings are
-not guarantees for the current host.
+A reduction remembered rather than read is the failure to guard against: a cost
+model derived from an abstract once had its reduction one equation wrong, found
+only when someone opened the PDF.
 
 Write the informal claims down verbatim, from the abstract, the introduction, and
 any conclusion. These are the sentences that will be quoted about this paper.
@@ -168,25 +158,19 @@ defect this way — Corollary 1.2 cited a GRH-conditional reduction where an
 unconditional one exists, in a paper the article already cites. That was found by
 opening the bibliography.
 
-## Write back
+## Record the result
 
-Use the same `project_dir` resolved at Step 0.
+Use the host's own record of results if it has one; otherwise follow
+`crypto-workbench-knowledge` (without durable storage, a handoff in the
+conversation). For each finding give the
+statement, its evidence with locators (for example "theorem 3, ROM, p. 12"), its
+limits, and what was not checked. For a question left open, record the channels
+searched — "ePrint, NIST, web" is a different finding from "ePrint" — and what
+was found.
 
-```python
-from knowledge import add_entry, add_gap
-add_entry(statement="…", kind="notion",
-          evidence=[{"kind": "paper", "ref": "…", "note": "theorem 3, ROM"}],
-          project_dir=project_dir)
-add_gap(question="…", looked_in=["ePrint", "NIST", "firecrawl", "web"],
-        finding="…", project_dir=project_dir)
-```
-
-These **append** — never rewrite those files, and never reach for `edit_file` to
-add a record: concurrent writers lose entries that way (measured, 1193 of 1200).
-`looked_in` is a list of **channels**, not a mood.
-
-A mismatch found is worth recording as an entry. So is a mismatch looked for and
-absent — that is what licenses the next reader to skip the check.
+A mismatch found is worth recording. So is a mismatch looked for and absent —
+that is what licenses the next reader to skip the check. Extend an existing
+record rather than rewriting it.
 
 ## What this deliberately does not do
 

@@ -1,6 +1,6 @@
 ---
 name: primitive-structure-and-assumption-mapper
-description: "Builds an exact structural and assumption map of a symmetric primitive or construction to expose attack-relevant dependencies and boundaries. Use when: Before selecting attack techniques, transferring a published attack, or encoding a search model. It prevents analysis of an idealized cipher that differs from the specified or implemented object."
+description: "Map the exact structure and assumptions of a symmetric primitive or construction to expose attack-relevant dependencies before choosing techniques or encoding a search. Use first on a symmetric target; for public-key schemes use scheme-structure-and-assumption-mapper."
 metadata:
   version: "0.1"
   display-name: "Primitive Structure and Assumption Mapper"

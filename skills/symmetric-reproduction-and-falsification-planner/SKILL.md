@@ -1,6 +1,6 @@
 ---
 name: symmetric-reproduction-and-falsification-planner
-description: "Designs decisive, controlled, reproducible tests of symmetric-cryptanalysis claims, from exhaustive toy checks through full experiments and solver certificates. Use when: A claim depends on computation, simulation, solver output, undocumented code, probabilistic evidence, or an attack transfer. Use it to turn “try this” into a smallest decisive and independently repeatable test."
+description: "Design decisive, controlled, reproducible tests of symmetric-cryptanalysis claims, from exhaustive toy checks to full experiments and solver certificates. Use when a claim rests on computation, simulation, solver output or an attack transfer."
 metadata:
   version: "0.1"
   display-name: "Reproduction and Falsification Planner"

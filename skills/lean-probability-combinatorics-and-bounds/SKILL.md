@@ -72,9 +72,9 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `exact-probability-counting-and-tail-bound-certification`
 - `floating-point-and-rounding-error-verification`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
-- `decryption-failure-correctness-and-reaction-analysis`
+- `decryption-failure-and-reaction-analysis`
 - `symmetric-attack-complexity-and-success-auditor`
 
 ## Associated primary references

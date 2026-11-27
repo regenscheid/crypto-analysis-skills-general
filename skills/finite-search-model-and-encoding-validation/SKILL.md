@@ -73,7 +73,7 @@ This skill is an optional specialist route. Completion of an ordinary cryptanaly
 - `pseudo-boolean-veripb-certification`
 - `exhaustive-search-completeness-proof`
 
-## Optional CryptoSkills cross-references
+## Related cryptanalysis skills in this pack (optional)
 
 - `automated-algebra-and-search-model-builder`
 - `automated-search-model-builder`

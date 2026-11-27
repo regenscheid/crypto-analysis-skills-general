@@ -1,6 +1,6 @@
 ---
 name: mitm-dissection-and-biclique-analysis
-description: "Designs and audits state-matching attacks using cuts, partial computation, splice-and-cut, initial structures, dissection, and biclique techniques. Use when: The target can be decomposed into forward and backward computations with partially independent key/state variables, has a narrow internal cut, repeated/expandable subcomputations, or enough degrees of freedom for biclique/initial-structure methods."
+description: "Design and audit meet-in-the-middle attacks on symmetric primitives: cuts, partial matching, splice-and-cut, initial structures, dissection and bicliques. Use when the computation splits into forward and backward parts with partly independent key or state bits."
 metadata:
   version: "0.1"
   display-name: "Meet-in-the-Middle, Dissection, and Biclique Analysis"

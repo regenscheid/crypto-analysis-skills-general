@@ -1,0 +1,93 @@
+{
+ "schema_version": 1,
+ "comment": "Characters an ordinary route loads (skill bodies plus the references a step reads). The Atlas platform refuses loads past 100,000 characters per run; tools/audit_skills.py fails a route over target_max.",
+ "load_cap": 100000,
+ "target_max": 80000,
+ "routes": [
+  {
+   "name": "Atlas: verify a claim",
+   "host": "atlas",
+   "files": [
+    "crypto-investigate/SKILL.md",
+    "crypto-investigate/reference/environment.md",
+    "crypto-investigate/reference/hosts/cryptography-atlas.md",
+    "crypto-investigate/reference/tools.md",
+    "crypto-investigate/reference/completion-contract.md",
+    "crypto-verify-claim/SKILL.md",
+    "public-key-cryptanalysis-orchestrator/SKILL.md"
+   ]
+  },
+  {
+   "name": "Atlas: assess a lattice scheme",
+   "host": "atlas",
+   "files": [
+    "crypto-investigate/SKILL.md",
+    "crypto-investigate/reference/environment.md",
+    "crypto-investigate/reference/hosts/cryptography-atlas.md",
+    "crypto-investigate/reference/tools.md",
+    "crypto-investigate/reference/completion-contract.md",
+    "public-key-cryptanalysis-orchestrator/SKILL.md",
+    "public-key-cryptanalysis-orchestrator/references/skill-family.md",
+    "crypto-analyze-scheme/SKILL.md",
+    "crypto-analyze-scheme/reference/lattice.md"
+   ]
+  },
+  {
+   "name": "Claude Code: verify a claim",
+   "host": "claude-code",
+   "files": [
+    "crypto-investigate/SKILL.md",
+    "crypto-investigate/reference/environment.md",
+    "crypto-investigate/reference/hosts/claude-code.md",
+    "crypto-investigate/reference/tools.md",
+    "crypto-investigate/reference/completion-contract.md",
+    "crypto-verify-claim/SKILL.md",
+    "public-key-cryptanalysis-orchestrator/SKILL.md",
+    "crypto-workbench-knowledge/SKILL.md"
+   ]
+  },
+  {
+   "name": "Claude Code: validate an attack",
+   "host": "claude-code",
+   "files": [
+    "crypto-investigate/SKILL.md",
+    "crypto-investigate/reference/environment.md",
+    "crypto-investigate/reference/hosts/claude-code.md",
+    "crypto-investigate/reference/tools.md",
+    "crypto-investigate/reference/computation.md",
+    "crypto-validate-attack/SKILL.md",
+    "symmetric-cryptanalysis-orchestrator/SKILL.md",
+    "crypto-workbench-knowledge/SKILL.md"
+   ]
+  },
+  {
+   "name": "Codex: audit a paper",
+   "host": "codex",
+   "files": [
+    "crypto-investigate/SKILL.md",
+    "crypto-investigate/reference/environment.md",
+    "crypto-investigate/reference/hosts/codex.md",
+    "crypto-investigate/reference/tools.md",
+    "crypto-analyze-paper/SKILL.md",
+    "crypto-analyze-paper/reference/conventions.md",
+    "crypto-analyze-paper/reference/pke-kem.md",
+    "crypto-analyze-paper/reference/mismatches.md",
+    "crypto-workbench-knowledge/SKILL.md"
+   ]
+  },
+  {
+   "name": "Codex: sustained discovery with the board",
+   "host": "codex",
+   "files": [
+    "crypto-investigate/SKILL.md",
+    "crypto-investigate/reference/environment.md",
+    "crypto-investigate/reference/hosts/codex.md",
+    "crypto-investigate/reference/mathematical-research-workflow.md",
+    "discover-cryptanalysis/SKILL.md",
+    "crypto-investigate/reference/delegated-cryptanalysis-review.md",
+    "crypto-workbench-knowledge/SKILL.md",
+    "crypto-workbench-knowledge/reference/research-board.md"
+   ]
+  }
+ ]
+}

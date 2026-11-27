@@ -1,6 +1,6 @@
 ---
 name: crypto-analyze-scheme
-description: Map the complete attack surface of a cryptographic scheme by fixing its claims and parameters, identifying underlying problems and added structure, checking every applicable attack family and its preconditions, recomputing costs in named models, and locating thin margins or promising deviations. Use for new or modified schemes, parameter-security claims, NIST-category checks, construction reviews, attack prioritization, or the baseline phase of an active search for weaknesses. Covers public-key, lattice, multivariate, symmetric, and hash targets.
+description: "Map the attack surface of a cryptographic scheme: fix claims and parameters, check every applicable attack family and its preconditions, recompute costs in named models, find thin margins. Use for scheme or parameter assessments and NIST-category checks, public-key, symmetric or hash."
 ---
 
 # Analyze a cryptographic scheme

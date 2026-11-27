@@ -1,16 +1,16 @@
 ---
 name: crypto-verify-claim
-description: Check whether one specified claim in a paper, report, or security argument is correct. Audit its reasoning or reproduce the relevant evidence and report supported, refuted, or unresolved. Use for an assigned claim-verification task; merely citing or applying a published result does not require auditing that result.
+description: "Check whether one specified claim in a paper, report or security argument is correct, by auditing its reasoning or reproducing its evidence, and report supported, refuted or unresolved. Use for an assigned claim check; citing or applying a published result does not require one."
 license: Apache-2.0
 ---
 
 # Check one paper claim
 
 Use [the environment guide](../crypto-investigate/reference/environment.md) to read
-related instructions through a native loader, files, or supplied text. Tool names
-and Python record-keeping examples below apply only when those capabilities are
-available. Without them, analyze the inspected evidence and keep a text record;
-label missing source retrieval, computation, or independent checks explicitly.
+related instructions through a native loader, files, or supplied text, and
+[the retrieval reference](../crypto-investigate/reference/tools.md) for sources.
+Without retrieval or execution, analyze the inspected evidence and label missing
+source retrieval, computation, or independent checks explicitly.
 
 
 When asked to check whether a specified claim is correct, start with
@@ -31,7 +31,7 @@ Keep these questions distinct:
 
 Finding the statement in a paper establishes its attribution. It does not
 establish the statement's correctness. Likewise, a completed command or a
-retrieved knowledge entry is provenance; inspect what that evidence actually
+retrieved earlier record is provenance; inspect what that evidence actually
 supports. For a correctness verdict, check the argument, the relevant
 computation, or a prior independent check that covers the same claim and scope.
 An incomplete proof is unresolved unless a valid contradiction refutes the
@@ -78,7 +78,8 @@ These often include:
 - **negatives** — "no such paper exists", "the estimator has no model for this",
   "this is not in the corpus"
 
-Negatives are the most frequently wrong of these. See failure mode 5.
+Negatives are the most frequently wrong of these. See failure mode 5 in
+[the failure taxonomy](reference/failure-taxonomy.md).
 
 Then pin down what would make it true or false:
 
@@ -99,7 +100,7 @@ finding, and it is the cheapest one available.
 |---|---|
 | `[SOURCE]` | an exact source statement was inspected — cite revision and locator, identifying reused inspection when applicable |
 | `[TOOL]` | a computation has an identified run and output — cite invocation, inputs, and whether it was rerun here |
-| `[KB]` | retrieved from the knowledge base or ledger — cite the entry id |
+| `[RECORD]` | retrieved from this environment's durable record of earlier results — cite its identifier or location |
 | `[DERIVATION]` | a new argument was worked this session — cite the candidate artifact and state its assumptions; this is candidate provenance, not independent support |
 | `[RECALL]` | asserted from knowledge, with no retrieval and no computation |
 
@@ -124,7 +125,7 @@ route to what the claim rests on:
 | the claim rests on | settle it by |
 |---|---|
 | a computation someone ran | **reproduce or independently reconstruct the relevant calculation** — compare its inputs, model, and output with the published claim |
-| what a document says | **open the document** — `e-print-mcp_eprint_fulltext`, `nist-mcp_csrc_fulltext`, the body not the abstract |
+| what a document says | **open the document** — the body at the relevant page, not the abstract ([retrieval order](../crypto-investigate/reference/tools.md#look-in-this-order)) |
 | a definition being met | **discharge the obligations** — the `crypto-analyze-paper` skill's `reference/` set lists them per notion |
 | an attack working | **hand it to `crypto-validate-attack`** — which decides whether analysis or code settles it |
 | a cost nobody has computed | **hand it to `crypto-derive-cost`** |
@@ -159,67 +160,20 @@ same assumptions.
 
 ## Step 4 — Work the failure taxonomy
 
-These historical examples motivate checks when the corresponding failure mode
-is relevant. They do not require opening unrelated sources or rerunning unrelated
-calculations for every assigned claim.
+[The failure taxonomy](reference/failure-taxonomy.md) lists eight recurring ways a
+claim check goes wrong, each with an observed case and the check that catches
+it. Read the rows relevant to the assigned claim; they do not require opening
+unrelated sources or rerunning unrelated calculations. The ones that matter
+most often:
 
-**1. Uncited recall of reference data.** Parameter tables, published costs, which
-scheme a name refers to. *Observed:* a probe's "fresh" parameters were a
-published LUOV set, asserted from memory and never checked; the same class of
-error recurred a second time on the same file. **Check:** every parameter tuple
-and published figure carries `[SOURCE]`.
-
-**2. Over-correction from a partial source.** Treating one document as exhaustive
-and overturning a true statement with it. *Observed:* a correct claim that LUOV
-round 2 used prime `r` was "corrected" to composite on the strength of a version
-of the paper that omits the table showing both — arriving with more confidence
-than the original error. **Check:** before overturning a prior claim, establish
-that the new source is *complete* for that question. Prefer the archival version
-over a conference version; they differ.
-
-**3. Stale derived numbers after an input change.** *Observed:* changing a
-parameter set and recomputing some outputs but not others left a key-recovery
-figure 10.2 bits wrong, inside a rubric with a ±0.5 tolerance. **Check:** when an
-input changes, identify every affected dependency and recompute those conclusions.
-Retain checks whose inputs and assumptions did not change; if dependencies are
-uncertain, state which additional review is needed to establish their scope.
-
-**4. Unit or model mismatch in a comparison.** *Observed:* "the structure costs
-60 bits" subtracted a field-multiplication count over `F_8` from a bit-operation
-count over `F_4096`. **Check:** every difference of two costs states the unit and
-the cost model of both. A bare exponent is not a result.
-
-**5. A negative concluded from an incomplete look.** *Observed three times in one
-session:* "the repo has no attack references" from a sparse checkout that never
-pulled `solution/`; "the paper body is unreachable" from one host's `robots.txt`
-when another host served it; "the corpus does not cover this" when the full-text
-cache held 9 of 924 documents. **Check:** a negative must name what was searched
-and how completely. "Not found in X" is a claim about X.
-
-**6. Discarding the diagnostic you already had.** *Observed:* a fetch returned
-HTTP 403 and the script kept the status code and threw away the response body.
-The body was the Cloudflare interstitial, which would have said the challenge was
-never solved. Instead "403" was reported as a bare fact and written up as a
-property of the *publisher* — when it was a property of the script's control
-flow. Three further "403" rows in the same table inherited the error.
-
-**Check:** when something fails, keep what it said. A status code without its
-body, an exception without its message, a non-zero exit without stderr — each is
-a diagnosis discarded at the moment it was free. This is worse than failure mode
-5: there the evidence was never gathered; here it was in hand and destroyed.
-
-**7. Verification that repeats the asserter's unchecked premise.** A different
-reader or citation does not automatically supply independent evidence. **Check:**
-identify the error your route could expose. Independently reconstructing an
-argument from the same paper or specification is valid checking. Open another
-source when it addresses a specific uncertainty; source novelty is not a gate.
-
-**8. Silent aggregate failure.** *Observed twice:* one estimator family raising
-discarded eight valid results, and the failure formatted as a tuple rather than
-an error. **Check:** any "cheapest of N" states what was skipped. A minimum over
-a reduced set is an upper bound on the minimum over the full set, provided the
-retained costs are valid and comparable. State omitted cases; invalid estimates
-may support no bound at all.
+- **uncited recall of reference data** — every parameter tuple and published
+  figure carries `[SOURCE]`;
+- **a negative concluded from an incomplete look** — a negative names what was
+  searched and how completely (failure mode 5);
+- **unit or model mismatch** — every difference of two costs states the unit and
+  cost model of both;
+- **discarding the diagnostic you already had** — when something fails, keep
+  what it said.
 
 ## Step 5 — Report
 
@@ -258,37 +212,25 @@ claims settled       n of N
 **The list is the deliverable**, not the rate — a single unsupported parameter set
 matters more than a high percentage.
 
-## Step 6 — Write back
+## Step 6 — Record the result
 
 Facts that had to be retrieved once should not be retrieved again from scratch.
-Follow [crypto-workbench-knowledge's project setup](../crypto-workbench-knowledge/SKILL.md#read-it-first)
-to import its helpers and resolve the stable `project_dir` first.
+Use the host's own record of results if it has one; otherwise follow
+`crypto-workbench-knowledge` (without durable storage, a handoff in the
+conversation). Record the checked claim under its
+stated assumptions, the verdict, the evidence with locators — for a new
+derivation both the original argument (`derivation`) and the separate check
+(`independent-check`, naming its route and what it checked) — and what was not
+checked. For a question not settled, record what was checked and why it remains
+open.
 
-```python
-from knowledge import add_entry, add_gap
-add_entry(statement="<checked claim under its stated assumptions>", kind="derived result",
-          evidence=[
-              {"kind": "derivation", "ref": "<discovery artifact>#C2",
-               "note": "Original argument, assumptions, and notation map."},
-              {"kind": "independent-check", "ref": "<verifier report>",
-               "note": "Fresh proof audit checked C2 without repairing it."},
-          ], project_dir=project_dir)
-add_gap(question="<question not settled>", looked_in=["ePrint", "NIST"],
-        finding="<what was checked and why the question remains open>",
-        project_dir=project_dir)
-```
+Name the **channels** searched for a negative. "Searched ePrint" and "searched
+ePrint, the NIST publications, and the web" are different findings, and each
+supports only a negative about its stated search scope.
 
-See `crypto-workbench-knowledge`. These **append** — never rewrite those files, and
-never reach for `edit_file` to add a record: concurrent writers lose entries
-that way (measured, 1193 of 1200).
-
-`looked_in` is a list of **channels**, not a mood. "Searched ePrint" and "searched
-ePrint, the NIST corpus, and the web" are different findings,
-and each supports only a negative about its stated search scope.
-
-Do not write a derivation-only candidate to durable knowledge. Keep it in the
-live plan and the versioned discovery artifact until the `independent-check`
-record exists. Ordinary sourced facts retain their existing evidence rules; this
+Do not record a derivation-only candidate as an established result. Keep it in
+the live plan and the discovery record as a candidate until the
+`independent-check` evidence exists. Ordinary sourced facts retain their existing evidence rules; this
 extra gate applies when the claimed result is newly derived.
 
 ## What this deliberately does not do
@@ -299,7 +241,7 @@ extra gate applies when the claimed result is newly derived.
 - **It checks reasoning when correctness depends on it.** A well-sourced claim
   can still be false. A broader review of the analysis belongs to `crypto-review`.
 - **It does not promote a derivation by repeating it.** New theoretical work
-  needs a genuinely separate checking route before it becomes durable knowledge.
+  needs a genuinely separate checking route before it is recorded as established.
 - **It distinguishes retrieval from verification.** Retrieval can settle an
   attribution or supply compatible prior verification. A paper's assertion
   alone does not settle an assigned correctness check of its reasoning.

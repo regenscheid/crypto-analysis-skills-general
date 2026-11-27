@@ -1,6 +1,6 @@
 ---
 name: symmetric-attack-transfer-and-adaptation
-description: "Decomposes an attack from literature or prior agent work, maps each indispensable requirement to a new target, and develops minimally modified falsifiable adaptations. Use when: A known attack on one primitive, version, parameter set, round count, component, or adversary model might apply to another. Also use it to transfer an agent-discovered reduced or toy attack toward the real target."
+description: "Decompose a symmetric attack from the literature or prior work, map each indispensable requirement to a new target, and develop minimal falsifiable adaptations. Use when an attack on one primitive, version, round count or adversary model might apply to another."
 metadata:
   version: "0.1"
   display-name: "Attack Transfer and Adaptation"

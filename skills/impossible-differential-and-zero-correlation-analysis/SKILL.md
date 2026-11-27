@@ -1,6 +1,6 @@
 ---
 name: impossible-differential-and-zero-correlation-analysis
-description: "Constructs exact miss-in-the-middle impossible differentials and zero-correlation linear properties, then evaluates elimination and statistical recovery attacks. Use when: Forward and backward propagation sets may contradict, deterministic diffusion creates unreachable transitions, or a linear hull may have provably zero correlation over a key class."
+description: "Construct exact impossible differentials and zero-correlation linear properties of symmetric primitives and evaluate elimination and statistical key-recovery attacks. Use when forward and backward propagation may contradict or a hull may have zero correlation."
 metadata:
   version: "0.1"
   display-name: "Impossible Differential and Zero-Correlation Analysis"
