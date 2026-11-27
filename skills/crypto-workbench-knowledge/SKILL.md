@@ -1,10 +1,19 @@
 ---
 name: crypto-workbench-knowledge
-description: Read and extend project research notes, evidence, gaps, and lessons across cryptographic investigations. Use when prior work should be reused or a result should be retained. Python file helpers and an append-only research board are optional; without persistent storage, return a text handoff.
+description: Keep the durable research record (results with evidence, search gaps, lessons, an idea board) where the host has none of its own, such as Claude Code, Codex or a chat with files. Use when a skill says to record or reuse results; a host's own ledger or memory comes first.
 license: Apache-2.0
 ---
 
-# Project research notes
+# Project research record
+
+The other skills are methods; when they say to check what is established or to
+record a result, the record is chosen by one rule. **If the host keeps its own
+durable record of claims and evidence (a ledger, project memory, documents),
+that record is the authority: do not use this skill there.** Where the host
+keeps nothing of its own (a plain repository checkout, Claude Code, Codex, a
+chat with files), this skill is the record, kept in a directory the user names
+or agrees to, for example one in the repository's working tree. Without any
+durable storage, return a handoff in the conversation.
 
 Read relevant prior notes when they are accessible. Keep established results,
 search gaps, process lessons, and open conjectures distinct. A retrieved note is
@@ -29,9 +38,10 @@ session. No home path or host-specific permission UI is guaranteed.
 
 Resolve this skill's actual directory through the host's loader or file listing.
 Set `CRYPTO_SKILLS` explicitly to its scripts directory; do not probe private
-application paths. `CRYPTO_FILES` is an optional absolute storage parent. The
-helper's local default is `~/crypto-workbench-files`; override it in a sandbox.
-Choose a stable path-safe project ID once and retain it with the research record.
+application paths. Set `CRYPTO_FILES` to the absolute storage parent the user
+chose, or pass the directory explicitly; the helpers never guess one, and they
+stop with a clear message when none is given or it is not writable. Choose a
+stable path-safe project ID once and retain it with the research record.
 
 ```python
 import os, sys
@@ -85,8 +95,9 @@ systems, use host documents or text notes rather than importing these helpers. D
 stores or every network filesystem. For a host document interface, use its
 supported revision and merge behavior, or one writer.
 
-A failed write is not a saved record. `GrantMissing` identifies a failed knowledge
-write; `BoardWriteError` means the ledger may be partially written, so inspect it
+A failed write is not a saved record. `RecordLocationError` means no directory
+was given; `RecordWriteError` means the directory is not writable from this
+session; `BoardWriteError` means the ledger may be partially written, so inspect it
 before retrying. `NotebookMaterializationError` means the board event was saved:
 repair the filesystem issue and rebuild the notebook without duplicating the
 outcome. If storage remains unavailable, return the unsaved record in chat.
@@ -96,7 +107,9 @@ For sustained research where a board is useful, read
 sequential phases as well as authorized workers. The board is not a scheduler or
 execution engine. Keep work within the requested scope and current session limits.
 
+Self-tests, run from this skill's directory:
+
 ```sh
-python3 skills/crypto-workbench-knowledge/scripts/knowledge.py --selftest
-python3 skills/crypto-workbench-knowledge/scripts/board.py --selftest
+python3 scripts/knowledge.py --selftest
+python3 scripts/board.py --selftest
 ```

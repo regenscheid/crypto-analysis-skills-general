@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Append-only, project-scoped research board with per-session event ledgers.
 
-The JSONL files are authoritative. Notebook files are derived from logged
+Part of the optional note-keeping aid; use it only where the host keeps no
+durable record of its own. The JSONL files are authoritative. Notebook files are derived from logged
 ``outcome.notebook_append`` text and can be rebuilt after an interrupted write.
 No private host API is needed: the root agent passes one absolute
 project directory and the host's session identifier to every delegate.
@@ -64,12 +65,16 @@ def _project_dir(project_dir: str | os.PathLike[str]) -> Path:
 def project_dir_for_id(project_id: str, base: str | os.PathLike[str] | None = None) -> Path:
     """Return ``<CRYPTO_FILES>/projects/<project_id>`` without creating it.
 
-    CRYPTO_FILES defaults to the historical ``~/crypto-workbench-files`` base.
-    A configured relative base is rejected because children have separate CWDs.
+    The base is never guessed: pass ``base`` or set CRYPTO_FILES. A relative
+    base is rejected because workers have separate working directories.
     """
     _safe_id(project_id, "project_id")
-    root = Path(base if base is not None else
-                (os.environ.get("CRYPTO_FILES") or "~/crypto-workbench-files")).expanduser()
+    configured = base if base is not None else os.environ.get("CRYPTO_FILES")
+    if not configured:
+        raise BoardError("no record directory: pass base=<absolute path> or set "
+                         "CRYPTO_FILES. If this host keeps its own durable "
+                         "record, record results there instead.")
+    root = Path(configured).expanduser()
     if not root.is_absolute():
         raise BoardError("CRYPTO_FILES/base must be an absolute path")
     return root / "projects" / project_id
@@ -282,7 +287,8 @@ def _write_once(path: Path, data: bytes) -> None:
             fcntl.flock(fd, fcntl.LOCK_UN)
             os.close(fd)
     except OSError as exc:
-        raise BoardWriteError(f"cannot append to {path}: {exc}") from exc
+        raise BoardWriteError(f"cannot append to {path}: {exc}; the directory is not "
+                              "writable from this session") from exc
 
 
 def board_append(project_dir: str | os.PathLike[str], session_id: str,
@@ -291,8 +297,10 @@ def board_append(project_dir: str | os.PathLike[str], session_id: str,
     """Append one validated JSON event in one OS write and return its UUID.
 
     The passed payload is stored unchanged. In particular, an ``outcome`` is a
-    mechanical record of a child's structured return; a later critic event is
-    needed to change idea state or promote a lemma.
+    mechanical record of a worker's structured return; a later critic event is
+    needed to change idea state or promote a lemma. ``provenance`` names the
+    ``delegation_id`` and the host's ``worker_id``; the older key
+    ``child_frame_id`` is accepted as an alias for ``worker_id``.
     """
     project = _project_dir(project_dir)
     session = _safe_id(session_id, "session_id")
@@ -303,8 +311,8 @@ def board_append(project_dir: str | os.PathLike[str], session_id: str,
         provenance = {
             "delegation_id": _safe_id(provenance.get("delegation_id"),
                                        "provenance.delegation_id"),
-            "child_frame_id": _safe_id(provenance.get("child_frame_id"),
-                                        "provenance.child_frame_id"),
+            "worker_id": _safe_id(provenance_worker_id(provenance),
+                                   "provenance.worker_id"),
         }
         if provenance["delegation_id"] != payload["delegation_id"]:
             raise BoardError("outcome provenance delegation_id must match its payload")
@@ -496,11 +504,33 @@ def board_snapshot(project_dir: str | os.PathLike[str],
             "sota_rows": list(sota_rows.values())}
 
 
+def provenance_worker_id(provenance: dict) -> object:
+    """The worker ID of an outcome's provenance, reading old records too."""
+    if "worker_id" in provenance:
+        return provenance["worker_id"]
+    return provenance.get("child_frame_id")
+
+
+def _quick_selftest() -> bool:
+    """Append, read back and snapshot in a temporary project; no repository needed."""
+    with tempfile.TemporaryDirectory() as tmp:
+        project = Path(tmp) / "projects" / "selftest"
+        idea = new_idea_id()
+        board_append(project, "session-1", "idea",
+                     {"idea_id": idea, "title": "Self-test idea", "builds_on": []})
+        snapshot = board_snapshot(project)
+        ok = [item["idea_id"] for item in snapshot["open_ideas"]] == [idea]
+    print("  append and snapshot: %s" % ("PASS" if ok else "FAIL"))
+    return ok
+
+
 def board_selftest() -> bool:
-    """Run the focused local regression suite; returns True on success."""
+    """Run the repository's board tests when present, else a built-in check."""
+    tests = Path(__file__).resolve().parents[3] / "tests"
+    if not (tests / "test_board.py").is_file():
+        return _quick_selftest()
     import unittest
-    suite = unittest.defaultTestLoader.discover(
-        str(Path(__file__).resolve().parents[3] / "tests"), pattern="test_board.py")
+    suite = unittest.defaultTestLoader.discover(str(tests), pattern="test_board.py")
     return unittest.TextTestRunner(verbosity=2).run(suite).wasSuccessful()
 
 
@@ -521,4 +551,7 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    try:
+        raise SystemExit(main())
+    except (BoardError, OSError) as exc:
+        raise SystemExit(f"board.py: {exc}")

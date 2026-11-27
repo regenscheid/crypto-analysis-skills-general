@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Read and append the workbench's durable knowledge, safely.
+"""Read and append project research notes, safely (an optional note-keeping aid).
 
     from knowledge import read_all, add_entry, add_gap, add_lesson
     print(read_all())                       # everything, for context
@@ -21,10 +21,10 @@ Self-test (also the concurrency regression):
 WHY THIS FILE EXISTS RATHER THAN "just append to the file"
 ----------------------------------------------------------
 Appending looks trivial and has one non-obvious way to lose data. The obvious
-implementation -- read the file, add your text, write it back -- is what
-`edit_file` does under the hood (exact-match replacement), and it silently
-drops entries when two agents write near-simultaneously. Measured on this
-machine, 8 concurrent writers x 150 records:
+implementation -- read the file, add your text, write it back, as an
+in-place file edit by exact-match replacement does -- silently drops entries
+when two agents write near-simultaneously. Measured with 8 concurrent writers
+x 150 records:
 
     open(path, "a") + one write()   kept 1200 / 1200
     read -> append -> write back    kept    7 / 1200   (1193 lost)
@@ -35,6 +35,12 @@ ever appends, in one `write()` call, and refuses to rewrite these files.
 
 Cooperating sessions may share a writable local directory. This helper requires
 POSIX fcntl locking; it makes no promise about a remote host document store.
+
+The record directory is never guessed: pass ``project_dir`` (an absolute path)
+or set ``CRYPTO_FILES``. With neither, or with a read-only directory, the helper
+stops with RecordLocationError or RecordWriteError and a message saying what to
+do; the command line prints that message rather than a traceback. If the host
+keeps its own durable record (a ledger, project memory), use that instead.
 """
 
 from __future__ import annotations
@@ -46,27 +52,35 @@ import sys
 import time
 import uuid
 
-BASE = os.environ.get("CRYPTO_FILES") or os.path.expanduser(
-    "~/crypto-workbench-files")
-
-KNOWLEDGE = os.path.join(BASE, "knowledge.md")
-GAPS = os.path.join(BASE, "gaps.md")
-LESSONS = os.path.join(BASE, "lessons.md")
+BASE = os.environ.get("CRYPTO_FILES") or None
 
 # Keep records small enough to review and append in one locked OS write.
 # PIPE_BUF does not govern regular files; the lock serializes our writers.
 MAX_BLOCK = 4096
 
 
-class GrantMissing(RuntimeError):
-    """The host path is not writable from here.
+class RecordWriteError(RuntimeError):
+    """The record directory is not writable from this session.
 
-    Raised loudly and never swallowed. The grant on the shared folder is
-    per-project: a session in a different project holds no grant and its first
-    write fails. Silently skipping would mean the lesson is simply lost, which
-    is worse than an error -- the whole point of writing it down is that the
-    next session gets it.
+    Raised loudly and never swallowed. Silently skipping would mean the record
+    is simply lost, which is worse than an error -- the whole point of writing
+    it down is that the next session gets it.
     """
+
+
+class RecordLocationError(ValueError):
+    """No record directory was given: pass project_dir or set CRYPTO_FILES."""
+
+
+def _base() -> str:
+    if not BASE:
+        raise RecordLocationError(
+            "no record directory: pass project_dir=<absolute path> or set "
+            "CRYPTO_FILES to an absolute, writable directory. If this host keeps "
+            "its own durable record, record results there instead.")
+    if not os.path.isabs(BASE):
+        raise RecordLocationError("CRYPTO_FILES must be an absolute path")
+    return BASE
 
 
 def _append(path: str, block: str) -> str:
@@ -88,13 +102,13 @@ def _append(path: str, block: str) -> str:
             fcntl.flock(fd, fcntl.LOCK_UN)
             os.close(fd)
     except OSError as exc:
-        raise GrantMissing(
+        raise RecordWriteError(
             "cannot append to %s (%s: %s).\n"
-            "This is almost certainly the host-path grant: it is per-project, "
-            "and this session may not hold read/write on %s. Ask the human to "
-            "grant it rather than continuing -- an unrecorded lesson is lost, "
-            "not deferred." % (path, type(exc).__name__, exc,
-                               os.path.dirname(path))) from exc
+            "The directory %s is not writable from this session. Choose a "
+            "writable record directory, or keep the record in the host's own "
+            "record or the conversation -- an unrecorded result is lost, not "
+            "deferred." % (path, type(exc).__name__, exc,
+                           os.path.dirname(path))) from exc
     return path
 
 
@@ -111,8 +125,8 @@ def _next_id(path: str, prefix: str) -> str:
     """Readable sequence plus a UUID, e.g. K25-<32 hex digits>.
 
     The old version returned a bare `K<max+1>`, and its docstring argued the
-    resulting collisions were cosmetic. They were not. Measured 2026-08-05 on
-    this workbench: EIGHT duplicate ids -- K35 through K41, and K85 -- produced
+    resulting collisions were cosmetic. They were not. Measured 2026-08-05 in
+    one investigation's records: EIGHT duplicate ids -- K35 through K41, and K85 -- produced
     by the parallel delegated tracks of one investigation. Entries cross-refer
     by id ("CORRECTION to K28", "Consequence of K27"), so a duplicate does not
     merely look untidy, it makes a reference ambiguous and silently points a
@@ -133,9 +147,9 @@ def _next_id(path: str, prefix: str) -> str:
 
 
 def _record_path(filename: str, project_dir: str = None) -> str:
-    """Use an explicit shared project directory, or the legacy global path."""
+    """Use an explicit shared project directory, or CRYPTO_FILES."""
     if project_dir is None:
-        return os.path.join(BASE, filename)
+        return os.path.join(_base(), filename)
     project_dir = os.fspath(project_dir)
     if not os.path.isabs(project_dir):
         raise ValueError("project_dir must be an absolute shared directory")
@@ -157,7 +171,7 @@ def prune(ids, path: str = None, dry_run: bool = True) -> dict:
 
     Run it when nothing else is writing. If it aborts, that is it working.
     """
-    path = path or KNOWLEDGE
+    path = path or _record_path("knowledge.md")
     want = set(ids)
     before_stat = os.stat(path)
     body = _read(path)
@@ -206,7 +220,7 @@ def duplicates(path: str = None, prefix: str = "K") -> list:
     that loses concurrent records. If you must renumber, do it as a deliberate
     maintenance step with nothing else running, not from inside a session.
     """
-    path = path or KNOWLEDGE
+    path = path or _record_path("knowledge.md")
     seen, dup = {}, []
     for m in re.findall(r"(?m)^## (%s\d+(?:-[0-9a-f]+)?)\b" % prefix, _read(path)):
         seen[m] = seen.get(m, 0) + 1
@@ -326,8 +340,8 @@ def add_entry_once(statement, *, claim, kind="entry", evidence=None, tags="",
         raise ValueError("claim must be one nonempty line")
     path = _record_path("knowledge.md", project_dir)
     lock_path = path + ".claim.lock"
-    os.makedirs(os.path.dirname(lock_path), exist_ok=True)
     try:
+        os.makedirs(os.path.dirname(lock_path), exist_ok=True)
         with open(lock_path, "a", encoding="utf-8") as lock:
             fcntl.flock(lock.fileno(), fcntl.LOCK_EX)
             existing = entry_id_for_claim(claim, project_dir=project_dir)
@@ -336,7 +350,7 @@ def add_entry_once(statement, *, claim, kind="entry", evidence=None, tags="",
             return add_entry(statement, kind=kind, evidence=evidence, tags=tags,
                              source=source, claim=claim, project_dir=project_dir)
     except OSError as exc:
-        raise GrantMissing(f"cannot lock knowledge claim {claim!r} at {lock_path}: {exc}") from exc
+        raise RecordWriteError(f"cannot lock knowledge claim {claim!r} at {lock_path}: {exc}") from exc
 
 
 def add_gap(question, looked_in, finding="", tags="", source="",
@@ -488,15 +502,18 @@ def _selftest():
           % ("PASS" if gate_ok else "FAIL"))
     print("  concurrent ids: %d/200 unique -> %s"
           % (len(set(ids)), "PASS" if ids_ok else "FAIL"))
-    print("  base path        : %s (exists=%s, writable=%s)"
-          % (BASE, os.path.isdir(BASE), os.access(BASE, os.W_OK)))
+    if BASE:
+        print("  CRYPTO_FILES     : %s (exists=%s, writable=%s)"
+              % (BASE, os.path.isdir(BASE), os.access(BASE, os.W_OK)))
+    else:
+        print("  CRYPTO_FILES     : unset (pass project_dir explicitly)")
     return 0 if (ok and provenance_ok and duplicate_claim_detected and once_ok
                  and gate_ok and ids_ok) else 1
 
 
-if __name__ == "__main__":
+def _cli() -> int:
     if "--selftest" in sys.argv:
-        sys.exit(_selftest())
+        return _selftest()
     if "--prune" in sys.argv:
         i = sys.argv.index("--prune")
         ids = [a for a in sys.argv[i + 1:] if not a.startswith("-")]
@@ -513,14 +530,22 @@ if __name__ == "__main__":
         if r.get("dry_run"):
             print("\n  DRY RUN. Add --apply to write. Run it when no session is "
                   "appending; it aborts rather than risk losing a concurrent write.")
-        sys.exit(0)
+        return 0
     if "--fsck" in sys.argv:
         bad = duplicates()
         if bad:
-            print("DUPLICATE ids in %s: %s" % (KNOWLEDGE, ", ".join(bad)))
+            print("DUPLICATE ids in %s: %s" % (_record_path("knowledge.md"), ", ".join(bad)))
             print("Cross-references to these are ambiguous. New ids carry a "
                   "random suffix and cannot collide; these predate that.")
         else:
-            print("no duplicate ids in %s" % KNOWLEDGE)
-        sys.exit(1 if bad else 0)
+            print("no duplicate ids in %s" % _record_path("knowledge.md"))
+        return 1 if bad else 0
     print(read_all()[:4000])
+    return 0
+
+
+if __name__ == "__main__":
+    try:
+        sys.exit(_cli())
+    except (RecordLocationError, RecordWriteError, OSError) as exc:
+        sys.exit("knowledge.py: %s" % exc)

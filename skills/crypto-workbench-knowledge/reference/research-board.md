@@ -4,24 +4,25 @@ Use this optional procedure when Python and persistent writable files are
 available for sustained DISCOVER work that develops and revisits
 cryptanalytic ideas. A single proposal or bounded mathematical question does
 not require a board loop. The board is a research record, not a plan, job
-queue, or replacement for host artifacts.
+queue, or replacement for the host's own record: where the host keeps a durable
+record of results, use that and not the board.
 
 ## Resolve the shared project and session
 
-`CRYPTO_FILES` names an absolute storage parent (default
-`~/crypto-workbench-files`). Give each project one stable, path-safe ID and
+`CRYPTO_FILES` names an absolute storage parent, or pass the base to
+`project_dir_for_id` explicitly; nothing is assumed when neither is given. Give each project one stable, path-safe ID and
 use `projects/<project-id>/` beneath that parent. Use the host's project ID
 when it exposes one. Otherwise create an opaque ID once, save that ID and
-absolute project path in a discoverable project artifact, and reuse them in
-later sessions. Never use a title alone or a delegated agent's current
+absolute project path in a discoverable project file, and reuse them in
+later sessions. Never use a title alone or a worker's current
 working directory as the identity.
 
-Use the host's root session ID for the session ledger. If the host does not
-expose one, generate an opaque ID once per root session and record it in that
-session's first artifact. The root agent resolves both IDs, ensures the shared
+Use the host's session ID for the session ledger. If the host does not
+expose one, generate an opaque ID once per main session and record it in that
+session's first saved file. The main agent resolves both IDs, ensures the shared
 directory is writable, and passes the absolute project directory, session
-ID, and relevant notebook paths to delegates in their task and
-a supported context field. Confirm shared access before passing paths. A child
+ID, and relevant notebook paths to workers in their task and the worker
+context the host supports. Confirm shared access before passing paths. A worker
 must not invent another project directory. Without workers, perform phases
 sequentially; without persistent Python storage, return an equivalent text record.
 
@@ -57,7 +58,7 @@ session's branch of work; triage starts from the project-wide snapshot.
 | Event | Required research content |
 |---|---|
 | `idea` | Globally unique `idea_id`, nonempty `title`, `builds_on` array of confirmed lemma IDs, initially `open` |
-| `outcome` | The delegated structured return exactly as received; its state is a proposal |
+| `outcome` | The worker's structured return exactly as received; its state is a proposal |
 | `finding` | `idea_id`, `dominated_by` SOTA row ID or null, `domination_justification` when null, and `sota_delta` |
 | `dismissal` | `idea_id`, `reason_class`, and nonempty `attempted` description |
 | `lemma_proposal` | Project-unique `lemma_id`, `source`, `hypotheses`, `applies_to`, `known_failures`, `restates`, and `locator` for literature |
@@ -71,9 +72,9 @@ session's branch of work; triage starts from the project-wide snapshot.
 Only a critic-accepted demonstrated obstruction may close a lane.
 The other four are soft dismissals and remain eligible for requeueing.
 An idea stays `open` until a critic promotes it to `resolved` or
-`obstructed`, or `split` with child idea IDs. A child's `outcome.state`
+`obstructed`, or `split` with child idea IDs. A worker's `outcome.state`
 alone never changes the board state. Split children enter the open queue.
-Before assigning a split child to a delegated frame, append its full `idea`
+Before assigning a split child to a worker, append its full `idea`
 event with `title` and `builds_on`; the open placeholder made by the split
 does not contain a research question. Use `ready_open_ideas` from the snapshot for
 dispatch only after that definition exists.
@@ -113,23 +114,26 @@ dismissals; if one of those items repeats `idea_id`, it must match. Keep the
 arrays empty when there is no item. Record a notebook fragment as the exact
 `notebook_append` string; it may be empty.
 
-## Capture child work mechanically
+## Capture worker returns mechanically
 
-For each delegated frame, include `idea_id`, a unique delegation ID, the
+For each worker task, include `idea_id`, a unique delegation ID, the
 absolute project directory, the relevant notebook path and prior critique
 references, the frozen target, and the expected return fields in the task.
-Put a concise version in the supported context field; do not assume the child
-inherits the conversation. Use structured output when supported, or request the
-same fields as JSON text. Do not invent a host schema API.
-The child returns `delegation_id`, `idea_id`, `state`, `findings[]`, `dismissals[]`,
+Put a concise version in the worker context the host supports; do not assume
+the worker inherits the conversation. Use a structured return when the host
+supports one, or request the same fields as JSON text. Do not invent a host
+schema API.
+The worker returns `delegation_id`, `idea_id`, `state`, `findings[]`, `dismissals[]`,
 `lemma_proposals[]`, and `notebook_append`, plus child idea IDs when split.
-The root appends the returned `structured_output` as one `outcome`
+The main agent appends the structured return as one `outcome`
 **without editing, filtering, or rewriting its fields**. Pass
-`provenance={"delegation_id": ..., "child_frame_id": ...}` to
-`board_append`; it lives in the event envelope, leaving the child payload
-unchanged. The provenance `delegation_id` must match the returned
-`delegation_id`. Keep any host `deviations` with the critique/trace evidence;
-never silently turn a missing structured return into empty arrays.
+`provenance={"delegation_id": ..., "worker_id": ...}` to `board_append`, with
+the host's identifier for the worker; it lives in the event envelope, leaving
+the payload unchanged. The provenance `delegation_id` must match the returned
+`delegation_id`. Older ledgers that used the key `child_frame_id` still read,
+and `board_append` accepts it as an alias. Keep any host-reported errors or
+omissions with the critique evidence; never silently turn a missing structured
+return into empty arrays.
 
 Call `board_append` on every collected return before curating it. A
 `BoardError` means validation failed before the append; preserve the original
@@ -139,11 +143,11 @@ delegation ID and exact payload before retrying. A
 `NotebookMaterializationError` means the outcome **was** appended; fix the
 filesystem issue and call `rebuild_notebook(project_dir, session_id, idea_id)`
 without appending it again. A separate critic pass interprets the raw
-returns and emits promotion or lane-closure events. The root writes
-`critique-<pass>.md` as a host artifact, appends one `critique` event linking
+returns and emits promotion or lane-closure events. The main agent saves
+`critique-<pass>.md` as a file or host document, appends one `critique` event linking
 that artifact to every idea reviewed in the pass, and uses its reference in
 any promotion or lane-closure events. This keeps the critic's objections
-visible for ideas that remain open. Do not let a child declare its own
+visible for ideas that remain open. Do not let a worker declare its own
 obstruction accepted.
 
 ```python
@@ -181,15 +185,15 @@ At the start of every pass:
    must never be an agent result.
 2. Carry forward every open idea with all its notebook paths and critique
    references. Read relevant prior critiques before dispatch, and include
-   those references in the task and `context_summary`. Requeue every soft
+   those references in the task and the worker context. Requeue every soft
    dismissal; lack of time, tools, context, or an idea is not a proof of
    obstruction.
 3. Generate new ideas only where that record shows a gap. Supply closed
    lanes as exclusions and name the confirmed lemmas each new idea builds
    on. There is no fixed idea count; the queue persists across sessions.
-4. Define every split child with an `idea` event, then execute one focused
-   frame per ready open idea. Give it the notebook path in `context_summary`
-   and the actual task. Append each return mechanically.
+4. Define every split child with an `idea` event, then run one focused
+   worker task per ready open idea. Give it the notebook path in the worker
+   context and the actual task. Append each return mechanically.
 5. Run a batch critic across the pass. Cross-check proposed closures,
    detect conflicting lemma IDs, lemmas implied by other lemmas or already in
    the literature,
@@ -200,11 +204,11 @@ At the start of every pass:
    user stops. Return the next unresolved ideas in the handoff. Preserve the board
    when stopping; a session ending does not itself resolve an idea.
 
-One or two open-brief inventor frames may join a pass. Give them confirmed
+One or two open-brief inventor passes may join a pass. Give them confirmed
 lemmas, published SOTA rows, and closed lanes. Ask for an object or invariant
 not yet tracked, excluding closed-lane families as their primary lens. They
 must state why an object fails before switching. They do not need the entire
-board, because their task is deliberately broader than a narrow idea frame.
+board, because their task is deliberately broader than a narrow idea task.
 
 Keep the user's target fixed. Calling it the “most-studied target” is not an
 obstruction. Retarget only with user approval. A proposed stopping reason
