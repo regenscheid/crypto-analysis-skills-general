@@ -15,9 +15,11 @@ Do not merely recommend skills or stop after writing a plan.
 ## Scope and mathematical work
 
 Use available project context and a short written or native plan when helpful.
-With Python and durable writable storage, optionally use `crypto-workbench-knowledge`
-and its research board. Otherwise retain the research record in the conversation
-and return a handoff for the user to keep. Do not assume automatic persistence.
+Check what this environment already keeps about the target before redoing it,
+and record results wherever it keeps durable results
+([where results are kept](reference/environment.md#plans-records-and-resumption));
+without durable storage, return a handoff for the user to keep. Do not assume
+automatic persistence.
 Physical-security investigations are outside this effort's scope.
 
 For an explicitly stated mathematical question, use

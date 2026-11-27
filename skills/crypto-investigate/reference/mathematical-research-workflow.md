@@ -79,7 +79,7 @@ When cryptanalytic research is delegated, the main agent must assess omissions,
 premature stopping, connections, and overlooked significance. Follow
 [orchestrator research judgment](delegated-cryptanalysis-review.md). This covers
 all delegated cryptanalysis; proof review is only one supporting component.
-A dedicated reviewer's correctness verdict does not establish sufficient depth
+An independent reviewer's correctness verdict does not establish sufficient depth
 or recognition of the findings' implications. Use its checks while supplying
 the main agent's own research judgment.
 

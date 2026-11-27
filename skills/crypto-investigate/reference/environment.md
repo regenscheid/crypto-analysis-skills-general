@@ -4,6 +4,14 @@ This catalog can be used in a web conversation, desktop assistant, or coding
 agent. Product names do not establish tool access. Inspect the current session's
 provided interfaces; do not call a guessed API to discover whether it exists.
 
+## Host notes
+
+When you know which host you are running in, read its note, and only that one:
+[Cryptography Atlas](hosts/cryptography-atlas.md), [Claude Code](hosts/claude-code.md),
+or [Codex](hosts/codex.md). Each maps the capabilities below to what that host
+offers and says what is absent. Where a host's own rules differ from this pack's,
+the host's rules win. On any other host, use the capability check below.
+
 ## Instruction and reference access
 
 Use the first available route for each relevant skill:
@@ -52,20 +60,31 @@ assistant's execution sandbox. Use [computation.md](computation.md) for material
 runs and [tools.md](tools.md) for source retrieval. Equivalent tools must meet the
 same exactness and evidence requirements.
 
-## Plans, storage, and resumption
+## Plans, records, and resumption
 
 For a multi-stage task, use an available plan interface or a short written plan.
 Follow the current host's authorization rules; the methods do not require a
 special plan-approval card. Update the plan when its premises change.
 
-Use an existing project record if accessible. `crypto-workbench-knowledge` is optional
-and its file helpers require Python, POSIX `fcntl` locking, and a writable project
-directory. Use text or host documents on unsupported systems. Choose an explicit stable
-project ID only when persistence is useful; reuse it across sessions. Do not
-assume a home-directory convention, artifact store, version ID, or grant model.
-A saved filename may overwrite a file or create a new version depending on the
-host. Retain exact paths, hashes, or host version IDs where available and confirm
-writes before claiming persistence. Never auto-publish results or schedule work.
+**Where results are kept is the host's business, not the pack's.** These skills
+are methods; they define no knowledge base or file layout of their own. Record
+results wherever this environment keeps durable results:
+
+- if the host has its own durable record of claims and evidence (a ledger,
+  project memory, documents), that record is the authority — use it and keep no
+  second record beside it;
+- otherwise (a plain repository checkout, a chat), use the project's own files
+  in a location the user names or the repository's working tree, or the
+  conversation.
+
+Whatever the place, the method is the same: check what is already established
+before redoing it; record each result with its evidence, its limits and what was
+not checked; say what remains open; and hand over enough for someone else to
+continue. Do not assume a home-directory convention, artifact store, version ID,
+or permission model. A saved filename may overwrite a file or create a new
+version depending on the host. Retain exact paths, hashes, or host version IDs
+where available and confirm writes before claiming persistence. Never
+auto-publish results or schedule work.
 
 Without durable storage, put the target, source versions, assumptions, evidence,
 findings, open obligations, and next step in the conversation. Label this a
@@ -82,8 +101,7 @@ When using workers, send the fixed target, assumptions, exact task, evidence,
 limits, and expected return. Do not assume shared memory, inherited tools,
 shared paths, role names, model settings, or child approval behavior. Supply
 files through the actual supported handoff route. Review returned evidence and
-research significance; an agent's verdict is not proof. The optional research
-board documents its own outcome fields without requiring any host SDK.
+research significance; an agent's verdict is not proof.
 
 ## Tool failure
 

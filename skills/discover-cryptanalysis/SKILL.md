@@ -90,42 +90,39 @@ when its first implementation costs more than it saves.
 
 ## Continue a discovery investigation across sessions
 
-When supported persistent Python storage is available and sustained discovery
-needs it, optionally use the [project research board](../crypto-workbench-knowledge/reference/research-board.md).
-Resolve one unique project directory beneath `CRYPTO_FILES`, read the shared
-`knowledge.md`, `gaps.md`, and `lessons.md`, and reduce all per-session
-ledgers before ideating. If workers are available and authorized, confirm their
-file access before handing off absolute paths; otherwise send the relevant
-content. Without storage, keep open ideas, evidence, and critiques in a text
-handoff. Develop and review ideas sequentially when delegation is unavailable.
+Before ideating, read what this environment already keeps about the target —
+the host's own record, the project's files, or a supplied handoff: open ideas,
+confirmed lemmas, recorded dead ends with their scope, and earlier critiques.
+If workers are available and authorized, send them the relevant content (or
+paths they are confirmed to share). Without durable storage, keep open ideas,
+evidence, and critiques in a text handoff. Develop and review ideas
+sequentially when delegation is unavailable.
 
-When using the optional board, apply the following loop. For a text record,
-keep the same research distinctions without requiring board calls or artifacts.
+Triage comes before ideation. For each open idea, read its earlier record and
+critiques. Requeue soft dismissals and exclude only critic-accepted closed
+lanes. Generate new ideas where the record shows a gap, naming the confirmed
+lemmas they build on. Work one focused task per open idea and keep every
+worker's return unchanged. A batch critic
+([orchestrator review](../crypto-investigate/reference/delegated-cryptanalysis-review.md#batch-critic-for-a-sustained-discovery-pass))
+classifies outcomes, checks closures, identifies restated lemmas, promotes
+independently checked results, and writes a critique that covers all reviewed
+ideas, including those still open. Record the critique and its decisions
+wherever this environment keeps durable results. Repeat until the requested
+scope is met, the current session limit is reached, or the user stops. Return
+unresolved ideas with their next steps; open research need not finish in one
+conversation.
 
-Triage comes before ideation. For each open idea, read its earlier notebook
-and critique artifacts. Requeue soft dismissals and exclude only
-critic-accepted closed lanes. Generate new ideas where the record shows a
-gap, naming the confirmed lemmas they build on. Execute one
-focused frame per open idea; append every structured return unchanged with
-`board_append`. A batch critic classifies outcomes, checks closures,
-identifies restated lemmas, promotes independently checked results, and
-writes a `critique-<pass>.md` artifact. Append a `critique` board event that
-links it to all reviewed ideas, including those still open. Repeat until the
-requested scope is met, the current session limit is reached, or the user stops.
-Return unresolved ideas with their next steps; open research need not finish in
-one conversation.
-
-When independent frames disagree about a promising idea or one dismisses it
+When independent workers disagree about a promising idea or one dismisses it
 while another finds a path forward, preserve both returns. Give the precise
-contested claim and evidence to a focused reconciliation frame before the
+contested claim and evidence to a focused reconciliation task before the
 critic accepts a closure. Do not turn disagreement into a majority vote or a
 single blended summary.
 
 When authorized workers or a sequential change of perspective would help, use
 [open-brief inventor](../crypto-investigate/reference/open-brief-inventor.md)
 phases when the current lenses are exhausted. Give them confirmed
-lemmas, published SOTA rows, and closed lanes as exclusions; do not make
-every narrow subagent reread the entire board. The target stays fixed:
+lemmas, published state-of-the-art comparisons, and closed lanes as exclusions;
+do not make every narrow worker reread the entire history. The target stays fixed:
 “most-studied target” is not an obstruction, and retargeting requires user
 approval. Dismissals must state whether the obstacle was demonstrated or
 only a lack of idea, time, tools, or context.
@@ -153,9 +150,9 @@ A correctness review alone does not establish the depth of the research.
 
 Return the formulation, known ingredients reused, mathematics produced, scope,
 remaining obligations, and why the next inference matters. Distinguish the end
-of this work episode from resolution of the overall research question. Use
-`crypto-workbench-knowledge` for the project research record and the host's plan and
-artifact facilities for execution and resumption.
+of this work episode from resolution of the overall research question. Record
+the result wherever this environment keeps durable results, and use the host's
+plan and artifact facilities for execution and resumption.
 
 Before originality language, read
 [contribution assessment](../crypto-investigate/reference/contribution-assessment.md).

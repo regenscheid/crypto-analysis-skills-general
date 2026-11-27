@@ -2,7 +2,7 @@
 
 Apply this reference when independent workers are available and authorized.
 Without them, use the same synthesis questions across sequential work and label
-self-checks accurately. The optional board requires persistent Python storage.
+self-checks accurately.
 
 Delegation supplies research inputs; it does not outsource the main agent's
 research judgment. The main agent must assess what delegated cryptanalysis
@@ -11,7 +11,7 @@ source work, modeling, computations, mathematical development, and assessments.
 It matters especially when the orchestrator has a more capable model or broader
 context than its subagents. Do not assume those capabilities from role names.
 
-A dedicated reviewer can check whether submitted work is correct. A favorable
+An independent reviewer, when available, can check whether submitted work is correct. A favorable
 review does not establish that the right questions were asked, important
 possibilities were considered, or the significance of the findings was understood.
 The orchestrator's primary contribution here is intellectual synthesis and
@@ -48,7 +48,7 @@ it matters. Report when that assessment remains incomplete.
 
 ## Use the reviewer without repeating its job
 
-Use the dedicated reviewer's findings and compatible checked inputs. Reopen a
+Use an independent reviewer's findings and compatible checked inputs. Reopen a
 correctness question for a specific gap, changed dependency, conflicting evidence,
 or an explicit verification assignment, under [paper use](paper-use-and-verification.md).
 Do not repeat every baseline calculation or proof as the default response to a
@@ -70,65 +70,48 @@ consequence can remain a routine application or elementary corollary. Conversely
 a subagent's “routine” label does not establish that the finding is unimportant.
 Recognizing a routine deduction does not require an exhaustive literature survey.
 
-## Batch critic for a project research board
+## Batch critic for a sustained discovery pass
 
-For a sustained DISCOVER pass, review the whole batch of raw delegated
-outcomes before the orchestrator changes idea states. Read the project-wide
-[research board](../../crypto-workbench-knowledge/reference/research-board.md),
-the relevant per-idea notebooks, the fixed target and assumptions, all
-returns from the pass, and the published SOTA rows. Do not edit the raw
-`outcome` events. Produce `critique-<pass>.md` with a decision for every
-idea and an explicit reason for any unchanged open state.
+For a sustained DISCOVER pass, review the whole batch of raw worker returns
+before changing any idea's state. Read the fixed target and assumptions, the
+record of each idea so far, all returns from the pass, and the published
+state-of-the-art comparisons. Keep the raw returns unchanged; write a critique
+with a decision for every idea and an explicit reason for any unchanged open
+state.
 
-Classify each proposed dismissal by its stated reason class. Confirm a
-`demonstrated_obstruction` only if the evidence addresses the exact lane
-and its hypotheses; one failed representation, a famous target, missing
-tools, or elapsed time cannot close a wider lane. Requeue every soft
-dismissal. Cross-check whether findings from different frames conflict or
-jointly imply a new consequence. Compare empirical and quantitative claims
-with the published SOTA rows without treating agent results as catalog
-records. For a claimed speedup, include the work and memory added by the
-new transform, representation, or preprocessing; an eliminated guess or
+Classify each proposed dismissal by its stated reason. Confirm a demonstrated
+obstruction only if the evidence addresses the exact lane and its hypotheses;
+one failed representation, a famous target, missing tools, or elapsed time
+cannot close a wider lane. Requeue every soft dismissal (a lack of idea, time,
+tools, or context). Cross-check whether findings from different workers conflict
+or jointly imply a new consequence. Compare empirical and quantitative claims
+with the published comparisons without treating worker results as catalog
+records. For a claimed speedup, include the work and memory added by the new
+transform, representation, or preprocessing; an eliminated guess or
 lower-dimensional subproblem is not by itself a net improvement.
 
-If frames disagree about a potentially useful mechanism, identify the
-smallest precise disputed step and obtain a focused independent check before
-closing it. Retain the original reports, including an early dismissal that a
-later frame contests. Reconciliation may be a new delegated frame or a root
-agent check; direct child-to-child messaging is not required.
+If workers disagree about a potentially useful mechanism, identify the smallest
+precise disputed step and obtain a focused independent check before closing it.
+Retain the original reports, including an early dismissal that a later worker
+contests. Reconciliation may be a new focused task or a check by the main agent;
+direct worker-to-worker messaging is not required.
 
-For every lemma proposal, check its hypotheses, target applicability,
-known failures, exact literature locator when sourced from a paper, and
-`restates` links. Detect when one proposed lemma follows from another or
-restates a known result. Resolve `lemma_proposal_conflicts` before treating an
-ID as one result. A new derived lemma requires an independent check
-of the fixed candidate before promotion to project `knowledge.md`; a
-fresh explanation by the same author is not independent. Record the
-checker and exact artifact in the promotion evidence. Keep both the original
-`derivation` and the `independent-check` evidence items. Before adding the
-lemma to `knowledge.md`, inspect `entry_id_for_claim(lemma_id,
-project_dir=project_dir)`, then call `add_entry_once(...,
-claim=lemma_id, project_dir=project_dir)` and retain its returned ID. The
-helper serializes the lookup and append across cooperating sessions. Check
-that any reused entry states the same result and evidence. The later board
-`promote` event must carry that `knowledge_id`; the event alone does not
-write durable knowledge.
-
-After the critique is saved, the orchestrator appends one `critique` event
-with its artifact reference, pass ID, summary, and every reviewed idea ID,
-including open ideas. On later passes, triage reads those critique references
-with the idea notebooks and passes relevant objections to the next frame.
-The orchestrator then appends the critic-approved
-`promote` and `close_lane` events with the critique reference and the exact
-excluded scope for each closed lane. For an accepted split, it must append
-full child `idea` events with `title` and `builds_on` before assigning those
-children to new frames. The split event creates open placeholders, not
-complete research questions. The critic may recommend those events; it does
-not rewrite earlier board lines or silently convert a child-reported state
-into a terminal state.
+For every proposed lemma, check its hypotheses, target applicability, known
+failures, exact literature locator when sourced from a paper, and what it
+restates. Detect when one proposed lemma follows from another or restates a known
+result, and resolve conflicting proposals before treating an ID as one result. A
+new derived lemma requires an independent check of the fixed candidate before it
+is recorded as established; a fresh explanation by the same author is not
+independent. Keep both the original `derivation` and the `independent-check`
+evidence, naming the checker and the exact artifact. Record promotions, closed
+lanes with their exact excluded scope, and accepted splits (each child idea with
+a title and what it builds on) wherever this environment keeps durable results,
+so a later pass starts from the critique rather than from the raw returns. The
+critic may recommend these decisions; it does not rewrite earlier returns or
+silently convert a worker-reported state into a terminal state.
 
 At a meaningful synthesis boundary, explain the material omissions, connections,
 or implications identified, and how they changed the research conclusion or
 remaining question. If none were justified, say so without manufacturing novelty
-or claiming that no possibilities remain. Use the host's artifacts and resource
-controls, and the project research board for sustained discovery.
+or claiming that no possibilities remain. Use the host's artifacts, record, and resource
+controls for sustained discovery.

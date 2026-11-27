@@ -60,8 +60,8 @@ named cost model and applicable scaling evidence.
 
 Keep the exact script, input hashes, seed, Magma version, resource configuration,
 raw output, completion check, and mathematical sanity checks with each material
-result. State what the computation establishes and its limits. With persistent
-storage, optionally use `crypto-workbench-knowledge`; otherwise return the evidence and
-unsaved research handoff in the conversation. If Magma is unavailable, identify
+result. State what the computation establishes and its limits. Record it
+wherever this environment keeps durable results; otherwise return the evidence
+and an unsaved research handoff in the conversation. If Magma is unavailable, identify
 a suitable alternative or leave the exact obligation `BLOCKED`; an unexecuted
 script is not a computational result.

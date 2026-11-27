@@ -7,10 +7,10 @@ license: Apache-2.0
 # Check one paper claim
 
 Use [the environment guide](../crypto-investigate/reference/environment.md) to read
-related instructions through a native loader, files, or supplied text. Tool names
-and Python record-keeping examples below apply only when those capabilities are
-available. Without them, analyze the inspected evidence and keep a text record;
-label missing source retrieval, computation, or independent checks explicitly.
+related instructions through a native loader, files, or supplied text, and
+[the retrieval reference](../crypto-investigate/reference/tools.md) for sources.
+Without retrieval or execution, analyze the inspected evidence and label missing
+source retrieval, computation, or independent checks explicitly.
 
 
 When asked to check whether a specified claim is correct, start with
@@ -31,7 +31,7 @@ Keep these questions distinct:
 
 Finding the statement in a paper establishes its attribution. It does not
 establish the statement's correctness. Likewise, a completed command or a
-retrieved knowledge entry is provenance; inspect what that evidence actually
+retrieved earlier record is provenance; inspect what that evidence actually
 supports. For a correctness verdict, check the argument, the relevant
 computation, or a prior independent check that covers the same claim and scope.
 An incomplete proof is unresolved unless a valid contradiction refutes the
@@ -99,7 +99,7 @@ finding, and it is the cheapest one available.
 |---|---|
 | `[SOURCE]` | an exact source statement was inspected — cite revision and locator, identifying reused inspection when applicable |
 | `[TOOL]` | a computation has an identified run and output — cite invocation, inputs, and whether it was rerun here |
-| `[KB]` | retrieved from the knowledge base or ledger — cite the entry id |
+| `[RECORD]` | retrieved from this environment's durable record of earlier results — cite its identifier or location |
 | `[DERIVATION]` | a new argument was worked this session — cite the candidate artifact and state its assumptions; this is candidate provenance, not independent support |
 | `[RECALL]` | asserted from knowledge, with no retrieval and no computation |
 
@@ -124,7 +124,7 @@ route to what the claim rests on:
 | the claim rests on | settle it by |
 |---|---|
 | a computation someone ran | **reproduce or independently reconstruct the relevant calculation** — compare its inputs, model, and output with the published claim |
-| what a document says | **open the document** — `e-print-mcp_eprint_fulltext`, `nist-mcp_csrc_fulltext`, the body not the abstract |
+| what a document says | **open the document** — the body at the relevant page, not the abstract ([retrieval order](../crypto-investigate/reference/tools.md#look-in-this-order)) |
 | a definition being met | **discharge the obligations** — the `crypto-analyze-paper` skill's `reference/` set lists them per notion |
 | an attack working | **hand it to `crypto-validate-attack`** — which decides whether analysis or code settles it |
 | a cost nobody has computed | **hand it to `crypto-derive-cost`** |
@@ -258,37 +258,24 @@ claims settled       n of N
 **The list is the deliverable**, not the rate — a single unsupported parameter set
 matters more than a high percentage.
 
-## Step 6 — Write back
+## Step 6 — Record the result
 
 Facts that had to be retrieved once should not be retrieved again from scratch.
-Follow [crypto-workbench-knowledge's project setup](../crypto-workbench-knowledge/SKILL.md#read-it-first)
-to import its helpers and resolve the stable `project_dir` first.
+Record wherever this environment keeps durable results (the host's record, the
+project's files, or the conversation's handoff): the checked claim under its
+stated assumptions, the verdict, the evidence with locators — for a new
+derivation both the original argument (`derivation`) and the separate check
+(`independent-check`, naming its route and what it checked) — and what was not
+checked. For a question not settled, record what was checked and why it remains
+open.
 
-```python
-from knowledge import add_entry, add_gap
-add_entry(statement="<checked claim under its stated assumptions>", kind="derived result",
-          evidence=[
-              {"kind": "derivation", "ref": "<discovery artifact>#C2",
-               "note": "Original argument, assumptions, and notation map."},
-              {"kind": "independent-check", "ref": "<verifier report>",
-               "note": "Fresh proof audit checked C2 without repairing it."},
-          ], project_dir=project_dir)
-add_gap(question="<question not settled>", looked_in=["ePrint", "NIST"],
-        finding="<what was checked and why the question remains open>",
-        project_dir=project_dir)
-```
+Name the **channels** searched for a negative. "Searched ePrint" and "searched
+ePrint, the NIST publications, and the web" are different findings, and each
+supports only a negative about its stated search scope.
 
-See `crypto-workbench-knowledge`. These **append** — never rewrite those files, and
-never reach for `edit_file` to add a record: concurrent writers lose entries
-that way (measured, 1193 of 1200).
-
-`looked_in` is a list of **channels**, not a mood. "Searched ePrint" and "searched
-ePrint, the NIST corpus, and the web" are different findings,
-and each supports only a negative about its stated search scope.
-
-Do not write a derivation-only candidate to durable knowledge. Keep it in the
-live plan and the versioned discovery artifact until the `independent-check`
-record exists. Ordinary sourced facts retain their existing evidence rules; this
+Do not record a derivation-only candidate as an established result. Keep it in
+the live plan and the discovery record as a candidate until the
+`independent-check` evidence exists. Ordinary sourced facts retain their existing evidence rules; this
 extra gate applies when the claimed result is newly derived.
 
 ## What this deliberately does not do
@@ -299,7 +286,7 @@ extra gate applies when the claimed result is newly derived.
 - **It checks reasoning when correctness depends on it.** A well-sourced claim
   can still be false. A broader review of the analysis belongs to `crypto-review`.
 - **It does not promote a derivation by repeating it.** New theoretical work
-  needs a genuinely separate checking route before it becomes durable knowledge.
+  needs a genuinely separate checking route before it is recorded as established.
 - **It distinguishes retrieval from verification.** Retrieval can settle an
   attribution or supply compatible prior verification. A paper's assertion
   alone does not settle an assigned correctness check of its reasoning.

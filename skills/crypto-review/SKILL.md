@@ -43,12 +43,11 @@ Use compatible prior inspection with identifiable provenance when the statement,
 revision, and scope match. Reopen the affected source for a changed dependency,
 conflicting evidence, suspected attribution error, or an explicit fresh audit.
 Follow [paper use and verification](../crypto-investigate/reference/paper-use-and-verification.md).
-When fresh retrieval is needed, use available source connectors; a cited paper
-is a checkable attribution:
-
-Find preprints, standards, exact document revisions, and official comments using
-available connectors, web tools, or supplied documents. No particular corpus or
-connector size is assumed.
+When fresh retrieval is needed, follow
+[the retrieval reference](../crypto-investigate/reference/tools.md); a cited paper
+is a checkable attribution. Find preprints, standards, exact document revisions,
+and official comments through the routes the session offers or the supplied
+documents. No particular corpus or service is assumed.
 
 - **Does the reference resolve?** Inspect the returned record. A failed lookup
   leaves the reference unresolved through that route; it does not establish
@@ -126,7 +125,7 @@ Both directions of this inference are unsafe:
 - A non-field ring may still **contain** an exploitable field: `M_l(F_q)` embeds
   `F_{q^l}`, and SNOVA is attacked through exactly that (ePrint 2024/1374). So
   "it is a matrix ring, not a field, therefore safe" is a non-sequitur — this
-  exact inference was made on this project and later refuted.
+  exact inference has been made in a real analysis and later refuted.
 
 Also distinguish a **descent** from a **lift**. LUOV's attack descends to a
 pre-existing subfield the designer put there; SNOVA's manufactures an extension
@@ -173,7 +172,7 @@ still invalid. Five steps that look like reasoning and are not:
 They are listed inline because **the current reviewer may have no way to open a file**, and
 these are the rows it most needs. `reference/invalid-inferences.md` carries the
 full treatment, why the first one recurs here specifically, and the three rows
-deliberately left out as outside this workbench's scope.
+deliberately left out as outside this pack's scope.
 
 ## Parameter provenance
 
@@ -204,7 +203,7 @@ Inspect the available computational environment and tool versions through
 is installed, and do not promise a runtime before measuring a representative
 unit of work.
 
-Two cautions from this project's own history. The estimator's runtime **roughly
+Two cautions from earlier runs. The estimator's runtime **roughly
 doubles every +12 in m** for UOV — measured in one parallel sweep, 6 s at m=32
 and 317 s at m=80 (solo, without contention, the same points are 4 s and 291 s;
 quote one condition or the other, not a mixture) — so sweep in parallel and
