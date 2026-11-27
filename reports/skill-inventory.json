@@ -1,9 +1,9 @@
 {
-  "description_words": 4853,
+  "description_words": 4860,
   "errors": 0,
   "portability_errors": 0,
   "schema_version": 1,
-  "skill_body_lines": 13260,
+  "skill_body_lines": 13205,
   "skill_count": 162,
   "skills": [
     {
@@ -154,7 +154,7 @@
       "description": "Work out whether a paper proves what it claims \u2014 separate the informal claim from the theorem, name the notion and the model, run the mismatch checklist, carry the reduction's loss into the concrete parameters, and say which claims are worth settling. Use when asked to audit whether a paper or security argument supports its claims. Reading or applying a published result alone does not assign this audit.",
       "description_words": 68,
       "domain": "core",
-      "lines": 203,
+      "lines": 187,
       "missing_relative_links": [],
       "name": "crypto-analyze-paper"
     },
@@ -170,7 +170,7 @@
       "description": "Produce a concrete cost for a target nothing has costed yet \u2014 search what is already known, find and read a reduction to a problem that IS costed, instantiate it with real parameters, verify at toy scale, and write the result back as an entry or a gap. Use when an attack's structure is understood but its cost cannot be obtained.",
       "description_words": 61,
       "domain": "core",
-      "lines": 221,
+      "lines": 193,
       "missing_relative_links": [],
       "name": "crypto-derive-cost"
     },
@@ -178,15 +178,19 @@
       "description": "Conduct cryptographic security investigations using relevant cryptanalysis and formal-method procedures available as native skills, files, or supplied text. Use whenever asked to analyze a scheme or paper, find issues or weaknesses, search for attacks, reproduce or validate a result, audit a security claim or proof, compare parameters, or resume cryptographic research. Infer the requested task from its intent; individual words such as \u201cnew\u201d do not by themselves select a mode.",
       "description_words": 70,
       "domain": "core",
-      "lines": 240,
-      "missing_relative_links": [],
+      "lines": 244,
+      "missing_relative_links": [
+        "reference/environment.md -> hosts/cryptography-atlas.md",
+        "reference/environment.md -> hosts/claude-code.md",
+        "reference/environment.md -> hosts/codex.md"
+      ],
       "name": "crypto-investigate"
     },
     {
       "description": "Use an available licensed Magma installation for exact finite-field, polynomial, group, elliptic-curve, or linear-algebra computations supporting cryptanalysis. Check capability and provenance first; if Magma is unavailable, use a suitable available alternative or report the computation as blocked.",
       "description_words": 37,
       "domain": "core",
-      "lines": 67,
+      "lines": 68,
       "missing_relative_links": [],
       "name": "crypto-magma"
     },
@@ -194,7 +198,7 @@
       "description": "Review a supplied cryptographic analysis for cost-model, precondition, security-notion, parameter-provenance, and citation defects. Use for an assigned analysis review; merely citing or applying a paper does not require a fresh citation or paper audit.",
       "description_words": 34,
       "domain": "core",
-      "lines": 227,
+      "lines": 226,
       "missing_relative_links": [],
       "name": "crypto-review"
     },
@@ -202,7 +206,7 @@
       "description": "Establish whether a claimed attack actually works \u2014 state its preconditions, decide whether analysis or an implementation settles the question, then do that one, and report what the result does and does not imply at full parameters. Use when a paper, a post, or an earlier session asserts an attack and the question is whether to believe it.",
       "description_words": 58,
       "domain": "core",
-      "lines": 258,
+      "lines": 243,
       "missing_relative_links": [],
       "name": "crypto-validate-attack"
     },
@@ -210,15 +214,15 @@
       "description": "Check whether one specified claim in a paper, report, or security argument is correct. Audit its reasoning or reproduce the relevant evidence and report supported, refuted, or unresolved. Use for an assigned claim-verification task; merely citing or applying a published result does not require auditing that result.",
       "description_words": 47,
       "domain": "core",
-      "lines": 312,
+      "lines": 300,
       "missing_relative_links": [],
       "name": "crypto-verify-claim"
     },
     {
-      "description": "Read and extend project research notes, evidence, gaps, and lessons across cryptographic investigations. Use when prior work should be reused or a result should be retained. Python file helpers and an append-only research board are optional; without persistent storage, return a text handoff.",
-      "description_words": 43,
+      "description": "Keep the durable research record (results with evidence, search gaps, lessons, an idea board) where the host has none of its own, such as Claude Code, Codex or a chat with files. Use when a skill says to record or reuse results; a host's own ledger or memory comes first.",
+      "description_words": 50,
       "domain": "core",
-      "lines": 102,
+      "lines": 115,
       "missing_relative_links": [],
       "name": "crypto-workbench-knowledge"
     },
@@ -290,7 +294,7 @@
       "description": "Develop mathematical cryptanalysis questions, research proposals, and scoped results about specified cryptographic constructions, assumptions, or parameters. Use for human-directed standards research, unexplored mathematical questions, proposed extensions of known results, or continued development of a selected question. Distinguish a requested proposal from a request to carry out the mathematical work.",
       "description_words": 49,
       "domain": "core",
-      "lines": 169,
+      "lines": 168,
       "missing_relative_links": [],
       "name": "discover-cryptanalysis"
     },
@@ -1309,5 +1313,5 @@
     "public-key": 59,
     "symmetric": 29
   },
-  "warnings": 0
+  "warnings": 3
 }
