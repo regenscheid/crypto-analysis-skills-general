@@ -46,7 +46,9 @@ So every notion below is written as:
 
 ## Sources
 
-All confirmed present in the local ePrint corpus, authors verified against it.
+Each was checked against its ePrint record (identifier, title, authors) when
+this reference was written; recheck an entry against the archive before quoting
+it.
 
 | ePrint | Paper |
 |---|---|
@@ -58,8 +60,8 @@ All confirmed present in the local ePrint corpus, authors verified against it.
 | [2017/604](https://eprint.iacr.org/2017/604) | Hofheinz, Hövelmanns, Kiltz — *A Modular Analysis of the Fujisaki-Okamoto Transformation* |
 | [2023/792](https://eprint.iacr.org/2023/792) | Ge, Shan, Xue — *On the Fujisaki-Okamoto transform: from Classical CCA Security to Quantum CCA Security* |
 
-NIST: FIPS 203/204/205 and IR 8413 via the `nist` connector; the category ladder
-from the 2016 PQC Call for Proposals, quoted above.
+NIST: FIPS 203/204/205 and IR 8413, read from NIST's publications; the category
+ladder from the 2016 PQC Call for Proposals, quoted above.
 
 **Still a gap:** a primary citation for the SUF ⟹ EUF separation in
 [`signatures.md`](signatures.md). The

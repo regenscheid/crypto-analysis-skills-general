@@ -12,14 +12,17 @@
 *security category* only as "a number associated with the security strength of a
 post-quantum cryptographic algorithm, as specified by NIST (see [7])" — it
 defers. The ladder itself is in the **PQC Call for Proposals** (Dec 2016), which
-is a project document, **not in the NIST connector's index** (that covers the 924
-numbered publications). It is fetchable directly:
+is a project document rather than a numbered publication, so a search tool over
+NIST's numbered publications may not hold it. It is fetchable directly:
 `csrc.nist.gov/CSRC/media/Projects/Post-Quantum-Cryptography/documents/call-for-proposals-final-dec-2016.pdf`
 
-The ladder is also available **in-connector** via **SP 800-57 Part 1 Rev. 6 ipd**
-(verified: 578,660 chars, carries the category descriptions and nine mentions of
-MAXDEPTH). Prefer it for routine lookups; go to the CFP for the two things
-Rev. 6 drops — the "all metrics" requirement and the ordering footnote.
+The round status reports (for example IR 8413) restate the categories, and the
+initial public draft of SP 800-57 Part 1 Rev. 6 carried the category
+descriptions and MAXDEPTH. Whether a NIST tool holds a given edition is a
+question for the tool: resolve it by designation (for example
+`nist_get_publication(query="IR 8413")`), and ask its corpus status for coverage,
+rather than assuming. Go to the CFP itself for the "all metrics" requirement and
+the ordering footnote.
 
 Verbatim from that document — each category is "any attack that breaks the
 relevant security definition must require computational resources comparable to
@@ -50,12 +53,9 @@ or greater than those required for":
    claim as a claim, not a fact.
 4. **"Security category" is overloaded inside NIST.** FIPS 199 uses it for
    *information-system impact levels* (low/moderate/high), unrelated to PQC
-   strength, and the connector surfaces the information-system sense first —
-   `"security category"` returns SP 800-60 and ITL Bulletins, not the PQC
-   ladder. (An earlier note here cited FIPS 199 as the top hit; that was an
-   artifact of querying `"security categor"`, which FTS5 treats as a literal
-   token rather than a prefix. The collision is real; that evidence for it was
-   not.)
+   strength, and a search for `"security category"` can surface that sense
+   (SP 800-60, FIPS 199, ITL Bulletins) before the PQC ladder. Name the PQC
+   context in the query, or go to the documents above directly.
 
 **Obligations for any category claim.**
 - [ ] Category number stated, and which parameter set it applies to

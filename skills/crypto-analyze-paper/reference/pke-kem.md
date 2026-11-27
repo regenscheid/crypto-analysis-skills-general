@@ -56,7 +56,7 @@ N; do not report "secure" when the observed advantage is merely small.
 decryption oracle. For KEMs specifically, the highest-yield check is
 **decryption-failure induction**: craft ciphertexts near the failure boundary and
 count failures against the claimed failure probability. ML-KEM's claimed rates
-are 2⁻¹³⁸·⁸ / 2⁻¹⁶⁴·⁸ / 2⁻¹⁷⁴·⁸ (FIPS 203, retrievable via `nist-mcp_csrc_fulltext`).
+are 2⁻¹³⁸·⁸ / 2⁻¹⁶⁴·⁸ / 2⁻¹⁷⁴·⁸ (FIPS 203, Table 1; read it from the standard itself).
 
 ### IND-CCA for KEMs — stated separately, because it is not PKE
 

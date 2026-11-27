@@ -187,9 +187,9 @@ attack to UOV and its variants.
 
 ## Linear Equivalence — `LEEstimator`
 
-`Leon`, `Beullens`, `BBPS`. Underlies **LESS**. Note this reference set and the ePrint
-connector both record that "LESS" collides with the English word in search, which
-is why the corpus expands it as a domain acronym rather than a plain token.
+`Leon`, `Beullens`, `BBPS`. Underlies **LESS**. "LESS" collides with the English
+word in keyword search: query "LESS signature" or "linear equivalence signature"
+and check that the hits are about the scheme.
 
 Both enumerated from the API; **costs not measured here.**
 
