@@ -36,14 +36,19 @@ claim, `crypto-validate-attack` for a specific attack, `crypto-analyze-scheme` f
 `discover-cryptanalysis` and `mathematical-research-development` for research,
 and `crypto-derive-cost` for a concrete cost. Domain entry points are
 `symmetric-cryptanalysis-orchestrator`, `public-key-cryptanalysis-orchestrator`,
-and, only for a justified machine-checked task, `formal-methods-router`.
-Names are method references; they do not imply that the corresponding skill is
-installed or that another agent must be started.
+and, only for a justified machine-checked task, `formal-methods-router`; each
+lists its specialist skills in `references/skill-family.md`. Use `crypto-review`
+to review a supplied analysis, `crypto-magma` for computations in Magma, and
+`crypto-workbench-knowledge` to keep results where the host has no record of
+its own. `config/skill-registry.json` lists every skill. Names are method
+references; they do not imply that the corresponding skill is installed or that
+another agent must be started.
 
 Work sequentially unless independent workers are available and authorized.
 A separate self-check is useful but is not independent-agent verification.
-Use existing project notes when accessible. If files cannot be saved durably,
-return a compact handoff containing the target, assumptions, sources inspected,
+Check what is already established before redoing it. Keep results in the
+host's own record if it has one, otherwise with `crypto-workbench-knowledge`.
+If files cannot be saved durably, return a compact handoff containing the target, assumptions, sources inspected,
 results, open questions, and next step. The user can supply that handoff to a
 later conversation. Do not claim to have saved or scheduled anything unless the
 host confirms it.

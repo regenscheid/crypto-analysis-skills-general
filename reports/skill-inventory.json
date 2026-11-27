@@ -3,7 +3,7 @@
   "errors": 0,
   "portability_errors": 0,
   "schema_version": 1,
-  "skill_body_lines": 13151,
+  "skill_body_lines": 13191,
   "skill_count": 162,
   "skills": [
     {
@@ -410,7 +410,7 @@
       "description": "Chooses whether formalization is worthwhile and, when it is, routes the task to an appropriate proof, certificate, implementation, protocol, or witness workflow without imposing formal methods on ordinary cryptanalysis.",
       "description_words": 29,
       "domain": "formal",
-      "lines": 97,
+      "lines": 105,
       "missing_relative_links": [],
       "name": "formal-methods-router"
     },
@@ -954,7 +954,7 @@
       "description": "Route a public-key evaluation (signature, KEM, PKE, key agreement, hybrid) through the security-model, structure, hard-problem, implementation, proof, cost, transfer and reproduction skills with one evidence state. Use when starting or resuming such an evaluation.",
       "description_words": 34,
       "domain": "public-key",
-      "lines": 86,
+      "lines": 102,
       "missing_relative_links": [],
       "name": "public-key-cryptanalysis-orchestrator"
     },
@@ -1226,7 +1226,7 @@
       "description": "Route a symmetric-cryptanalysis evaluation (primitive, mode, construction, paper, attack claim or implementation) to its specialist skills and keep one claim and evidence state. Use at the start of such a project and when the target, model or evidence changes.",
       "description_words": 39,
       "domain": "symmetric",
-      "lines": 110,
+      "lines": 126,
       "missing_relative_links": [],
       "name": "symmetric-cryptanalysis-orchestrator"
     },
