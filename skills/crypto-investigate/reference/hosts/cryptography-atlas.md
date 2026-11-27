@@ -3,7 +3,7 @@ host: cryptography-atlas
 checked: 2026-11-27
 source: the platform's own code and docs (skills, delegation, plan, ledger, memory and job tools)
 tools: [plan_create, plan_activate, plan_progress, plan_revise, plan_finish, plan_read, track_read, track_progress, delegate, wait_delegations, delegation_status, cancel_delegation, accept_delegation, message_child, message_parent, submit_result, ask_user, ledger_change, ledger_read, ledger_import, memory_propose, memory_list, document_create, document_patch, document_read, write_file, read_file, publish, find_artifacts, python, sage, shell, start_job, wait_jobs, mcp_tools, load_tools, skills, find_papers, read_paper, search_in_paper]
-terms: [literature-search, computation, delegating-work, recording-results, crypto-workbench-knowledge]
+terms: [literature-search, computation, delegating-work, recording-results, crypto-workbench-knowledge, search, load, read]
 ---
 
 # Host note: Cryptography Atlas

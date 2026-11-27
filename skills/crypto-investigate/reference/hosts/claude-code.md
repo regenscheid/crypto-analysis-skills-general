@@ -11,7 +11,7 @@ sources:
   - https://code.claude.com/docs/en/mcp
   - https://code.claude.com/docs/en/memory
 tools: [Skill, Agent, TaskCreate, TaskUpdate, TaskList, EnterPlanMode, ExitPlanMode, AskUserQuestion, ToolSearch]
-terms: [crypto-workbench-knowledge, crypto-investigate]
+terms: [crypto-workbench-knowledge, crypto-investigate, CRYPTO_FILES, name, description, when_to_use, source, starter, symmetric, formal]
 ---
 
 # Host note: Claude Code

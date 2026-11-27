@@ -11,7 +11,7 @@ sources:
   - https://learn.chatgpt.com/docs/extend/mcp
   - https://learn.chatgpt.com/docs/agent-configuration/agents-md
 tools: []
-terms: [crypto-workbench-knowledge, crypto-investigate, skill-installer]
+terms: [crypto-workbench-knowledge, crypto-investigate, skill-installer, CRYPTO_FILES, name, description, path, project_doc_max_bytes, starter, symmetric, formal]
 ---
 
 # Host note: Codex
