@@ -15,10 +15,12 @@ Do not merely recommend skills or stop after writing a plan.
 ## Scope and mathematical work
 
 Use available project context and a short written or native plan when helpful.
-Check what this environment already keeps about the target before redoing it,
-and record results wherever it keeps durable results
-([where results are kept](reference/environment.md#plans-records-and-resumption));
-without durable storage, return a handoff for the user to keep. Do not assume
+Check what is already established about the target before redoing it, and
+record each result with its evidence, limits, and what was not checked.
+Use the host's own record of results if it has one; otherwise follow
+`crypto-workbench-knowledge` (without durable storage, a handoff in the
+conversation).
+See [where results are kept](reference/environment.md#plans-records-and-resumption). Do not assume
 automatic persistence.
 Physical-security investigations are outside this effort's scope.
 

@@ -54,9 +54,10 @@ host's capabilities and permissions. Follow
 
 ## Step 0 — Check what is already established
 
-Look at whatever this environment keeps as durable results — the host's own
-record, the project's files, or a supplied handoff — for an earlier check of
-this attack or a recorded dead end. Then look for the published attack through
+Look for an earlier check of this attack or a recorded dead end. Use the host's own record of results if it has one; otherwise follow
+`crypto-workbench-knowledge` (without durable storage, a handoff in the
+conversation).
+Then look for the published attack through
 [the retrieval order](../crypto-investigate/reference/tools.md#look-in-this-order).
 
 If the attack is already published, read it instead of rebuilding it. **For
@@ -217,12 +218,13 @@ counterexample found” under the stated parameters and sampling process.
 
 ## Record the result
 
-Record wherever this environment keeps durable results (the host's record, the
-project's files, or the conversation's handoff): the statement (for example
+Record the statement (for example
 "<attack> requires <precondition>, which <target> does not meet"), the source
 and section of the preconditions, the runs with their parameters, what was not
 checked, and for an open question the channels searched and what was found.
-Extend an existing record rather than rewriting it.
+Extend an existing record rather than rewriting it. Use the host's own record of results if it has one; otherwise follow
+`crypto-workbench-knowledge` (without durable storage, a handoff in the
+conversation).
 
 **A refuted attack is as valuable a record as a confirmed one**, and cheaper to
 record than to rediscover. Say which of the two ways it failed — did not apply,

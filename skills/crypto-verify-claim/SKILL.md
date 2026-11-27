@@ -261,8 +261,9 @@ matters more than a high percentage.
 ## Step 6 — Record the result
 
 Facts that had to be retrieved once should not be retrieved again from scratch.
-Record wherever this environment keeps durable results (the host's record, the
-project's files, or the conversation's handoff): the checked claim under its
+Use the host's own record of results if it has one; otherwise follow
+`crypto-workbench-knowledge` (without durable storage, a handoff in the
+conversation). Record the checked claim under its
 stated assumptions, the verdict, the evidence with locators — for a new
 derivation both the original argument (`derivation`) and the separate check
 (`independent-check`, naming its route and what it checked) — and what was not

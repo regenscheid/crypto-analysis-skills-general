@@ -66,16 +66,17 @@ For a multi-stage task, use an available plan interface or a short written plan.
 Follow the current host's authorization rules; the methods do not require a
 special plan-approval card. Update the plan when its premises change.
 
-**Where results are kept is the host's business, not the pack's.** These skills
-are methods; they define no knowledge base or file layout of their own. Record
-results wherever this environment keeps durable results:
+**Where results are kept.** The skills are methods; the record they write to
+is chosen by one rule:
 
 - if the host has its own durable record of claims and evidence (a ledger,
-  project memory, documents), that record is the authority — use it and keep no
-  second record beside it;
-- otherwise (a plain repository checkout, a chat), use the project's own files
-  in a location the user names or the repository's working tree, or the
-  conversation.
+  project memory, documents), that record is the authority — use it, and do not
+  use `crypto-workbench-knowledge` or keep any second record beside it;
+- otherwise (a plain repository checkout, a coding agent, a chat with files),
+  `crypto-workbench-knowledge` is the record, in a directory the user names or
+  agrees to (for example one in the repository's working tree); its file layout
+  and helpers are described only in that skill;
+- without durable storage at all, the conversation: return a handoff.
 
 Whatever the place, the method is the same: check what is already established
 before redoing it; record each result with its evidence, its limits and what was

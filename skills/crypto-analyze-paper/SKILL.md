@@ -48,9 +48,10 @@ host's capabilities and permissions. Follow
 
 ## Step 0 — Check what is already established
 
-Look first at whatever this environment keeps as durable results — the host's
-own record, the project's files, or a handoff supplied in the conversation — for
-earlier audits of this paper, checked claims, and recorded dead ends. A recorded
+Look first for earlier audits of this paper, checked claims, and recorded dead
+ends. Use the host's own record of results if it has one; otherwise follow
+`crypto-workbench-knowledge` (without durable storage, a handoff in the
+conversation). A recorded
 gap describes the scope and outcome of an earlier attempt. A search miss or
 unavailable tool is not a mathematical obstruction; reconsider it when the
 source, model, or capability changes.
@@ -159,8 +160,9 @@ opening the bibliography.
 
 ## Record the result
 
-Record wherever this environment keeps durable results (the host's record, the
-project's files, or the conversation's handoff). For each finding give the
+Use the host's own record of results if it has one; otherwise follow
+`crypto-workbench-knowledge` (without durable storage, a handoff in the
+conversation). For each finding give the
 statement, its evidence with locators (for example "theorem 3, ROM, p. 12"), its
 limits, and what was not checked. For a question left open, record the channels
 searched — "ePrint, NIST, web" is a different finding from "ePrint" — and what

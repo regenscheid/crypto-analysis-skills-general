@@ -105,7 +105,8 @@ is recorded as established; a fresh explanation by the same author is not
 independent. Keep both the original `derivation` and the `independent-check`
 evidence, naming the checker and the exact artifact. Record promotions, closed
 lanes with their exact excluded scope, and accepted splits (each child idea with
-a title and what it builds on) wherever this environment keeps durable results,
+a title and what it builds on) in the host's own record if it has one, otherwise through
+`crypto-workbench-knowledge`,
 so a later pass starts from the critique rather than from the raw returns. The
 critic may recommend these decisions; it does not rewrite earlier returns or
 silently convert a worker-reported state into a terminal state.

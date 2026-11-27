@@ -48,9 +48,10 @@ host's capabilities and permissions. Follow
 
 ## 1. Check what is already established — including the dead ends
 
-**Do this first, every time.** Look at whatever this environment keeps as
-durable results — the host's own record, the project's files, or a supplied
-handoff — for an existing cost, reduction, or recorded dead end. A recorded gap
+**Do this first, every time.** Look for an existing cost, reduction, or
+recorded dead end. Use the host's own record of results if it has one; otherwise follow
+`crypto-workbench-knowledge` (without durable storage, a handoff in the
+conversation). A recorded gap
 is as valuable as a result: it tells you a door is already known to be closed
 and which one. A 603-second parameter sweep was once run to settle a descent
 question before anyone noticed the estimator ships no descent model; a recorded
@@ -149,8 +150,9 @@ From `crypto-review`, the checks that matter most here:
 
 ## 6. Record both outcomes
 
-Record wherever this environment keeps durable results (the host's record, the
-project's files, or the conversation's handoff).
+Use the host's own record of results if it has one; otherwise follow
+`crypto-workbench-knowledge` (without durable storage, a handoff in the
+conversation).
 
 **It worked** — the reduction holds and the instance prices: record the
 statement ("<scheme> key recovery reduces to MinRank with q=…, m=…, n=…, k=…,

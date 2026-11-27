@@ -90,9 +90,11 @@ when its first implementation costs more than it saves.
 
 ## Continue a discovery investigation across sessions
 
-Before ideating, read what this environment already keeps about the target —
-the host's own record, the project's files, or a supplied handoff: open ideas,
-confirmed lemmas, recorded dead ends with their scope, and earlier critiques.
+Before ideating, read what is already established about the target: open
+ideas, confirmed lemmas, recorded dead ends with their scope, and earlier
+critiques. Use the host's own record of results if it has one; otherwise follow
+`crypto-workbench-knowledge` (without durable storage, a handoff in the
+conversation).
 If workers are available and authorized, send them the relevant content (or
 paths they are confirmed to share). Without durable storage, keep open ideas,
 evidence, and critiques in a text handoff. Develop and review ideas
@@ -107,7 +109,7 @@ worker's return unchanged. A batch critic
 classifies outcomes, checks closures, identifies restated lemmas, promotes
 independently checked results, and writes a critique that covers all reviewed
 ideas, including those still open. Record the critique and its decisions
-wherever this environment keeps durable results. Repeat until the requested
+in the same record. Repeat until the requested
 scope is met, the current session limit is reached, or the user stops. Return
 unresolved ideas with their next steps; open research need not finish in one
 conversation.
@@ -151,8 +153,8 @@ A correctness review alone does not establish the depth of the research.
 Return the formulation, known ingredients reused, mathematics produced, scope,
 remaining obligations, and why the next inference matters. Distinguish the end
 of this work episode from resolution of the overall research question. Record
-the result wherever this environment keeps durable results, and use the host's
-plan and artifact facilities for execution and resumption.
+the result as above, and use the host's plan and artifact facilities for
+execution and resumption.
 
 Before originality language, read
 [contribution assessment](../crypto-investigate/reference/contribution-assessment.md).
