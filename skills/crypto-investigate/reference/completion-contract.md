@@ -61,7 +61,8 @@ Use only these statuses:
 - `FALSIFIED` — a named proof, counterexample, or controlled experiment defeats
   this exact candidate;
 - `NOT_APPLICABLE` — a concrete structural or model precondition fails;
-- `BLOCKED` — missing artifact, capability, access, or prerequisite;
+- `BLOCKED` — missing artifact, capability, access, or prerequisite (for a
+  computation, only after [these checks](computation.md#before-marking-a-computation-blocked));
 - `DEFERRED` — worthwhile but outside the declared budget, with a proposed test;
 - `INCONCLUSIVE` — attempted evidence does not decide the question.
 
