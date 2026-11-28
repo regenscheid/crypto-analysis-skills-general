@@ -1,6 +1,6 @@
 ---
 name: crypto-investigate
-description: "Entry point for cryptographic security investigations: declare the mode, freeze the target, route to the domain and object-level skills, ground sources and report from evidence. Use to analyze a scheme or paper, search for attacks, validate a result, audit a claim, or resume research."
+description: "Entry point for cryptographic security investigations: choose the mode, freeze the target, route to the domain and object-level skills, ground sources and report from evidence. Use to analyze a scheme or paper, search for attacks, validate a result, audit a claim, or resume research."
 ---
 
 # Investigate cryptographic security
@@ -74,10 +74,12 @@ when available and authorized; otherwise perform a sequential check and label
 its limits. Supply your own judgment about whether the investigation went far
 enough and what its findings mean.
 
-## Declare the mode
+## Choose the mode and say what you will do
 
-State one mode before substantive work. Infer it from the request; do not ask
-when the language already decides it.
+Before substantive work, tell the user in plain words what you will do, for
+example "I will reproduce the paper's computations and check them
+independently"; the mode's name may follow in parentheses (VALIDATE). Infer one
+mode from the request; do not ask when the language already decides it.
 
 | Mode | Use when | Stopping rule |
 |---|---|---|
@@ -243,7 +245,7 @@ distinction consistent in the headline and the detailed finding.
 
 Use this compact order:
 
-1. **Mode and target**
+1. **What was asked and done, and the target** (mode in parentheses)
 2. **Skill trace**
 3. **Source and prior-art grounding**
 4. **Claim and attack-surface map**

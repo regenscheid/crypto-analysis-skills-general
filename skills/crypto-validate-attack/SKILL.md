@@ -14,10 +14,13 @@ source retrieval, computation, or independent checks explicitly.
 
 
 When invoked directly by “verify,” “check whether,” or equivalent language,
-start the answer with `MODE: VALIDATE`. When a DISCOVER investigation hands over
-a frozen candidate, preserve `MODE: DISCOVER` and label this work as its bounded
-validation subphase. The mode changes who owns the surrounding search; this
-skill still checks only the one supplied attack.
+start by telling the user in plain words what you will check, for example "I
+will check whether the attack's preconditions hold for this target and test it
+at a small scale"; the mode's name may follow in parentheses (VALIDATE). When a
+DISCOVER investigation hands over a frozen candidate, keep that investigation's
+mode and say that this is its bounded check of one candidate. The mode changes
+who owns the surrounding search; this skill still checks only the one supplied
+attack.
 
 An attack claim has two ways of being wrong, and they need different work.
 

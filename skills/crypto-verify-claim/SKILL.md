@@ -13,9 +13,10 @@ Without retrieval or execution, analyze the inspected evidence and label missing
 source retrieval, computation, or independent checks explicitly.
 
 
-When asked to check whether a specified claim is correct, start with
-`MODE: VALIDATE`. If a larger investigation assigns this bounded check, preserve
-its declared mode and identify the verification subtask. Do not infer a paper
+When asked to check whether a specified claim is correct, start by telling the
+user in plain words which claim you will check and how; the mode's name may
+follow in parentheses (VALIDATE). If a larger investigation assigns this bounded
+check, keep its mode and say which part of it this check is. Do not infer a paper
 audit from a request to understand or use the paper. Read
 [paper use and verification](../crypto-investigate/reference/paper-use-and-verification.md)
 when deciding which task was assigned.

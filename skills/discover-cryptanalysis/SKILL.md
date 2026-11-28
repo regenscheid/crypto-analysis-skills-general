@@ -12,7 +12,8 @@ available. Without them, analyze the inspected evidence and keep a text record;
 label missing source retrieval, computation, or independent checks explicitly.
 
 
-Start with `MODE: DISCOVER` and identify the requested product: a research
+Start by telling the user in plain words what you will develop; the mode's name
+may follow in parentheses (DISCOVER). Identify the requested product: a research
 proposal, development of a selected mathematical question, or a scoped assessment
 supported by that mathematics. Read
 [the research workflow](../crypto-investigate/reference/mathematical-research-workflow.md).
