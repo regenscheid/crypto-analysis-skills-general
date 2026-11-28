@@ -65,7 +65,9 @@ find it.
 
 ## Step 1 — Read the body, then write down what is claimed
 
-Open the paper's body (for standards, the exact edition) through the
+Open the paper's body (for standards, the exact edition) from the session's
+curated paper library first when it has one, even a paper named by its archive
+number, and then through the rest of the
 [retrieval order](../crypto-investigate/reference/tools.md#look-in-this-order),
 and note the page of every statement you will rely on.
 

@@ -86,8 +86,11 @@ special distribution, symmetry, failure behavior, and interface seam.
 ### 3. Establish baselines
 
 Search standards, primary specifications, papers, code, issue discussions, and
-competition records for the exact version and its aliases. Extract attack
-preconditions and full costs from source bodies, not abstracts or headlines.
+competition records for the exact version and its aliases, with papers from the
+session's curated paper library first when it has one
+([retrieval order](../crypto-investigate/reference/tools.md#look-in-this-order)).
+Extract attack preconditions and full costs from source bodies, not abstracts or
+headlines.
 
 Establish generic and family-specific baselines before judging specialized
 attacks. Reuse checked baselines when the inputs, versions, and models match;

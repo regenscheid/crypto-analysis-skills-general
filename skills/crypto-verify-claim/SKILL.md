@@ -125,7 +125,7 @@ route to what the claim rests on:
 | the claim rests on | settle it by |
 |---|---|
 | a computation someone ran | **reproduce or independently reconstruct the relevant calculation** — compare its inputs, model, and output with the published claim |
-| what a document says | **open the document** — the body at the relevant page, not the abstract ([retrieval order](../crypto-investigate/reference/tools.md#look-in-this-order)) |
+| what a document says | **open the document** — the body at the relevant page, not the abstract, from the session's curated paper library first when it has one ([retrieval order](../crypto-investigate/reference/tools.md#look-in-this-order)) |
 | a definition being met | **discharge the obligations** — the `crypto-analyze-paper` skill's `reference/` set lists them per notion |
 | an attack working | **hand it to `crypto-validate-attack`** — which decides whether analysis or code settles it |
 | a cost nobody has computed | **hand it to `crypto-derive-cost`** |

@@ -44,8 +44,9 @@ revision, and scope match. Reopen the affected source for a changed dependency,
 conflicting evidence, suspected attribution error, or an explicit fresh audit.
 Follow [paper use and verification](../crypto-investigate/reference/paper-use-and-verification.md).
 When fresh retrieval is needed, follow
-[the retrieval reference](../crypto-investigate/reference/tools.md); a cited paper
-is a checkable attribution. Find preprints, standards, exact document revisions,
+[the retrieval reference](../crypto-investigate/reference/tools.md), with the
+session's curated paper library first when it has one; a cited paper is a
+checkable attribution. Find preprints, standards, exact document revisions,
 and official comments through the routes the session offers or the supplied
 documents. No particular corpus or service is assumed.
 

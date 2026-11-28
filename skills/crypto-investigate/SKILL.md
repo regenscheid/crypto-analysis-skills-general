@@ -103,6 +103,11 @@ extractor (`symmetric-literature-attack-extractor` or
 parallel so it remains intellectually independent; it does not replace source
 grounding.
 
+Find and read papers in the session's curated paper library first when it has
+one, even a paper or report named by its archive number; use an archive's own
+tools for what the library does not hold, and
+[the retrieval reference](reference/tools.md) for the order and the tool names.
+
 Search the exact target and aliases, components and assumptions, normative
 specifications, known attacks and failed approaches, errata and follow-ups,
 implementations and issue discussions, and relevant non-paper sources. Open the

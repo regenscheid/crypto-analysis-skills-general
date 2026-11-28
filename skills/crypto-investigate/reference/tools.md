@@ -11,7 +11,8 @@ Inspect the tools the current session actually offers, then use the first route
 that serves the need:
 
 1. **A curated library of papers with page-level reading**, if the environment
-   has one. Find the paper there first; read the pages that carry the result;
+   has one. Find the paper there first, even one named by its archive number
+   (an ePrint number, for example); read the pages that carry the result;
    search inside the held text for the phrase or theorem number you need. A
    library entry's summary card is a description written by someone else, not
    the paper: never quote it.

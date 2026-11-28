@@ -57,8 +57,9 @@ host's capabilities and permissions. Follow
 Look for an earlier check of this attack or a recorded dead end. Use the host's own record of results if it has one; otherwise follow
 `crypto-workbench-knowledge` (without durable storage, a handoff in the
 conversation).
-Then look for the published attack through
-[the retrieval order](../crypto-investigate/reference/tools.md#look-in-this-order).
+Then look for the published attack in the session's curated paper library first
+when it has one, even a paper named by its archive number, and then through the
+rest of [the retrieval order](../crypto-investigate/reference/tools.md#look-in-this-order).
 
 If the attack is already published, read it instead of rebuilding it. **For
 roughly half of the schemes in a standardization round, the cryptanalysis was

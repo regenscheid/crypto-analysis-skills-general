@@ -31,6 +31,11 @@ verification is assigned, a discrepancy matters, or a changed input requires it.
 Reuse previously inspected compatible source material. A missing code artifact
 or missing locator remains explicit; it is not a reason to invent evidence.
 
+Read the source in the session's curated paper library first when it has one,
+even one named by its archive number, and use an archive's own tools for what
+the library does not hold
+([retrieval order](../crypto-investigate/reference/tools.md#look-in-this-order)).
+
 ## Operating procedure
 
 1. Identify the exact source version, publication date, authors, artifact URL or hash, errata, follow-up papers, code commit, and any later retraction or rebuttal.

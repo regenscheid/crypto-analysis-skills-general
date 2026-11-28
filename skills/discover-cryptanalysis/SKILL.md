@@ -35,7 +35,9 @@ Use the user's specified objects and existing host context.
 
 Identify the closest known ingredients and the unresolved inference. Use the
 catalog and primary literature for examples, definitions, and the limits of prior
-results. Follow [catalog use](../crypto-investigate/reference/catalog-use.md) and
+results, reading papers in the session's curated paper library first when it has
+one ([retrieval order](../crypto-investigate/reference/tools.md#look-in-this-order)).
+Follow [catalog use](../crypto-investigate/reference/catalog-use.md) and
 [paper use and verification](../crypto-investigate/reference/paper-use-and-verification.md).
 An adequately sourced result can be used without independently auditing its paper.
 Check its hypotheses here and keep any uncertainty in dependent conclusions.
