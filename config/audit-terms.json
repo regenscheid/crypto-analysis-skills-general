@@ -207,7 +207,7 @@
    "why": "the signs of Claude Code"
   },
   {
-   "phrase": "tools such as `spawn_agent`, `send_input` and `view_image`: Codex",
+   "phrase": "tools such as `exec_command`, `spawn_agent` and `send_input`: Codex",
    "files": [
     "skills/crypto-investigate/SKILL.md"
    ],

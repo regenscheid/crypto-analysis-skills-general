@@ -21,7 +21,7 @@ that one, before relying on its plans, records or workers:
   Atlas ([its note](reference/hosts/cryptography-atlas.md));
 - tools such as `Skill`, `Agent` and `AskUserQuestion`: Claude Code
   ([its note](reference/hosts/claude-code.md));
-- tools such as `spawn_agent`, `send_input` and `view_image`: Codex
+- tools such as `exec_command`, `spawn_agent` and `send_input`: Codex
   ([its note](reference/hosts/codex.md)).
 
 A host may also name itself. On any other host, use the

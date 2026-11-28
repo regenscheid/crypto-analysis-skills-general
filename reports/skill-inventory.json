@@ -5,32 +5,32 @@
   "portability_errors": 0,
   "route_characters": [
     {
-      "characters": 63694,
+      "characters": 63696,
       "host": "atlas",
       "name": "Atlas: verify a claim"
     },
     {
-      "characters": 78236,
+      "characters": 78238,
       "host": "atlas",
       "name": "Atlas: assess a lattice scheme"
     },
     {
-      "characters": 70542,
+      "characters": 70544,
       "host": "claude-code",
       "name": "Claude Code: verify a claim"
     },
     {
-      "characters": 71861,
+      "characters": 71863,
       "host": "claude-code",
       "name": "Claude Code: validate an attack"
     },
     {
-      "characters": 63104,
+      "characters": 63196,
       "host": "codex",
       "name": "Codex: audit a paper"
     },
     {
-      "characters": 68782,
+      "characters": 68874,
       "host": "codex",
       "name": "Codex: sustained discovery with the board"
     }
