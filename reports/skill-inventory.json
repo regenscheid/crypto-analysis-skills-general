@@ -5,38 +5,38 @@
   "portability_errors": 0,
   "route_characters": [
     {
-      "characters": 61089,
+      "characters": 63694,
       "host": "atlas",
       "name": "Atlas: verify a claim"
     },
     {
-      "characters": 75628,
+      "characters": 78236,
       "host": "atlas",
       "name": "Atlas: assess a lattice scheme"
     },
     {
-      "characters": 68142,
+      "characters": 70542,
       "host": "claude-code",
       "name": "Claude Code: verify a claim"
     },
     {
-      "characters": 67815,
+      "characters": 71861,
       "host": "claude-code",
       "name": "Claude Code: validate an attack"
     },
     {
-      "characters": 60747,
+      "characters": 63104,
       "host": "codex",
       "name": "Codex: audit a paper"
     },
     {
-      "characters": 66488,
+      "characters": 68782,
       "host": "codex",
       "name": "Codex: sustained discovery with the board"
     }
   ],
   "schema_version": 1,
-  "skill_body_lines": 13191,
+  "skill_body_lines": 13242,
   "skill_count": 162,
   "skills": [
     {
@@ -187,7 +187,7 @@
       "description": "Audit whether a paper or security argument proves what it claims: separate claim from theorem, name notion and model, run the mismatch checklist, carry the reduction loss into concrete parameters. Use when assigned that audit; merely reading or applying a result does not assign it.",
       "description_words": 45,
       "domain": "core",
-      "lines": 187,
+      "lines": 189,
       "missing_relative_links": [],
       "name": "crypto-analyze-paper"
     },
@@ -195,7 +195,7 @@
       "description": "Map the attack surface of a cryptographic scheme: fix claims and parameters, check every applicable attack family and its preconditions, recompute costs in named models, find thin margins. Use for scheme or parameter assessments and NIST-category checks, public-key, symmetric or hash.",
       "description_words": 41,
       "domain": "core",
-      "lines": 156,
+      "lines": 159,
       "missing_relative_links": [],
       "name": "crypto-analyze-scheme"
     },
@@ -203,15 +203,15 @@
       "description": "Produce a concrete cost where none is published: find and read a reduction to a costed problem, instantiate it with real parameters, verify at toy scale, and record the result or the gap. Use when an attack's structure is understood but its cost is not available.",
       "description_words": 46,
       "domain": "core",
-      "lines": 193,
+      "lines": 194,
       "missing_relative_links": [],
       "name": "crypto-derive-cost"
     },
     {
-      "description": "Entry point for cryptographic security investigations: declare the mode, freeze the target, route to the domain and object-level skills, ground sources and report from evidence. Use to analyze a scheme or paper, search for attacks, validate a result, audit a claim, or resume research.",
+      "description": "Entry point for cryptographic security investigations: choose the mode, freeze the target, route to the domain and object-level skills, ground sources and report from evidence. Use to analyze a scheme or paper, search for attacks, validate a result, audit a claim, or resume research.",
       "description_words": 44,
       "domain": "core",
-      "lines": 236,
+      "lines": 260,
       "missing_relative_links": [],
       "name": "crypto-investigate"
     },
@@ -227,7 +227,7 @@
       "description": "Review a supplied cryptographic analysis for cost-model, precondition, security-notion, parameter-provenance, and citation defects. Use for an assigned analysis review; merely citing or applying a paper does not require a fresh citation or paper audit.",
       "description_words": 34,
       "domain": "core",
-      "lines": 226,
+      "lines": 227,
       "missing_relative_links": [],
       "name": "crypto-review"
     },
@@ -235,7 +235,7 @@
       "description": "Establish whether a claimed attack actually works: state its preconditions, choose analysis or an implementation to settle it, do that, and say what the result implies at full parameters. Use when a paper, post or earlier session asserts an attack and the question is whether to believe it.",
       "description_words": 48,
       "domain": "core",
-      "lines": 243,
+      "lines": 247,
       "missing_relative_links": [],
       "name": "crypto-validate-attack"
     },
@@ -243,7 +243,7 @@
       "description": "Check whether one specified claim in a paper, report or security argument is correct, by auditing its reasoning or reproducing its evidence, and report supported, refuted or unresolved. Use for an assigned claim check; citing or applying a published result does not require one.",
       "description_words": 44,
       "domain": "core",
-      "lines": 254,
+      "lines": 255,
       "missing_relative_links": [],
       "name": "crypto-verify-claim"
     },
@@ -323,7 +323,7 @@
       "description": "Develop mathematical cryptanalysis questions, research proposals and scoped results about specified constructions, assumptions or parameters. Use for directed standards research, unexplored questions or extensions of known results; tells a requested proposal apart from doing the mathematics.",
       "description_words": 36,
       "domain": "core",
-      "lines": 168,
+      "lines": 171,
       "missing_relative_links": [],
       "name": "discover-cryptanalysis"
     },
@@ -779,7 +779,7 @@
       "description": "Develop an explicitly stated mathematical question into definitions, lemmas, derivations, counterexamples, or scoped partial results. Use for a stated mathematical problem, proof exploration, an incomplete argument, or extended derivation work. Formal proof assistants are optional.",
       "description_words": 35,
       "domain": "core",
-      "lines": 102,
+      "lines": 104,
       "missing_relative_links": [],
       "name": "mathematical-research-development"
     },
@@ -1003,7 +1003,7 @@
       "description": "Converts papers, reports, code, specifications, issue discussions, or prior-agent findings into normalized public-key attack records with exact provenance, models, requirements, costs, and validation status.",
       "description_words": 24,
       "domain": "public-key",
-      "lines": 75,
+      "lines": 80,
       "missing_relative_links": [],
       "name": "public-key-literature-attack-extractor"
     },
@@ -1275,7 +1275,7 @@
       "description": "Extract a published or discovered symmetric-cryptanalysis result into a normalized, source-grounded attack record for reproduction and transfer. Use when reading a paper, comment, code or report that claims a symmetric attack, before adapting it.",
       "description_words": 34,
       "domain": "symmetric",
-      "lines": 81,
+      "lines": 86,
       "missing_relative_links": [],
       "name": "symmetric-literature-attack-extractor"
     },
