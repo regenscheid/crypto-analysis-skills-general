@@ -14,10 +14,13 @@ source retrieval, computation, or independent checks explicitly.
 
 
 When invoked directly by “verify,” “check whether,” or equivalent language,
-start the answer with `MODE: VALIDATE`. When a DISCOVER investigation hands over
-a frozen candidate, preserve `MODE: DISCOVER` and label this work as its bounded
-validation subphase. The mode changes who owns the surrounding search; this
-skill still checks only the one supplied attack.
+start by telling the user in plain words what you will check, for example "I
+will check whether the attack's preconditions hold for this target and test it
+at a small scale"; the mode's name may follow in parentheses (VALIDATE). When a
+DISCOVER investigation hands over a frozen candidate, keep that investigation's
+mode and say that this is its bounded check of one candidate. The mode changes
+who owns the surrounding search; this skill still checks only the one supplied
+attack.
 
 An attack claim has two ways of being wrong, and they need different work.
 
@@ -57,8 +60,9 @@ host's capabilities and permissions. Follow
 Look for an earlier check of this attack or a recorded dead end. Use the host's own record of results if it has one; otherwise follow
 `crypto-workbench-knowledge` (without durable storage, a handoff in the
 conversation).
-Then look for the published attack through
-[the retrieval order](../crypto-investigate/reference/tools.md#look-in-this-order).
+Then look for the published attack in the session's curated paper library first
+when it has one, even a paper named by its archive number, and then through the
+rest of [the retrieval order](../crypto-investigate/reference/tools.md#look-in-this-order).
 
 If the attack is already published, read it instead of rebuilding it. **For
 roughly half of the schemes in a standardization round, the cryptanalysis was

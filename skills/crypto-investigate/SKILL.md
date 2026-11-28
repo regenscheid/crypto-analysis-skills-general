@@ -1,6 +1,6 @@
 ---
 name: crypto-investigate
-description: "Entry point for cryptographic security investigations: declare the mode, freeze the target, route to the domain and object-level skills, ground sources and report from evidence. Use to analyze a scheme or paper, search for attacks, validate a result, audit a claim, or resume research."
+description: "Entry point for cryptographic security investigations: choose the mode, freeze the target, route to the domain and object-level skills, ground sources and report from evidence. Use to analyze a scheme or paper, search for attacks, validate a result, audit a claim, or resume research."
 ---
 
 # Investigate cryptographic security
@@ -11,6 +11,21 @@ First apply [the environment guide](reference/environment.md): use a native
 loader, file access, or supplied text. Missing skills, tools, and storage are
 scoped limits; they do not require inventing host APIs or stopping unrelated work.
 Do not merely recommend skills or stop after writing a plan.
+
+## Recognise the host
+
+Recognise the host from what the session offers, then read its note, and only
+that one, before relying on its plans, records or workers:
+
+- tools such as `plan_create`, `ledger_change` and `mcp_tools`: Cryptography
+  Atlas ([its note](reference/hosts/cryptography-atlas.md));
+- tools such as `Skill`, `Agent` and `AskUserQuestion`: Claude Code
+  ([its note](reference/hosts/claude-code.md));
+- tools such as `exec_command`, `spawn_agent` and `send_input`: Codex
+  ([its note](reference/hosts/codex.md)).
+
+A host may also name itself. On any other host, use the
+[capability check](reference/environment.md#capability-check).
 
 ## Scope and mathematical work
 
@@ -57,12 +72,16 @@ and overlooked significance. This applies across research proposals, assessments
 source work, modeling, computations, and proofs. Use an independent reviewer
 when available and authorized; otherwise perform a sequential check and label
 its limits. Supply your own judgment about whether the investigation went far
-enough and what its findings mean.
+enough and what its findings mean. Read and check a worker's result before
+building on it, and give follow-on work to the same worker where the host
+allows it rather than starting a new one.
 
-## Declare the mode
+## Choose the mode and say what you will do
 
-State one mode before substantive work. Infer it from the request; do not ask
-when the language already decides it.
+Before substantive work, tell the user in plain words what you will do, for
+example "I will reproduce the paper's computations and check them
+independently"; the mode's name may follow in parentheses (VALIDATE). Infer one
+mode from the request; do not ask when the language already decides it.
 
 | Mode | Use when | Stopping rule |
 |---|---|---|
@@ -102,6 +121,11 @@ extractor (`symmetric-literature-attack-extractor` or
 `public-key-literature-attack-extractor`). The structure-first track may run in
 parallel so it remains intellectually independent; it does not replace source
 grounding.
+
+Find and read papers in the session's curated paper library first when it has
+one, even a paper or report named by its archive number; use an archive's own
+tools for what the library does not hold, and
+[the retrieval reference](reference/tools.md) for the order and the tool names.
 
 Search the exact target and aliases, components and assumptions, normative
 specifications, known attacks and failed approaches, errata and follow-ups,
@@ -204,8 +228,8 @@ as the requested research result.
 
 ## Use the current platform correctly
 
-Use [the environment guide](reference/environment.md) (and its host note, when
-the host is known) for loading, records and delegation,
+Use [the environment guide](reference/environment.md) (and the host's note, see
+[recognise the host](#recognise-the-host)) for loading, records and delegation,
 [retrieval guidance](reference/tools.md) before source retrieval, and
 [computation guidance](reference/computation.md) before material runs. These are
 capability contracts, not a required tool API. A plan, script, or proof source
@@ -223,7 +247,7 @@ distinction consistent in the headline and the detailed finding.
 
 Use this compact order:
 
-1. **Mode and target**
+1. **What was asked and done, and the target** (mode in parentheses)
 2. **Skill trace**
 3. **Source and prior-art grounding**
 4. **Claim and attack-surface map**

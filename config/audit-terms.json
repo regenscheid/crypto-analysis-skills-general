@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "comment": "Terms tools/audit_skills.py rejects in the pack's text. allowed_in lists the files where a term is deliberately kept (alias reading of old records, the importer's provenance, and this list).",
+ "comment": "Terms tools/audit_skills.py rejects in the pack's text, and phrases it requires in named files. allowed_in lists the files where a term is deliberately kept (alias reading of old records, the importer's provenance, and this list).",
  "scan": [
   "skills/**/*",
   "README.md",
@@ -74,6 +74,20 @@
    "label": "pre-import pack name"
   }
  ],
+ "retired_wording": [
+  {
+   "pattern": "\\bMODE:\\s*(?:ASSESS|DISCOVER|VALIDATE|FORMALIZE)\\b",
+   "label": "a mode declared as a label; say in plain words what will be done (the mode's name may follow in parentheses)"
+  },
+  {
+   "pattern": "no suitable route exists",
+   "label": "the old rule to mark a computation BLOCKED; make the checks in computation.md, before marking a computation blocked"
+  },
+  {
+   "pattern": "preserve the computation as blocked work",
+   "label": "the old rule to leave large algebra blocked; make the checks in computation.md, before marking a computation blocked"
+  }
+ ],
  "allowed_in": {
   "\\bchild_frame_id\\b|\\broot[-_]frame[-_]id\\b": [
    "skills/crypto-workbench-knowledge/scripts/board.py",
@@ -136,5 +150,142 @@
   "name_max": 64,
   "description_max": 300,
   "why": "name: the Agent Skills limit (Atlas import, Anthropic's overview); description: the Atlas index's 300-character convention, stricter than Claude Code (1,536 in its listing) and the Atlas import (1,024); Codex states none."
- }
+ },
+ "required_phrases": [
+  {
+   "phrase": "curated paper library first",
+   "files": [
+    "skills/crypto-investigate/SKILL.md",
+    "skills/crypto-analyze-paper/SKILL.md",
+    "skills/crypto-analyze-scheme/SKILL.md",
+    "skills/crypto-derive-cost/SKILL.md",
+    "skills/crypto-review/SKILL.md",
+    "skills/crypto-validate-attack/SKILL.md",
+    "skills/crypto-verify-claim/SKILL.md",
+    "skills/discover-cryptanalysis/SKILL.md",
+    "skills/mathematical-research-development/SKILL.md",
+    "skills/public-key-cryptanalysis-orchestrator/SKILL.md",
+    "skills/symmetric-cryptanalysis-orchestrator/SKILL.md",
+    "skills/public-key-literature-attack-extractor/SKILL.md",
+    "skills/symmetric-literature-attack-extractor/SKILL.md"
+   ],
+   "why": "library first where each entry, core and literature skill speaks of sources; a run never opened tools.md, the only place that said it"
+  },
+  {
+   "phrase": "even a paper or report named by its archive number",
+   "files": [
+    "skills/crypto-investigate/SKILL.md"
+   ],
+   "why": "the library comes first even for a paper the task names by its archive number"
+  },
+  {
+   "phrase": "A curated library of papers with page-level reading",
+   "files": [
+    "skills/crypto-investigate/reference/tools.md"
+   ],
+   "why": "the retrieval order starts with the library"
+  },
+  {
+   "phrase": "## Recognise the host",
+   "files": [
+    "skills/crypto-investigate/SKILL.md"
+   ],
+   "why": "how to recognise each host, where the entry skill decides how to proceed; a run never read its host's note"
+  },
+  {
+   "phrase": "tools such as `plan_create`, `ledger_change` and `mcp_tools`: Cryptography Atlas",
+   "files": [
+    "skills/crypto-investigate/SKILL.md"
+   ],
+   "why": "the signs of Cryptography Atlas"
+  },
+  {
+   "phrase": "tools such as `Skill`, `Agent` and `AskUserQuestion`: Claude Code",
+   "files": [
+    "skills/crypto-investigate/SKILL.md"
+   ],
+   "why": "the signs of Claude Code"
+  },
+  {
+   "phrase": "tools such as `exec_command`, `spawn_agent` and `send_input`: Codex",
+   "files": [
+    "skills/crypto-investigate/SKILL.md"
+   ],
+   "why": "the signs of Codex"
+  },
+  {
+   "phrase": "Recognise the host from the tools the session offers",
+   "files": [
+    "skills/crypto-investigate/reference/environment.md"
+   ],
+   "why": "the environment guide points at the signs instead of waiting for the host to be known"
+  },
+  {
+   "phrase": "`library-mcp_find_papers`, `library-mcp_read_paper`, `library-mcp_search_in_paper`",
+   "files": [
+    "skills/crypto-investigate/reference/hosts/cryptography-atlas.md"
+   ],
+   "why": "the library tools with their server prefix, as the session names them"
+  },
+  {
+   "phrase": "in plain words",
+   "files": [
+    "skills/crypto-investigate/SKILL.md",
+    "skills/crypto-validate-attack/SKILL.md",
+    "skills/crypto-verify-claim/SKILL.md",
+    "skills/discover-cryptanalysis/SKILL.md"
+   ],
+   "why": "say what will be done in plain words before naming a mode"
+  },
+  {
+   "phrase": "## Before marking a computation blocked",
+   "files": [
+    "skills/crypto-investigate/reference/computation.md"
+   ],
+   "why": "measure and try before marking a computation blocked"
+  },
+  {
+   "phrase": "computation.md#before-marking-a-computation-blocked",
+   "files": [
+    "skills/crypto-investigate/reference/tools.md",
+    "skills/crypto-investigate/reference/completion-contract.md"
+   ],
+   "why": "the retrieval reference and the status list send a blocked computation to those checks"
+  },
+  {
+   "phrase": "never fill it in from a paper or an estimate",
+   "files": [
+    "skills/crypto-investigate/reference/computation.md"
+   ],
+   "why": "an unmeasured value stays unmeasured"
+  },
+  {
+   "phrase": "(rank-over-small-fields.md)",
+   "files": [
+    "skills/crypto-investigate/reference/computation.md"
+   ],
+   "why": "the note on large rank computations over small fields is reached from the computation reference"
+  },
+  {
+   "phrase": "A cross-check rebuilds every number from the raw outputs and never asserts the value the source predicts",
+   "files": [
+    "skills/crypto-investigate/reference/computation.md"
+   ],
+   "why": "a cross-check does not build in the expected value"
+  },
+  {
+   "phrase": "give follow-on work to the same worker where the host allows it",
+   "files": [
+    "skills/crypto-investigate/SKILL.md"
+   ],
+   "why": "check a worker's result before building on it and keep follow-on work with that worker"
+  },
+  {
+   "phrase": "follow-on work with `message_child`, including after `accept_delegation`",
+   "files": [
+    "skills/crypto-investigate/reference/hosts/cryptography-atlas.md"
+   ],
+   "why": "how Cryptography Atlas gives a worker follow-on work"
+  }
+ ]
 }

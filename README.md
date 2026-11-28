@@ -62,7 +62,8 @@ anything. For native discovery, install **whole skill directories**, with
 references and scripts, side by side in one skills directory, so the `../`
 links between skills resolve. Each supported host has a short note, read only
 on that host, mapping the pack's capabilities to the host's tools and saying
-where results are kept:
+where results are kept; `crypto-investigate` says how to recognise each host
+from the tools a session offers:
 
 | Host | Install | Note |
 |---|---|---|
@@ -201,7 +202,7 @@ the user's scope and the current session's limits.
 | `config/imported-skills.json` | Original source provenance and installed content hashes for 151 imported skills |
 | `config/skill-registry.json` | Generated canonical skill IDs for external consumers |
 | `config/skill-migrations.json` | Explicit previous-to-current core skill IDs; not runtime aliases |
-| `config/audit-terms.json`, `config/route-budget.json` | Terms the audit rejects, and the ordinary routes it measures |
+| `config/audit-terms.json`, `config/route-budget.json` | Terms the audit rejects, phrases it requires, and the ordinary routes it measures |
 | `reports/skill-inventory.json` | Generated inventory, links, descriptions, and portability audit |
 | `tests/` | Host-neutral load probe, manual behavior cases, and Python regressions |
 | `tools/` | Audit, packaging, import, and offline evaluation utilities |
@@ -218,10 +219,13 @@ python3 -m unittest discover -s tests -v
 (cd skills/crypto-workbench-knowledge && python3 scripts/board.py --selftest)
 ```
 
-The audit also guards against retired tool names, the upstream product's names
-and fields, unregistered skill names, broken links and anchors, descriptions
-over 300 characters, host notes naming undocumented tools, and ordinary routes
-over the load budget in `config/route-budget.json`. Regenerate the routers'
+The audit also guards against retired tool names and wording (a mode declared
+as a label, the old rules for marking a computation blocked), the upstream
+product's names and fields, unregistered skill names, broken links and anchors,
+descriptions over 300 characters, host notes naming undocumented tools, and
+ordinary routes over the load budget in `config/route-budget.json`. It also
+fails when a file loses a phrase it must keep, such as library first where a
+skill speaks of sources or how to recognise each host. Regenerate the routers'
 family tables with `python3 tools/family_tables.py` after adding or renaming a
 skill.
 

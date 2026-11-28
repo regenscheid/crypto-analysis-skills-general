@@ -11,7 +11,8 @@ Inspect the tools the current session actually offers, then use the first route
 that serves the need:
 
 1. **A curated library of papers with page-level reading**, if the environment
-   has one. Find the paper there first; read the pages that carry the result;
+   has one. Find the paper there first, even one named by its archive number
+   (an ePrint number, for example); read the pages that carry the result;
    search inside the held text for the phrase or theorem number you need. A
    library entry's summary card is a description written by someone else, not
    the paper: never quote it.
@@ -149,8 +150,10 @@ requirements of particular costing paths.
 - For costing, use `crypto-analyze-scheme`'s `scripts/sweep.py` only when SageMath and
   `cryptographic_estimators` are available. Otherwise mark the row `NOT CHECKED`
   and name the missing model.
-- For large algebra, use the host's configured compute provider when available;
-  otherwise preserve the computation as blocked work.
+- For large algebra, use the host's configured compute provider or long jobs
+  when available, and make the checks in
+  [before marking a computation blocked](computation.md#before-marking-a-computation-blocked)
+  before calling it blocked.
 
 Prefer the narrowest tool that answers the question. Broad crawlers, monitoring
 jobs, and autonomous web agents are not ordinary first-line retrieval tools.

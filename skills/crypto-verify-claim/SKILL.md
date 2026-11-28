@@ -13,9 +13,10 @@ Without retrieval or execution, analyze the inspected evidence and label missing
 source retrieval, computation, or independent checks explicitly.
 
 
-When asked to check whether a specified claim is correct, start with
-`MODE: VALIDATE`. If a larger investigation assigns this bounded check, preserve
-its declared mode and identify the verification subtask. Do not infer a paper
+When asked to check whether a specified claim is correct, start by telling the
+user in plain words which claim you will check and how; the mode's name may
+follow in parentheses (VALIDATE). If a larger investigation assigns this bounded
+check, keep its mode and say which part of it this check is. Do not infer a paper
 audit from a request to understand or use the paper. Read
 [paper use and verification](../crypto-investigate/reference/paper-use-and-verification.md)
 when deciding which task was assigned.
@@ -125,7 +126,7 @@ route to what the claim rests on:
 | the claim rests on | settle it by |
 |---|---|
 | a computation someone ran | **reproduce or independently reconstruct the relevant calculation** — compare its inputs, model, and output with the published claim |
-| what a document says | **open the document** — the body at the relevant page, not the abstract ([retrieval order](../crypto-investigate/reference/tools.md#look-in-this-order)) |
+| what a document says | **open the document** — the body at the relevant page, not the abstract, from the session's curated paper library first when it has one ([retrieval order](../crypto-investigate/reference/tools.md#look-in-this-order)) |
 | a definition being met | **discharge the obligations** — the `crypto-analyze-paper` skill's `reference/` set lists them per notion |
 | an attack working | **hand it to `crypto-validate-attack`** — which decides whether analysis or code settles it |
 | a cost nobody has computed | **hand it to `crypto-derive-cost`** |

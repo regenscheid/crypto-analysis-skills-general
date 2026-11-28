@@ -70,8 +70,9 @@ If an established result answers your question, you are done. Say so and stop.
 
 ## 2. Find the reduction, and read it — do not recall it
 
-Search the literature for how the target reduces to something standard, in
-[the retrieval order](../crypto-investigate/reference/tools.md#look-in-this-order)
+Search the literature for how the target reduces to something standard, in the
+session's curated paper library first when it has one and then through the rest
+of [the retrieval order](../crypto-investigate/reference/tools.md#look-in-this-order)
 — queries such as "<scheme> key recovery reduces to" or "<scheme> MinRank
 attack" — then open the body of what you find and read the pages that state
 the reduction.

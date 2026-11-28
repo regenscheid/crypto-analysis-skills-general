@@ -214,9 +214,10 @@ def _scanned_files(root: Path, terms: dict) -> list[Path]:
 
 
 def validate_terms(root: Path, terms: dict) -> list[str]:
-    """Retired tool names and the first product's names, fields and paths."""
+    """Retired tool names and wording, and the first product's names, fields and paths."""
     rules = [(entry["pattern"], entry["label"])
-             for key in ("retired_tool_names", "first_product") for entry in terms[key]]
+             for key in ("retired_tool_names", "first_product", "retired_wording")
+             for entry in terms.get(key, [])]
     compiled = [(re.compile(pattern), pattern, label) for pattern, label in rules]
     allowed = terms.get("allowed_in", {})
     failures = []
@@ -232,6 +233,24 @@ def validate_terms(root: Path, terms: dict) -> list[str]:
                         fnmatch.fnmatch(relative, allowed_path)
                         for allowed_path in allowed.get(pattern, [])):
                     failures.append(f"{relative}:{number}: {label}")
+    return failures
+
+
+def _normalized(text: str) -> str:
+    return " ".join(text.split())
+
+
+def validate_required_phrases(root: Path, terms: dict) -> list[str]:
+    """Each named file still says its required phrases (line breaks and spacing aside)."""
+    failures = []
+    for entry in terms.get("required_phrases", []):
+        phrase = _normalized(entry["phrase"])
+        for name in entry["files"]:
+            path = root / name
+            if not path.is_file():
+                failures.append(f"{name}: missing, but must say {entry['phrase']!r} ({entry['why']})")
+            elif phrase not in _normalized(path.read_text(encoding="utf-8")):
+                failures.append(f"{name}: no longer says {entry['phrase']!r} ({entry['why']})")
     return failures
 
 
@@ -283,6 +302,11 @@ def _front_matter_lists(text: str) -> dict[str, list[str]]:
     return lists
 
 
+HOST_NOTE_TOKEN = re.compile(
+    # a connector tool with its server prefix (library-mcp_find_papers), or a plain identifier
+    r"`((?:[a-z0-9]+-)*[a-z0-9]+-mcp_[A-Za-z0-9_]+|[A-Za-z_][A-Za-z0-9_]*)`")
+
+
 def validate_host_notes(root: Path) -> list[str]:
     """A host note names only tools in its own documented list (front matter `tools`)."""
     failures = []
@@ -295,7 +319,7 @@ def validate_host_notes(root: Path) -> list[str]:
         allowed = set(lists["tools"]) | set(lists.get("terms", []))
         body = text.split("\n---", 1)[1] if text.startswith("---\n") else text
         for number, line in enumerate(body.splitlines(), 1):
-            for token in re.findall(r"`([A-Za-z_][A-Za-z0-9_]*)`", line):
+            for token in HOST_NOTE_TOKEN.findall(line):
                 if token not in allowed:
                     failures.append(f"{path.relative_to(root).as_posix()}: body line {number}: "
                                     f"`{token}` is not in the note's documented tools")
@@ -356,6 +380,7 @@ def main() -> int:
     if (root / "config" / "audit-terms.json").is_file():
         terms = load_terms(root)
         guard_errors = (validate_terms(root, terms)
+                        + validate_required_phrases(root, terms)
                         + validate_skill_mentions(root, skill_names, terms)
                         + validate_links(root)
                         + validate_host_notes(root)

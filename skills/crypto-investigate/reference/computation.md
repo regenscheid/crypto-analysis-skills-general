@@ -37,13 +37,39 @@ Resolve each required capability in this order:
 5. Use an already configured, permission-controlled remote compute or SSH
    resource when the local options are absent, licensed only on the remote host,
    or materially unsuitable for the workload.
-6. If no suitable route exists, mark the computation `BLOCKED` or `NOT CHECKED`
-   and name the missing capability and the claims it affects.
+6. If no route seems to fit, make the checks in
+   [before marking a computation blocked](#before-marking-a-computation-blocked);
+   only after them mark the computation `BLOCKED` or `NOT CHECKED`, naming the
+   missing capability and the claims it affects.
 
 Do not install over a suitable existing tool. Do not mutate an environment while
 another computation is using it. Wait for environment creation or package
 operations to finish, then run a minimal version and functionality check before
 the real workload.
+
+## Before marking a computation blocked
+
+A method that runs out of time or memory stops that attempt, not the question.
+Before marking a computation `BLOCKED`:
+
+1. **Measure it.** Run the method on a smaller case of the same structure and
+   record its time and peak memory; work from those measurements, not from a
+   bound.
+2. **Check the direct routes.** See whether a direct implementation of a
+   standard method fits the limits: fewer rows than the full system, packed or
+   sparse storage, reuse of lower-degree work, or out-of-core storage, each with
+   its time estimated from a pilot. For rank or elimination over a small finite
+   field, read [large rank computations over small fields](rank-over-small-fields.md).
+3. **A cap you set is not a failed method.** A run stopped by a time or memory
+   limit you chose shows only that the method needs more than that limit;
+   report it with the rate you measured.
+4. **Long but feasible:** run it as a long job with checkpoints where the
+   environment has one, or ask the user whether to spend the time.
+5. **Blocked** only when no method fits the user's limits, or the user says
+   so; then say what each method would need.
+
+Until a value is measured, report it as not measured; never fill it in from a
+paper or an estimate.
 
 ## Choose the implementation on its merits
 
@@ -102,6 +128,10 @@ For a load-bearing computation, retain:
   certificates or witnesses;
 - at least one semantic sanity check or independent cross-check when the result
   is load-bearing.
+
+A cross-check rebuilds every number from the raw outputs and never asserts the
+value the source predicts: it reports the rebuilt value beside the source's, so
+a disagreement shows.
 
 Treat a missing executable, failed environment build, solver timeout, remote-job
 failure, or unsupported model as a scoped tool result. Try a materially distinct

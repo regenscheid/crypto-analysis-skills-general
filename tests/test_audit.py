@@ -10,7 +10,8 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 from audit_skills import (audit, load_terms, validate_host_notes, validate_links,
-                          validate_route_budget, validate_skill_mentions, validate_terms)
+                          validate_required_phrases, validate_route_budget,
+                          validate_skill_mentions, validate_terms)
 
 
 def skill(root: Path, name: str, body: str = "", description: str | None = None) -> Path:
@@ -63,6 +64,42 @@ class GuardTests(unittest.TestCase):
                 self.assertTrue(failures)
                 self.assertIn("skills/demo/SKILL.md:", failures[0])
 
+    def test_retired_wording_is_rejected(self):
+        for text in ("Start the answer with `MODE: VALIDATE`.",
+                     "6. If no suitable route exists, mark the computation `BLOCKED`.",
+                     "  otherwise preserve the computation as blocked work."):
+            with self.subTest(text=text):
+                skill(self.root, "demo", text)
+                self.assertTrue(validate_terms(self.root, self.terms))
+        skill(self.root, "demo", "Say in plain words what you will check (VALIDATE).")
+        self.assertEqual(validate_terms(self.root, self.terms), [])
+
+    def test_required_phrases_must_stay(self):
+        terms = {"required_phrases": [{"phrase": "curated paper library first",
+                                       "files": ["skills/demo/SKILL.md"], "why": "library first"}]}
+        skill(self.root, "demo", "Read papers in the session's curated paper\nlibrary first.")
+        self.assertEqual(validate_required_phrases(self.root, terms), [])
+        skill(self.root, "demo", "Read papers wherever.")
+        failures = validate_required_phrases(self.root, terms)
+        self.assertEqual(len(failures), 1)
+        self.assertIn("no longer says 'curated paper library first' (library first)", failures[0])
+        terms["required_phrases"][0]["files"].append("skills/gone/SKILL.md")
+        self.assertIn("missing", validate_required_phrases(self.root, terms)[1])
+
+    def test_required_phrases_cover_library_first_and_host_recognition(self):
+        entries = {entry["phrase"]: entry["files"] for entry in load_terms()["required_phrases"]}
+        for phrase in ("curated paper library first", "## Recognise the host"):
+            with self.subTest(phrase=phrase):
+                self.assertIn("skills/crypto-investigate/SKILL.md", entries.get(phrase, []))
+        for skill_name in ("public-key-cryptanalysis-orchestrator", "symmetric-cryptanalysis-orchestrator",
+                           "public-key-literature-attack-extractor", "crypto-validate-attack"):
+            with self.subTest(skill=skill_name):
+                self.assertIn(f"skills/{skill_name}/SKILL.md", entries["curated paper library first"])
+        for host in ("Cryptography Atlas", "Claude Code", "Codex"):
+            with self.subTest(host=host):
+                self.assertTrue(any(phrase.startswith("tools such as") and phrase.endswith(host)
+                                    for phrase in entries))
+
     def test_alias_reading_is_allowed_only_where_listed(self):
         board = self.root / "skills/crypto-workbench-knowledge/scripts/board.py"
         board.parent.mkdir(parents=True)
@@ -110,6 +147,18 @@ class GuardTests(unittest.TestCase):
         self.assertEqual(len(validate_host_notes(self.root)), 1)
         note.write_text("# no front matter, `plan_create`\n")
         self.assertIn("lacks a tools list", validate_host_notes(self.root)[0])
+
+    def test_host_note_checks_tools_with_a_server_prefix(self):
+        note = self.root / "skills/demo/reference/hosts/demo-host.md"
+        note.parent.mkdir(parents=True)
+        note.write_text("---\nhost: demo\ntools: [library-mcp_find_papers, e-print-mcp_eprint_fulltext]\n"
+                        "terms: []\n---\n\nUse `library-mcp_find_papers`, then `e-print-mcp_eprint_fulltext`;"
+                        " see `crypto-investigate`.\n")
+        self.assertEqual(validate_host_notes(self.root), [])
+        note.write_text(note.read_text() + "Or `library-mcp_find_paper`.\n")
+        failures = validate_host_notes(self.root)
+        self.assertEqual(len(failures), 1)
+        self.assertIn("`library-mcp_find_paper`", failures[0])
 
     def test_route_over_budget_is_rejected(self):
         skill(self.root, "demo", "x" * 500)

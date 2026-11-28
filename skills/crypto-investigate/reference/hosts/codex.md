@@ -1,6 +1,6 @@
 ---
 host: codex
-checked: 2026-11-27
+checked: 2026-11-27; tool names and follow-on work 2026-11-28
 sources:
   - https://learn.chatgpt.com/docs/build-skills
   - https://learn.chatgpt.com/docs/config-file/config-reference
@@ -10,7 +10,7 @@ sources:
   - https://learn.chatgpt.com/guides/best-practices
   - https://learn.chatgpt.com/docs/extend/mcp
   - https://learn.chatgpt.com/docs/agent-configuration/agents-md
-tools: []
+tools: [exec_command, write_stdin, spawn_agent, send_input, resume_agent, wait_agent, close_agent]
 terms: [crypto-workbench-knowledge, crypto-investigate, skill-installer, CRYPTO_FILES, name, description, path, project_doc_max_bytes, starter, symmetric, formal]
 ---
 
@@ -18,19 +18,19 @@ terms: [crypto-workbench-knowledge, crypto-investigate, skill-installer, CRYPTO_
 
 Read this only when running in OpenAI's Codex (CLI, IDE extension or app).
 Everything below was checked against the documentation listed in this file's
-front matter on 2026-11-27 (several `developers.openai.com/codex` pages now
-redirect to `learn.chatgpt.com`); where the documentation did not say, this note
-says so. It names no model-facing tool, because the user documentation names
-none for these capabilities.
+front matter on 2026-11-27, and the tool names and follow-on work on 2026-11-28
+(several `developers.openai.com/codex` pages now redirect to
+`learn.chatgpt.com`); where the documentation did not say, this note says so. It
+names a model-facing tool only where the configuration reference names it.
 
 | Capability | In Codex |
 |---|---|
 | Plan and progress | Plan mode (`/plan`, or Shift+Tab), in which Codex proposes a plan before implementing. A user-facing task-list tool is not described in the user documentation; keep a short written plan otherwise. |
-| Delegation and independent review | Subagents, which Codex starts when asked to or when AGENTS.md or a skill says to; settings under `[agents]` in `config.toml`, custom agents as TOML files in `~/.codex/agents/` or `.codex/agents/`. Send a worker the fixed target, evidence and expected return; a subagent is a separate context, not by itself an independent reviewer of a different kind. |
+| Delegation and independent review | Subagents, which Codex starts when asked to or when AGENTS.md or a skill says to; settings under `[agents]` in `config.toml`, custom agents as TOML files in `~/.codex/agents/` or `.codex/agents/`. Send a worker the fixed target, evidence and expected return; a subagent is a separate context, not by itself an independent reviewer of a different kind. The configuration reference names the multi-agent tools `spawn_agent`, `send_input`, `resume_agent`, `wait_agent` and `close_agent` (on by default), and the subagents page says Codex routes follow-up instructions to its agent threads: give follow-on work to an existing agent rather than spawning a new one. Neither page describes these tools further. |
 | Questions to the user | The documentation says Codex asks clarifying questions in plan mode; no question tool is documented. Ask in the reply when a decision is the user's. |
 | Durable record | Codex keeps no ledger of claims and evidence, so **`crypto-workbench-knowledge` is the record**, in a directory of the project the user names or agrees to. Set `CRYPTO_FILES` to that absolute path (or pass it to the helpers); they stop with a message if it is unset or not writable. Without it, use the repository's files or the conversation. |
 | Artifacts | Files in the working tree. |
-| Execution and long jobs | The session's shell, subject to its approval policy (skill scripts can have their own approval setting). Long-job facilities are not covered in this note. |
+| Execution and long jobs | The session's shell, subject to its approval policy (skill scripts can have their own approval setting); the configuration reference names its command tools `exec_command` and `write_stdin` (resumable command execution, enabled on all platforms). Long-job facilities are not covered in this note. |
 | Literature | MCP servers under `[mcp_servers.<name>]` in `~/.codex/config.toml` or a trusted project's `.codex/config.toml`, or `codex mcp add`; `/mcp` shows their status. See [the retrieval reference](../tools.md). |
 
 ## How Codex finds and loads skills

@@ -1,6 +1,6 @@
 ---
 host: claude-code
-checked: 2026-11-27
+checked: 2026-11-27; follow-on work 2026-11-28
 sources:
   - https://code.claude.com/docs/en/skills
   - https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview
@@ -10,7 +10,7 @@ sources:
   - https://code.claude.com/docs/en/tools-reference
   - https://code.claude.com/docs/en/mcp
   - https://code.claude.com/docs/en/memory
-tools: [Skill, Agent, TaskCreate, TaskUpdate, TaskList, EnterPlanMode, ExitPlanMode, AskUserQuestion, ToolSearch]
+tools: [Skill, Agent, SendMessage, TaskCreate, TaskUpdate, TaskList, EnterPlanMode, ExitPlanMode, AskUserQuestion, ToolSearch]
 terms: [crypto-workbench-knowledge, crypto-investigate, CRYPTO_FILES, name, description, when_to_use, source, starter, symmetric, formal]
 ---
 
@@ -18,12 +18,13 @@ terms: [crypto-workbench-knowledge, crypto-investigate, CRYPTO_FILES, name, desc
 
 Read this only when running in Anthropic's Claude Code. Everything below was
 checked against the documentation listed in this file's front matter on
-2026-11-27; where the documentation did not say, this note says so.
+2026-11-27, and the lines on follow-on work on 2026-11-28; where the
+documentation did not say, this note says so.
 
 | Capability | In Claude Code |
 |---|---|
 | Plan and progress | Task-list tools (`TaskCreate`, `TaskUpdate`, `TaskList`) and plan mode (`EnterPlanMode`, `ExitPlanMode`), as the tools reference lists them; which are on depends on the version and model. |
-| Delegation and independent review | Subagents, started with the `Agent` tool; definitions live in `.claude/agents/` (project) or `~/.claude/agents/` (personal). A subagent starts without the conversation: send it the fixed target, evidence and expected return. A subagent is a separate context, not by itself an independent reviewer of a different kind. |
+| Delegation and independent review | Subagents, started with the `Agent` tool; definitions live in `.claude/agents/` (project) or `~/.claude/agents/` (personal). A subagent starts without the conversation: send it the fixed target, evidence and expected return. A subagent is a separate context, not by itself an independent reviewer of a different kind. To give a returned subagent follow-on work, resume it with `SendMessage` and the agent ID it returned (it keeps its earlier history) rather than starting a new one; the built-in Explore and Plan agents can finish without an ID to resume. |
 | Questions to the user | `AskUserQuestion` (multiple-choice questions). |
 | Durable record | Claude Code keeps no ledger of claims and evidence, so **`crypto-workbench-knowledge` is the record**, in a directory of the project the user names or agrees to. Set `CRYPTO_FILES` to that absolute path (or pass it to the helpers); the helpers stop with a message if it is unset or not writable. Without it, use the repository's files or the conversation. |
 | Artifacts | Files in the working tree. |

@@ -33,7 +33,9 @@ numerical observation or an interpretation of an existing source.
 Use supplied context and cite known ingredients. Recheck an established fact
 when its statement, assumptions, version, or reliability matters to the current
 inference. Do not restart a broad literature survey merely because work resumes.
-Read a load-bearing source before treating its exact statement as established.
+Read a load-bearing source before treating its exact statement as established,
+from the session's curated paper library first when it has one
+([retrieval order](../crypto-investigate/reference/tools.md#look-in-this-order)).
 Separate using an established theorem, checking its hypotheses here, and
 re-proving it. The current inference usually needs the first two. Repeat a check
 only for a concrete uncertainty or an explicit validation objective.

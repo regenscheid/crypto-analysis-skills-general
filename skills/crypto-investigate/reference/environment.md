@@ -6,7 +6,9 @@ provided interfaces; do not call a guessed API to discover whether it exists.
 
 ## Host notes
 
-When you know which host you are running in, read its note, and only that one:
+Recognise the host from the tools the session offers (the signs are listed in
+[`crypto-investigate`](../SKILL.md#recognise-the-host); a host may also name
+itself), then read its note, and only that one:
 [Cryptography Atlas](hosts/cryptography-atlas.md), [Claude Code](hosts/claude-code.md),
 or [Codex](hosts/codex.md). Each maps the capabilities below to what that host
 offers and says what is absent. Where a host's own rules differ from this pack's,
