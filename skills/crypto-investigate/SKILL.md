@@ -12,6 +12,21 @@ loader, file access, or supplied text. Missing skills, tools, and storage are
 scoped limits; they do not require inventing host APIs or stopping unrelated work.
 Do not merely recommend skills or stop after writing a plan.
 
+## Recognise the host
+
+Recognise the host from what the session offers, then read its note, and only
+that one, before relying on its plans, records or workers:
+
+- tools such as `plan_create`, `ledger_change` and `mcp_tools`: Cryptography
+  Atlas ([its note](reference/hosts/cryptography-atlas.md));
+- tools such as `Skill`, `Agent` and `AskUserQuestion`: Claude Code
+  ([its note](reference/hosts/claude-code.md));
+- tools such as `spawn_agent`, `send_input` and `view_image`: Codex
+  ([its note](reference/hosts/codex.md)).
+
+A host may also name itself. On any other host, use the
+[capability check](reference/environment.md#capability-check).
+
 ## Scope and mathematical work
 
 Use available project context and a short written or native plan when helpful.
@@ -209,8 +224,8 @@ as the requested research result.
 
 ## Use the current platform correctly
 
-Use [the environment guide](reference/environment.md) (and its host note, when
-the host is known) for loading, records and delegation,
+Use [the environment guide](reference/environment.md) (and the host's note, see
+[recognise the host](#recognise-the-host)) for loading, records and delegation,
 [retrieval guidance](reference/tools.md) before source retrieval, and
 [computation guidance](reference/computation.md) before material runs. These are
 capability contracts, not a required tool API. A plan, script, or proof source

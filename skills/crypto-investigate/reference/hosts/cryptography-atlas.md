@@ -1,8 +1,8 @@
 ---
 host: cryptography-atlas
-checked: 2026-11-27
-source: the platform's own code and docs (skills, delegation, plan, ledger, memory and job tools)
-tools: [plan_create, plan_activate, plan_progress, plan_revise, plan_finish, plan_read, track_read, track_progress, delegate, wait_delegations, delegation_status, cancel_delegation, accept_delegation, message_child, message_parent, submit_result, ask_user, ledger_change, ledger_read, ledger_import, memory_propose, memory_list, document_create, document_patch, document_read, write_file, read_file, publish, find_artifacts, python, sage, shell, start_job, wait_jobs, mcp_tools, load_tools, skills, find_papers, read_paper, search_in_paper]
+checked: 2026-11-27; connector names 2026-11-28
+source: the platform's own code and docs (skills, delegation, plan, ledger, memory and job tools); connector names as mcp_tools listed them in a run
+tools: [plan_create, plan_activate, plan_progress, plan_revise, plan_finish, plan_read, track_read, track_progress, delegate, wait_delegations, delegation_status, cancel_delegation, accept_delegation, message_child, message_parent, submit_result, ask_user, ledger_change, ledger_read, ledger_import, memory_propose, memory_list, document_create, document_patch, document_read, write_file, read_file, publish, find_artifacts, python, sage, shell, start_job, wait_jobs, mcp_tools, load_tools, skills, library-mcp_find_papers, library-mcp_read_paper, library-mcp_search_in_paper, e-print-mcp_eprint_fulltext]
 terms: [literature-search, computation, delegating-work, recording-results, crypto-workbench-knowledge, search, load, read]
 ---
 
@@ -23,7 +23,7 @@ library returned in this session, never a summary card.
 | Durable record | **The ledger is the record of claims and evidence**: `ledger_change` to propose or update entries, `ledger_read` to check what is established, `ledger_import` for results files written by code. Project memory (`memory_propose`, `memory_list`) holds standing context, not results. Documents (`document_create`, `document_patch`, `document_read`) hold reports. `crypto-workbench-knowledge`, its files and its board are **not used here**. |
 | Artifacts | `write_file` and `read_file` in the workspace, `publish` to show a file, `find_artifacts` to find one. |
 | Execution | `python`, `sage`, `shell`. Long work: `start_job` and `wait_jobs`, offered after `load_tools` loads the jobs group. |
-| Connectors and literature | `mcp_tools` lists and loads connector tools; `load_tools` loads further groups. Papers: the library first (`find_papers`, `read_paper`, `search_in_paper`), then the other services in [the retrieval reference](../tools.md). |
+| Connectors and literature | `mcp_tools` lists and loads connector tools; `load_tools` loads further groups. Connector tools carry their server's prefix, as `mcp_tools` lists them. Papers: the library first (`library-mcp_find_papers`, `library-mcp_read_paper`, `library-mcp_search_in_paper`), even for a paper the task names by its ePrint number; then the other services in [the retrieval reference](../tools.md) (for example `e-print-mcp_eprint_fulltext`). |
 
 ## How the platform loads this pack
 
