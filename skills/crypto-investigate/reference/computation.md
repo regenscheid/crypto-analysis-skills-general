@@ -129,6 +129,10 @@ For a load-bearing computation, retain:
 - at least one semantic sanity check or independent cross-check when the result
   is load-bearing.
 
+A cross-check rebuilds every number from the raw outputs and never asserts the
+value the source predicts: it reports the rebuilt value beside the source's, so
+a disagreement shows.
+
 Treat a missing executable, failed environment build, solver timeout, remote-job
 failure, or unsupported model as a scoped tool result. Try a materially distinct
 available route when appropriate, but do not repeat the same failing call in a

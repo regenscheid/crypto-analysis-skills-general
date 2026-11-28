@@ -72,7 +72,9 @@ and overlooked significance. This applies across research proposals, assessments
 source work, modeling, computations, and proofs. Use an independent reviewer
 when available and authorized; otherwise perform a sequential check and label
 its limits. Supply your own judgment about whether the investigation went far
-enough and what its findings mean.
+enough and what its findings mean. Read and check a worker's result before
+building on it, and give follow-on work to the same worker where the host
+allows it rather than starting a new one.
 
 ## Choose the mode and say what you will do
 
